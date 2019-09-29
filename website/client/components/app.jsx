@@ -10,6 +10,7 @@ import { shape, bool, object, string, func } from 'prop-types';
 import Get from './get';
 import Post from './post';
 import Random from './random';
+import Index from './index';
 
 import { global, btnArea } from '../styles/app';
 
@@ -27,29 +28,7 @@ class App extends Component {
     return (
       <div>
         <Style rules={ global } />
-        <h1> React & Go Boilerplate </h1>
-        <div style={ btnArea }>
-          <Link to="/get">
-            <Button type="primary"> to Get </Button>
-          </Link>
-
-          <Link to="/post">
-            <Button type="primary"> to Post </Button>
-          </Link>
-
-          <Button type="primary" onClick={ () => push(`/random?${Math.random()}`) }>
-          to Random
-          </Button>
-        </div>
-
-        <div>
-          { ('/' === window.location.hostname || match.isExact) ? (
-            <Redirect to="/get" />
-          ) : null }
-          <Route path="/get" component={ Get } />
-          <Route path="/post" component={ Post } />
-          <Route path="/random" component={ Random } />
-        </div>
+        <Index />
       </div>
     );
   }

@@ -13,8 +13,7 @@ export const global = {
   },
 
   '*' : {
-    margin    : 15,
-    textAlign : 'center'
+    margin : 15
   },
 
   input : {
