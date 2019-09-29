@@ -1,0 +1,17 @@
+.DS_Store
+.vscode/
+
+main
+debug
+gin-bin
+log/
+vendor/
+
+.sass-cache
+npm-debug.log
+yarn-error.log
+yarn.lock
+node_modules/
+client/public
+
+dump.rdb

@@ -1,0 +1,10 @@
+.DS_Store
+Dockerfile
+.git
+node_modules
+log
+main
+gin-bin
+client/public
+npm-debug.log
+debug
