@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import data from '../data';
+import data from '../../data';
 import { difficultyContainers, difficultyLabels } from './common';
 
 const Container = styled.div`
@@ -12,18 +12,17 @@ const Left = styled.div`
   height: 100%;
   width: 30%;
   text-align: center;
-  padding: 24px 0 0 0;
+  padding: 45px 0 0 0;
   color: #555;
 `;
 const Right = styled.div`
   padding: 24px 0 30px 30%;
 `;
 const LinkContainer = styled.div`
-  margin: 1.11rem 0;
+  margin: 1.15rem 0;
 `;
 const Link = styled.a`
   color: #666;
-  font-size: 1.2rem;
 `;
 
 const Index = () => {
@@ -31,6 +30,24 @@ const Index = () => {
     <Container>
       <Left>
         <h1>LeetCode 150</h1>
+        <div>
+          Language: &nbsp;
+          <a
+            target="_blank"
+            href="https://golang.org/"
+          >
+          Go
+          </a>
+        </div>
+        <div>
+          Author: &nbsp;
+          <a
+            target="_blank"
+            href="https://xhu.me/"
+          >
+          xhu
+          </a>
+        </div>
       </Left>
 
       <Right>
@@ -49,7 +66,7 @@ const Index = () => {
               <DifficultyContainer
                 style={ {
                   color        : '#fff',
-                  fontSize     : '0.9rem',
+                  fontSize     : '0.8rem',
                   padding      : '0 2px',
                   borderRadius : 3,
                   marginLeft   : 8
