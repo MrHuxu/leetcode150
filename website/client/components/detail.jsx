@@ -1,11 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { string } from 'prop-types';
+import marked from 'marked';
 
-const Detail = () => {
+const Detail = ({ solution, explanation }) => {
   return (
     <div>
-      detail
+      <pre><code lang="golang">{ solution }</code></pre>
+      <div dangerouslySetInnerHTML={ { __html: marked(explanation) } } />
     </div>
   );
 };
 
-export default Detail;
+Detail.propTypes = {
+  solution    : string.isRequired,
+  explanation : string.isRequired
+};
+
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps)(Detail);
