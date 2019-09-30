@@ -1,22 +1,13 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>{{ .title }}</title>
 
-    {{ if .prd }}
-      <link href="/assets/bundle.css" rel="stylesheet">
-    {{ end }}
+<head>
+	<meta name="description" content="{{ .meta }}">
+	<title> {{ .title }} </title>
+</head>
 
-  </head>
-  <body>
-    <div id='react-go-boilerplate' class='full-height'/>
+<body style="margin:0">
+	{{ .body }}
+</body>
 
-    {{ if .prd }}
-      <script src="/assets/bundle.js"></script>
-    {{ else }}
-      <script src='http://localhost:6789/assets/bundle.js'></script>
-    {{ end }}
-
-  </body>
 </html>

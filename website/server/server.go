@@ -1,55 +1,42 @@
 package server
 
 import (
-	"io"
-	"os"
-	"strconv"
+	"fmt"
 
+	"github.com/dop251/goja"
 	"github.com/gin-gonic/gin"
 
-	"github.com/MrHuxu/react-go-boilerplate/server/config"
+	"github.com/MrHuxu/react-go-ssr-boilerplate/server/conf"
+	"github.com/MrHuxu/react-go-ssr-boilerplate/server/middlewares"
 )
 
-var IsReleaseMode = os.Getenv("GIN_MODE") == "release"
-var IsInsideDocker = os.Getenv("INSIDE_DOCKER") == "true"
+// DefaultServer exports an instance of interface Server
+var DefaultServer Server
 
-type Server struct {
-	Engine *gin.Engine
-	Port   int
+// Server defines the interface that server needs to implement
+type Server interface {
+	Run()
 }
 
-func New(cfg config.Config) *Server {
-	if IsReleaseMode {
-		gin.SetMode(gin.ReleaseMode)
-		gin.DisableConsoleColor()
-		logToFile()
-	}
+type server struct {
+	*gin.Engine
 
-	server := &Server{
+	jsVM     *goja.Runtime
+	jsRender func(goja.FunctionCall) goja.Value
+}
+
+func (s *server) Run() {
+	s.Engine.Run(fmt.Sprintf(":%d", conf.Conf.Web.Port))
+}
+
+func init() {
+	s := &server{
 		Engine: gin.Default(),
-		Port:   cfg.ServerPort(),
 	}
-	server.Engine.LoadHTMLGlob(cfg.ServerTemplatesPath())
-	server.Engine.Static("/assets", cfg.ServerPublicPath())
-	server.RegisterRoutes()
-	return server
-}
+	s.Use(middlewares.RenderReactData())
 
-func (svr *Server) Run() {
-	svr.Engine.Run(":" + strconv.Itoa(svr.Port))
-}
+	s.LoadHTMLGlob(conf.Conf.Web.TemplatesPath)
+	s.registerRoutes()
 
-func logToFile() {
-	os.Mkdir("log", os.ModePerm)
-	var file *os.File
-	file, err := os.OpenFile("log/gin.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0600)
-	if err != nil {
-		file, _ = os.Create("log/gin.log")
-	}
-
-	if IsInsideDocker {
-		gin.DefaultWriter = io.MultiWriter(os.Stdout, file)
-	} else {
-		gin.DefaultWriter = io.MultiWriter(file)
-	}
+	DefaultServer = s
 }

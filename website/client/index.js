@@ -1,19 +1,31 @@
-import '../node_modules/nprogress/nprogress.css';
+import 'core-js/stable';
 
 import React from 'react';
-import { render } from 'react-dom';
+import { renderToString } from 'react-dom/server';
+
 import { Provider } from 'react-redux';
-import { Route } from 'react-router-dom';
-import { Router } from 'react-router';
-import store, { history } from './store';
+import { createStaticStore } from './store';
 
-import App from './components/app';
+import { Switch, Route, StaticRouter } from 'react-router';
+import routes from './routes';
 
-render(
-  <Provider store={ store }>
-    <Router history={ history }>
-      <Route path="/" component={ App } />
-    </Router>
-  </Provider>,
-  document.getElementById('react-go-boilerplate')
-);
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
+const sheet = new ServerStyleSheet();
+
+export const renderHtmlString = (url, data) => {
+  const html = renderToString(
+    <StyleSheetManager sheet={ sheet.instance }>
+      <Provider store={ createStaticStore(data) }>
+        <StaticRouter location={ url }>
+          <Switch>
+            { routes.map(route => (
+              <Route { ...route } />
+            )) }
+          </Switch>
+        </StaticRouter>
+      </Provider>
+    </StyleSheetManager>
+  );
+  const styles = sheet.getStyleTags();
+  return styles + html;
+};

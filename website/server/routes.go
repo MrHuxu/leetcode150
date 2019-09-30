@@ -1,55 +1,21 @@
 package server
 
 import (
-	"fmt"
-	"net/http"
-
 	"github.com/gin-gonic/gin"
 )
 
-func Index(c *gin.Context) {
-	c.HTML(http.StatusOK, "index.tmpl", gin.H{
-		"prd":   IsReleaseMode,
-		"title": "React & Go Boilerplate",
+func (s *server) registerRoutes() {
+	s.GET("/:id", func(ctx *gin.Context) {
+		ctx.Set("res", map[string]interface{}{
+			"title": "LeetCode " + ctx.Param("id") + " - xhu",
+			"data":  map[string]interface{}{},
+		})
 	})
-}
 
-func (server *Server) RegisterRoutes() {
-	indexRoutes := server.Engine.Group("/")
-	{
-		indexRoutes.GET("/", Index)
-		indexRoutes.GET("/get", Index)
-		indexRoutes.GET("/post", Index)
-		indexRoutes.GET("/random", Index)
-	}
-
-	testRoutes := server.Engine.Group("/test")
-	{
-		testRoutes.GET("/", func(c *gin.Context) {
-			var key string
-			var value []string
-			for rKey, rValue := range c.Request.URL.Query() {
-				key = rKey
-				value = rValue
-			}
-			fmt.Println(key, value)
-
-			c.JSON(http.StatusOK, gin.H{
-				"requestKey":   key,
-				"requestValue": value,
-			})
+	s.GET("/", func(ctx *gin.Context) {
+		ctx.Set("res", map[string]interface{}{
+			"title": "LeetCode 150 - xhu",
+			"data":  map[string]interface{}{},
 		})
-
-		testRoutes.POST("/", func(c *gin.Context) {
-			var body struct {
-				Key string `json:"key"`
-			}
-			c.BindJSON(&body)
-			fmt.Println(body)
-
-			c.JSON(http.StatusOK, gin.H{
-				"requestValue": body.Key,
-			})
-		})
-	}
+	})
 }

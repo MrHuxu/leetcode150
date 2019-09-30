@@ -1,15 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import data from '../../data';
+import data from '../data';
 
 const Index = () => {
-  console.log({ data });
   return (
     <div>
       <h1>LeetCode 150</h1>
       { data.map(item => (
         <div>
-          <a href={ `https://leetcode.com/problems/${item.slug}/` } target="_blank">
+          <a href={ `/${item.id}` }>
             { `${item.id} ${item.title}` }
           </a>
         </div>
@@ -18,4 +18,6 @@ const Index = () => {
   );
 };
 
-export default Index;
+const mapStateToProps = data => data;
+
+export default connect(mapStateToProps)(Index);

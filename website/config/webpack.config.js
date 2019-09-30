@@ -7,9 +7,8 @@ module.exports = {
   entry : './client/index',
 
   output : {
-    path       : resolve(__dirname, 'public', 'built'),
-    filename   : 'bundle.js',
-    publicPath : 'http://localhost:6789/assets/'
+    path     : resolve(__dirname, '..', 'client', 'public'),
+    filename : 'bundle.js'
   },
 
   resolve : {
@@ -31,15 +30,7 @@ module.exports = {
           'transform-class-properties',
           'transform-decorators-legacy',
           'transform-export-extensions',
-          'transform-object-rest-spread',
-          [
-            'import',
-            {
-              libraryName      : 'antd',
-              libraryDirectory : 'lib',
-              style            : true
-            }
-          ]
+          'transform-object-rest-spread'
         ]
       }
     }, {
@@ -62,38 +53,17 @@ module.exports = {
         'style-loader',
         {
           loader  : 'css-loader',
-          options : { importLoaders: 1 }
-        }
-      ]
-    }, {
-      test : /\.less$/,
-      use  : [
-        'style-loader',
-        { loader: 'css-loader' },
-        {
-          loader  : 'less-loader',
-          options : { javascriptEnabled: true }
+          options : {
+            importLoaders : 1,
+            minimize      : true
+          }
         }
       ]
     }]
   },
 
-  watchOptions : {
-    poll : true
-  },
-
-  devServer : {
-    headers : {
-      'Access-Control-Allow-Origin' : '*'
-    },
-    port : 6789,
-    hot  : true
-  },
-
-  devtool : 'source-map',
-
   plugins : [
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ]
 };

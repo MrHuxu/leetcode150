@@ -5,6 +5,6 @@ node_modules
 log
 main
 gin-bin
-client/public
+server/public/bundle.js
 npm-debug.log
 debug
