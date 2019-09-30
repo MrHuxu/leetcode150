@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import data from '../data';
+import { difficultyContainers, difficultyLabels } from './common';
 
 const Container = styled.div`
   background-color: #eee;
@@ -18,28 +19,12 @@ const Right = styled.div`
   padding: 24px 0 30px 30%;
 `;
 const LinkContainer = styled.div`
-  margin: 12px 0;
+  margin: 1.11rem 0;
 `;
 const Link = styled.a`
   color: #666;
-  font-size: 15px;
+  font-size: 1.2rem;
 `;
-const difficultyContainers = {
-  1 : styled.span`
-    background-color: #5cb85c;
-  `,
-  2 : styled.span`
-    background-color: #f0ad4e;
-  `,
-  3 : styled.span`
-    background-color: #d9534f;
-  `
-};
-const difficultyLabels = {
-  1 : 'Easy',
-  2 : 'Medium',
-  3 : 'Hard'
-};
 
 const Index = () => {
   return (
@@ -64,7 +49,7 @@ const Index = () => {
               <DifficultyContainer
                 style={ {
                   color        : '#fff',
-                  fontSize     : 11,
+                  fontSize     : '0.9rem',
                   padding      : '0 2px',
                   borderRadius : 3,
                   marginLeft   : 8
