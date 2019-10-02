@@ -1,5 +1,6 @@
 package leetcode150
 
+// code
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	totalLen := len(nums1) + len(nums2)
 	totalNums := make([]int, totalLen)

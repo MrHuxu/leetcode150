@@ -25,7 +25,7 @@ func (s *server) registerRoutes() {
 					"title":       p.Title,
 					"slug":        p.Slug,
 					"difficulty":  p.Difficulty,
-					"solution":    string(solutionBytes),
+					"solution":    getCode(solutionBytes),
 					"explanation": explanation,
 					"algorithm":   algorithm,
 				},
@@ -39,6 +39,16 @@ func (s *server) registerRoutes() {
 		})
 	})
 }
+
+
+func getCode(solutionBytes []byte) (string) {
+	arr := strings.Split(string(solutionBytes), "// code\n")
+	if len(arr) < 2 {
+		return ""
+	}
+	return arr[1]
+}
+
 
 func getExplanationAndAlgorithm(explanationBytes []byte) (string, string) {
 	arr := strings.Split(string(explanationBytes), "# 解答")

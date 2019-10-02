@@ -4,133 +4,121 @@ import { string, number } from 'prop-types';
 import marked from 'marked';
 import styled from 'styled-components';
 
-import { difficultyContainers, difficultyLabels } from './common';
-
 const Container = styled.div`
-  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  line-height: 1.5;
+  font-size: 80%;
+  box-sizing: inherit;
+  padding: 0 30px;
+  box-shadow: inset 580px 0 #fff;
+  min-height: 100vh;
+  display: block;
 `;
-const Left = styled.div`
-  height: 100%;
-  width: calc(50% - 60px);
-  color: #555;
-  padding: 0 0 20px 30px;
-  font-size: 12px;
- 
-  & li {
-    line-height: 1.9;
-  }
-  & blockquote {
-    padding: 15px 0 15px 15px;
-    margin: 0 0 18px;
-    border-left: 5px solid #D1D0CE;
-    line-height: 28px;
-    font-weight: normal;
-    font-size: 12px;
-    font-style: italic;
-    color: #696969;
-  }
-  & img {
-    max-width: 100%;
-  }
-  & a {
-    color: #4183c4;
-  }
-  & hr {
-    border: 0;
-    color: #ddd;
-    background-color: #ddd;
-    height: 1px;
-    margin: 5px 0 19px 0;
-  }
-  & code {
-    display: inline;
-    word-wrap: break-word;
-    font-size: 12px;
-    color: rgb(85, 85, 85);
-    background: rgb(255, 255, 255);
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(221, 221, 221);
-    border-image: initial;
-    border-radius: 4px;
-    padding: 1px 3px;
-    margin: -1px 1px 0px;
-  }
-`;
-const ProblemLink = styled.div`
-  font-size: 24px;
-  text-align: center;
-  padding: 25px 20px 0px 20px;
+const ProblemLink = styled.h1`
+  box-sizing: inherit;
+  margin: 0;
+  font: inherit;
+  font-weight: bold;
+  font-family: Menlo, monospace;
+  padding: 40px 0px 10px 0px;
+  color: rgb(204, 65, 65);
+  font-size: 2em;
+  position: relative;
+  clear: both;
+  width: 550px;
 
   & a {
-    color: #666;
+    font: inherit;
+    font-weight: bold;
+    font-family: Menlo, monospace;
+    box-sizing: inherit;
+    color: #d0021b;
+    text-decoration: none;
   }
+`;
+const IntentionContainer = styled.div`
+  width: 560px;
+
+  @media(max-width: 1200px) {
+    width: 100%;
+  }
+`;
+const SolutionTitle = styled.h2`
+  font-weight: bold;
+  font-size: 1.5em;
+  color: rgb(45, 45, 45);
 `;
 const Right = styled.div`
   position: fixed;
   top: 0;
   right: 0;
-  width: 50%;
+  height:100%;
+  width: calc(100% - 950px);
   height: 100%;
   overflow: auto;
+  background-color: #2d2d2d;
+  z-index: -1;
 
-  & pre code {
-    display: block;
-    font-size: 0.92rem;
-    line-height: 18px;
-    font-weight: 12px;
-    letter-spacing: 0.03rem;
-    margin: 0 0 20px 0;
-    padding: 15px !important;
-    background-color: #f7f7f7 !important;
-    border-width: 0;
+  @media(max-width: 1200px) {
+    display: none;
+  }
+`;
+const AlgorithmContainer = styled.div`
+  vertical-align: top;
+  display: inline-block;
+  width: 560px;
+
+  @media(max-width: 1200px) {
+    width: 100%;
+  }
+`;
+const CodeContainer = styled.pre`
+  vertical-align: top;
+  width: 100%;
+  margin: 0;
+
+  @media(min-width: 1201px) {
+    margin: 0 0 0 10px;
+    display: inline-block;
+    width: calc(100% - 570px);
+  }
+
+  & code {
+    padding: 10px 20px;
+    background-color: #2d2d2d !important;
+
+    @media(max-width: 1200px) {
+      border-radius: 10px;
+    }
   }
 `;
 
 const Detail = ({ id, title, slug, difficulty, solution, explanation, algorithm }) => {
-  const DifficultyContainer = difficultyContainers[difficulty];
-  const difficultyLabel = difficultyLabels[difficulty];
-
   return (
     <Container>
-      <Left>
-        <ProblemLink>
-          <a
-            target="_blank"
-            href={ `https://leetcode.com/problems/${slug}/` }
-          >
-            { `${id}. ${title}` }
-          </a>
-        </ProblemLink>
+      <ProblemLink>
+        <a
+          target="_blank"
+          href={ `https://leetcode.com/problems/${slug}/` }
+        >
+          { `${id}. ${title}` }
+        </a>
+      </ProblemLink>
 
-        <div className="ui horizontal divider">
-          <DifficultyContainer
-            style={ {
-              color        : '#fff',
-              fontSize     : '0.9rem',
-              padding      : '0 2px',
-              borderRadius : 3,
-              marginLeft   : 8
-            } }
-          >
-            { difficultyLabel }
-          </DifficultyContainer>
-        </div>
+      <IntentionContainer dangerouslySetInnerHTML={ { __html: marked(explanation) } } />
 
-        <div className="ui stacked segment">
-          <a className="ui blue left ribbon label">题意</a>
-          <div dangerouslySetInnerHTML={ { __html: marked(explanation) } } />
-        </div>
+      <Right />
 
-        <div className="ui piled segment">
-          <a className="ui teal left ribbon label">解答</a>
-          <div dangerouslySetInnerHTML={ { __html: marked(algorithm) } } />
-        </div>
-      </Left>
+      <SolutionTitle>解答</SolutionTitle>
 
-      <Right>
-        <pre><code lang="golang">{ solution }</code></pre>
-      </Right>
+      <div>
+        <AlgorithmContainer dangerouslySetInnerHTML={ { __html: marked(algorithm) } } />
+
+        <CodeContainer>
+          <code lang="golang">{ solution }</code>
+        </CodeContainer>
+      </div>
     </Container>
   );
 };
