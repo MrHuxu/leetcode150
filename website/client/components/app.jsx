@@ -4,18 +4,12 @@ import { node } from 'prop-types';
 
 import data from '../../data';
 
-export const difficultyContainers = {
-  1 : styled.span`
-    background-color: #5cb85c;
-  `,
-  2 : styled.span`
-    background-color: #f0ad4e;
-  `,
-  3 : styled.span`
-    background-color: #d9534f;
-  `
+const mapDiffToColor = {
+  1 : '#5cb85c',
+  2 : '#f0ad4e',
+  3 : '#d9534f'
 };
-export const difficultyLabels = {
+const mapDiffToLabel = {
   1 : 'Easy',
   2 : 'Medium',
   3 : 'Hard'
@@ -53,9 +47,6 @@ const Link = styled.a`
   :hover {
     background-color: #fff;
   }
-`;
-const LinkTextContainer = styled.div`
-  padding: 10px 12px;
 `;
 const Content = styled.div`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -95,33 +86,33 @@ const App = ({ children }) => {
         </TitleContainer>
 
         { data.map(item => {
-          const DifficultyContainer = difficultyContainers[item.difficulty];
-          const difficultyLabel = difficultyLabels[item.difficulty];
-
           return (
-            <Link
+            <a
+              style={ { 'fontFamily': '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif', 'fontSize': '13px', 'lineHeight': '2', 'color': 'inherit', 'display': 'block', 'borderTop': '1px solid #ddd', 'textDecoration': 'none' } }
               key={ item.id }
               href={ `/${item.id}` }
             >
-              <LinkTextContainer>
+              <div style={ { padding: '10px 12px' } }>
                 { `${item.id}. ${item.title}` }
-                <DifficultyContainer
+                <span
                   style={ {
-                    display      : 'inline',
-                    color        : '#fff',
-                    fontSize     : 10,
-                    padding      : '0 2px',
-                    borderRadius : 3,
-                    marginLeft   : 8
+                    display         : 'inline',
+                    color           : '#fff',
+                    fontSize        : 10,
+                    padding         : '0 2px',
+                    borderRadius    : 3,
+                    marginLeft      : 8,
+                    backgroundColor : mapDiffToColor[item.difficulty]
                   } }
                 >
-                  { difficultyLabel }
-                </DifficultyContainer>
-              </LinkTextContainer>
-            </Link>
+                  { mapDiffToLabel[item.difficulty] }
+                </span>
+              </div>
+            </a>
           );
         }) }
       </ListContainer>
+
       <Content>
         { children }
       </Content>
