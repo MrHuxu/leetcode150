@@ -87,8 +87,7 @@ const App = ({ children }) => {
 
         { data.map(item => {
           return (
-            <a
-              style={ { 'fontFamily': '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif', 'fontSize': '13px', 'lineHeight': '2', 'color': 'inherit', 'display': 'block', 'borderTop': '1px solid #ddd', 'textDecoration': 'none' } }
+            <Link
               key={ item.id }
               href={ `/${item.id}` }
             >
@@ -108,7 +107,7 @@ const App = ({ children }) => {
                   { mapDiffToLabel[item.difficulty] }
                 </span>
               </div>
-            </a>
+            </Link>
           );
         }) }
       </ListContainer>
