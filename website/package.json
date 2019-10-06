@@ -7,7 +7,7 @@
     "test": "npm test",
     "webpack": "./node_modules/webpack/bin/webpack.js --config config/webpack.config.js --watch --progress",
     "lint": "./node_modules/eslint-watch/bin/esw . --fix --ignore-path .gitignore --ext .jsx --ext .js -w",
-    "dev-server": "gin --port 8283 --appPort 13109 --all -i",
+    "dev-server": "gin --port 8283 --appPort 15050 --all -i",
     "dev": "node ./scripts/dev-server",
     "build-fe": "./node_modules/webpack/bin/webpack.js --config config/webpack.config.js",
     "build-be": "go build main.go",
