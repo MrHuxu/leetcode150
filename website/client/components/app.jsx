@@ -35,19 +35,7 @@ const TitleContainer = styled.div`
     color: rgb(0, 173, 181);
   }
 `;
-const Link = styled.a`
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  font-size: 13px;
-  line-height: 2;
-  color: inherit;
-  display: block;
-  border-top: 1px solid #ddd;
-  text-decoration: none;
 
-  :hover {
-    background-color: #fff;
-  }
-`;
 const Content = styled.div`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   font-size: 18px;
@@ -87,7 +75,8 @@ const App = ({ children }) => {
 
         { data.map(item => {
           return (
-            <Link
+            <a
+              className="problem-link"
               key={ item.id }
               href={ `/${item.id}` }
             >
@@ -107,7 +96,7 @@ const App = ({ children }) => {
                   { mapDiffToLabel[item.difficulty] }
                 </span>
               </div>
-            </Link>
+            </a>
           );
         }) }
       </ListContainer>
