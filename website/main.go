@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/MrHuxu/react-go-ssr-boilerplate/server"
+	"github.com/MrHuxu/leetcode150/website/server"
 )
 
 func main() {

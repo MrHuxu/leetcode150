@@ -1,6 +1,6 @@
 # React Go SSR Boilerplate
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/MrHuxu/react-go-ssr-boilerplate)](https://goreportcard.com/report/github.com/MrHuxu/react-go-ssr-boilerplate)
+[![Go Report Card](https://goreportcard.com/badge/github.com/MrHuxu/leetcode150)](https://goreportcard.com/report/github.com/MrHuxu/leetcode150)
 
 ## Description
 
@@ -38,7 +38,7 @@ A boilerplate for fastly building web application based on React & Go using SSR(
 1. Clone the repo and install all dependencies:
 
 
-        go get github.com/MrHuxu/react-go-ssr-boilerplate && cd $GOPATH/src/github.com/MrHuxu/react-go-ssr-boilerplate
+        go get github.com/MrHuxu/leetcode150 && cd $GOPATH/src/github.com/MrHuxu/leetcode150
 
         go get -u github.com/golang/dep/cmd/dep
         dep ensure -v
@@ -64,7 +64,7 @@ A boilerplate for fastly building web application based on React & Go using SSR(
 
 1. Clone the repo and build Docker image:
 
-        go get github.com/MrHuxu/react-go-ssr-boilerplate && cd $GOPATH/src/github.com/MrHuxu/react-go-ssr-boilerplate
+        go get github.com/MrHuxu/leetcode150 && cd $GOPATH/src/github.com/MrHuxu/leetcode150
         docker build . -t react-go-ssr-boilerplate
         docker run -p 13109:13109 -d react-go-ssr-boilerplate
 

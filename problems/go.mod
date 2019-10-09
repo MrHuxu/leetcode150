@@ -1,4 +1,4 @@
-module github.com/MrHuxu/leetcode150
+module github.com/MrHuxu/leetcode150/problems
 
 go 1.13
 

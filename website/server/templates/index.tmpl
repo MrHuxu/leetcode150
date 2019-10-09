@@ -15,33 +15,40 @@
 <style>
 
 * {
-	font-family: Raleway,sans-serif;
+  font-family: Raleway,sans-serif;
 }
 
 code, code * {
-    font-family: Monaco, MonacoRegular, "Courier New", monospace !important;
+  font-family: Monaco, MonacoRegular, "Courier New", monospace !important;
 }
 
-::scrollbar {
-    display: none;
+.link-container {
+	padding: 5px 10px;
 }
 
-::-webkit-scrollbar {
-    display: none;
+.link-container>a {
+	color: #333;
 }
 
-.problem-link {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  font-size: 13px;
-  line-height: 2;
-  color: inherit;
-  display: block;
-  border-top: 1px solid #ddd;
-  text-decoration: none;
+.difficulty {
+  display: inline;
+  color: #fff;
+  font-size: 10px;
+  padding: 0 2px;
+  border-radius: 3px;
+  margin-left: 8px;
 }
 
-.problem-link:hover {
-  background-color: #fff;
+.difficulty-1 {
+  background-color: #5cb85c;
+}
+
+.difficulty-2 {
+  background-color: #f0ad4e;
+}
+
+.difficulty-3 {
+  background-color: #d9534f;
 }
 
 </style>

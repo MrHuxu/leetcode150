@@ -1,4 +1,4 @@
-module github.com/MrHuxu/react-go-ssr-boilerplate
+module github.com/MrHuxu/leetcode150/website
 
 go 1.12
 

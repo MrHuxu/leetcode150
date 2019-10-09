@@ -40,5 +40,5 @@ COPY ./website/data.json /output/server/
 COPY --from=node-builder /work/client/public/bundle.js /output/client/public/
 COPY --from=go-builder /work/main /output/
 
-EXPOSE 13109
+EXPOSE 15050
 ENTRYPOINT [ "./main" ]
