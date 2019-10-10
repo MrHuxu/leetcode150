@@ -43,7 +43,11 @@ const Detail = ({ id, title, slug, difficulty, solution, explanation, algorithm 
 
       <h2>代码</h2>
       <pre>
-        <code style={ { borderRadius: '10px' } } lang="golang">{ solution }</code>
+        <code style={ {
+          borderRadius : '10px',
+          fontSize     : '13px',
+          lineHeight   : '18px'
+        } } lang="golang">{ solution }</code>
       </pre>
     </Container>
   );
