@@ -1,7 +1,7 @@
 package leetcode150
 
 // code
-func test(haystack, needle string) int {
+func strStr(haystack, needle string) int {
 	for i := 0; i <= len(haystack)-len(needle); i++ {
 		found := true
 		for j := 0; j < len(needle); j++ {

@@ -6,21 +6,27 @@ type ListNode struct {
 }
 
 // code
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
-	tmp := &ListNode{Next: head}
-	remove(n, 0, tmp)
-	return tmp.Next
-}
+	tmpHead := &ListNode{Next: head}
 
-func remove(n, preLen int, node *ListNode) (totalLen int) {
-	if node.Next.Next == nil {
-		totalLen = preLen + 1
-	} else {
-		totalLen = remove(n, preLen+1, node.Next)
+	fast := tmpHead
+	for i := 0; i <= n; i++ {
+		fast = fast.Next
 	}
 
-	if totalLen-preLen == n {
-		node.Next = node.Next.Next
+	slow := tmpHead
+	for fast != nil {
+		fast = fast.Next
+		slow = slow.Next
 	}
-	return
+	slow.Next = slow.Next.Next
+
+	return tmpHead.Next
 }
