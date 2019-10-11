@@ -1,7 +1,7 @@
 package leetcode150
 
 // code
-func test(candidates []int, target int) [][]int {
+func combinationSum(candidates []int, target int) [][]int {
 	return combine(candidates, []int{}, 0, 0, target)
 }
 

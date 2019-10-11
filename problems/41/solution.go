@@ -1,7 +1,7 @@
 package leetcode150
 
 // code
-func test(nums []int) int {
+func firstMissingPositive(nums []int) int {
 	num := 1
 
 	for len(nums) > 0 {

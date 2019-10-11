@@ -10,6 +10,10 @@ test:
 	cd problems; \
 	go test ./...
 
+fail:
+	cd problems; \
+	go test ./... | grep -E "FAIL" | grep -E "problems/[0-9]+"
+
 solve:
 	cd problems; \
 	mkdir $(id); \

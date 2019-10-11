@@ -11,8 +11,7 @@ func Test_func(t *testing.T) {
 
 	assert.Equal("6", multiply("2", "3"))
 	assert.Equal("56088", multiply("123", "456"))
-	assert.Equal("3330", singleMulti("111", '3', 1))
-	assert.Equal("1240", singleMulti("31", '4', 1))
-	assert.Equal("333", add("111", "222"))
-	assert.Equal("1110", add("888", "222"))
+	assert.Equal("1089", multiply("33", "33"))
+	assert.Equal("0", multiply("0", "33"))
+	assert.Equal("1100", multiply("11", "100"))
 }
