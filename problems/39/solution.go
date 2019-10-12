@@ -1,7 +1,14 @@
 package leetcode150
 
 // code
+import (
+	"sort"
+)
+
 func combinationSum(candidates []int, target int) [][]int {
+	sort.Slice(candidates, func(i, j int) bool {
+		return candidates[i] < candidates[j]
+	})
 	return combine(candidates, []int{}, 0, 0, target)
 }
 
@@ -20,7 +27,7 @@ func combine(candidates, arr []int, pos, sum, target int) [][]int {
 			break
 		} else {
 			result = append(result, combine(
-				candidates, append(arr, candidate), j, sum+candidate, target,
+				candidates, append([]int{}, append(arr, candidate)...), j, sum+candidate, target,
 			)...)
 		}
 	}

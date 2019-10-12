@@ -23,4 +23,13 @@ func Test_combinationSum(t *testing.T) {
 		[]int{3, 8},
 		[]int{4, 7},
 	}, combinationSum([]int{8, 7, 4, 3}, 11))
+	assert.Equal([][]int{
+		[]int{2, 2, 2, 2, 2, 2, 2, 2, 2},
+		[]int{2, 2, 2, 2, 2, 2, 3, 3},
+		[]int{2, 2, 2, 2, 3, 7},
+		[]int{2, 2, 2, 3, 3, 3, 3},
+		[]int{2, 2, 7, 7},
+		[]int{2, 3, 3, 3, 7},
+		[]int{3, 3, 3, 3, 3, 3},
+	}, combinationSum([]int{7, 3, 2}, 18))
 }

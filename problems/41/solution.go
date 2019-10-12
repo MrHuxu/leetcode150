@@ -2,7 +2,7 @@ package leetcode150
 
 // code
 func firstMissingPositive(nums []int) int {
-	num := 1
+	var num int
 
 	for len(nums) > 0 {
 		for mid := len(nums) / 2; mid >= 1; mid-- {
@@ -28,13 +28,16 @@ func firstMissingPositive(nums []int) int {
 			nums = nums[1:len(nums)]
 
 		case nums[0] == num:
+			nums = nums[1:len(nums)]
+
+		case nums[0] == num+1:
 			num++
 			nums = nums[1:len(nums)]
 
-		case nums[0] != num:
-			return num
+		case nums[0] > num+1:
+			return num + 1
 		}
 	}
 
-	return num
+	return num + 1
 }
