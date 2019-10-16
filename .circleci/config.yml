@@ -4,6 +4,8 @@ jobs:
     docker:
       - image: circleci/golang:1.13.1
   
+    working_directory: /go/src/github.com/MrHuxu/leetcode150
+
     environment:
       GO111MODULE: on
 
