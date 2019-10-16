@@ -11,5 +11,5 @@ jobs:
       - run: cd problems && go mod download
 
       - run:
-        name: Run unit tests
-        command: make test
+          name: Run unit tests
+          command: make test
