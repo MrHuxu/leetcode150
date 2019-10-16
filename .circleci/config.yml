@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: image: circleci/golang:1.13.1
+      - image: circleci/golang:1.13.1
   
     environment:
       GO111MODULE: on
