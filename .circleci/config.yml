@@ -10,6 +10,7 @@ jobs:
       GO111MODULE: on
 
     steps:
+      - checkout
       - run: cd problems && go mod download
 
       - run:
