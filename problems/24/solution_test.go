@@ -3,6 +3,8 @@ package leetcode150
 import (
 	"testing"
 
+	. "github.com/MrHuxu/leetcode150/problems/utils"
+
 	"github.com/stretchr/testify/assert"
 )
 
@@ -10,31 +12,9 @@ func Test_swapPairs(t *testing.T) {
 	assert := assert.New(t)
 
 	assert.Equal(
-		&ListNode{
-			Val: 2,
-			Next: &ListNode{
-				Val: 1,
-				Next: &ListNode{
-					Val: 4,
-					Next: &ListNode{
-						Val: 3,
-					},
-				},
-			},
-		},
+		BuildList([]int{2, 1, 4, 3}),
 		swapPairs(
-			&ListNode{
-				Val: 1,
-				Next: &ListNode{
-					Val: 2,
-					Next: &ListNode{
-						Val: 3,
-						Next: &ListNode{
-							Val: 4,
-						},
-					},
-				},
-			},
+			BuildList([]int{1, 2, 3, 4}),
 		),
 	)
 }

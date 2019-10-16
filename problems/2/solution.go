@@ -1,9 +1,6 @@
 package leetcode150
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+import . "github.com/MrHuxu/leetcode150/problems/utils"
 
 // code
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {

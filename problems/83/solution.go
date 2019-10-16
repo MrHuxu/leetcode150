@@ -10,20 +10,18 @@ import . "github.com/MrHuxu/leetcode150/problems/utils"
  *     Next *ListNode
  * }
  */
-func removeNthFromEnd(head *ListNode, n int) *ListNode {
-	tmpHead := &ListNode{Next: head}
+func deleteDuplicates(head *ListNode) *ListNode {
+	newHead := &ListNode{Next: head}
 
-	fast := tmpHead
-	for i := 0; i <= n; i++ {
-		fast = fast.Next
-	}
-
-	slow := tmpHead
+	fast := head
+	slow := head
 	for fast != nil {
-		fast = fast.Next
+		for fast != nil && fast.Val == slow.Val {
+			fast = fast.Next
+		}
+		slow.Next = fast
 		slow = slow.Next
 	}
-	slow.Next = slow.Next.Next
 
-	return tmpHead.Next
+	return newHead.Next
 }
