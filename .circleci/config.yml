@@ -1,0 +1,15 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: image: circleci/golang:1.13.1
+  
+    environment:
+      GO111MODULE: on
+
+    steps:
+      - run: cd problems && go mod download
+
+      - run:
+        name: Run unit tests
+        command: make test
