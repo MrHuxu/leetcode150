@@ -28,12 +28,10 @@ func validate(root *TreeNode) (int, int, bool) {
 		leftMax, leftMin, leftValid := validate(root.Left)
 		if leftValid {
 			if leftMax >= root.Val {
-				println(1)
 				return 0, 0, false
 			}
 			min = leftMin
 		} else {
-			println(2)
 			return 0, 0, false
 		}
 	}
@@ -42,12 +40,10 @@ func validate(root *TreeNode) (int, int, bool) {
 		rightMax, rightMin, rightValid := validate(root.Right)
 		if rightValid {
 			if rightMin <= root.Val {
-				println(3)
 				return 0, 0, false
 			}
 			max = rightMax
 		} else {
-			println(4)
 			return 0, 0, false
 		}
 	}

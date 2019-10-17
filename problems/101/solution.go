@@ -20,18 +20,6 @@ func isSymmetric(root *TreeNode) bool {
 }
 
 func validate(a, b *TreeNode) bool {
-	if !equal(a, b) {
-		return false
-	}
-
-	if a == nil {
-		return true
-	}
-
-	return validate(a.Left, b.Right) && validate(b.Left, a.Right)
-}
-
-func equal(a, b *TreeNode) bool {
 	switch {
 	case a == nil && b == nil:
 		return true
@@ -40,6 +28,6 @@ func equal(a, b *TreeNode) bool {
 		return false
 
 	default:
-		return a.Val == b.Val
+		return a.Val == b.Val && validate(a.Left, b.Right) && validate(b.Left, a.Right)
 	}
 }
