@@ -11,7 +11,7 @@ const mapDiffToLabel = {
 const App = () => {
   return (
     <div>
-      <div style={ { padding: '0 0 15px 8px' } }>
+      <div style={ { padding: '0 0 15px 0' } }>
         <span><h1> LeetCode 150 </h1></span>
         <span>
           Language: &nbsp;

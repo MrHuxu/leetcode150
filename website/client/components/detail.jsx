@@ -4,11 +4,6 @@ import { string, number } from 'prop-types';
 import marked from 'marked';
 import styled from 'styled-components';
 
-const Container = styled.div`
-  width: calc(100% - 20px);
-  max-width: 780px;
-  padding: 10px;
-`;
 const ProblemLink = styled.h1`
   margin: 10px 0 0 0;
   font-weight: bold;
@@ -25,7 +20,7 @@ const ProblemLink = styled.h1`
 
 const Detail = ({ id, title, slug, difficulty, solution, explanation, algorithm }) => {
   return (
-    <Container>
+    <div>
       <ProblemLink>
         <a
           target="_blank"
@@ -49,7 +44,7 @@ const Detail = ({ id, title, slug, difficulty, solution, explanation, algorithm 
           lineHeight   : '18px'
         } } lang="golang">{ solution }</code>
       </pre>
-    </Container>
+    </div>
   );
 };
 
