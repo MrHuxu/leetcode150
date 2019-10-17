@@ -1,5 +1,6 @@
 package leetcode150
 
+// code
 func maxArea(height []int) int {
 	var result int
 

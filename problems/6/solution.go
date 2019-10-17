@@ -1,7 +1,6 @@
 package leetcode150
 
-import "fmt"
-
+// code
 func convert(s string, numRows int) string {
 	if numRows == 1 {
 		return s
@@ -27,7 +26,7 @@ func convert(s string, numRows int) string {
 
 	result := ""
 	for i := 0; i < numRows; i++ {
-		fmt.Println(string(m[i]))
+		// code
 		result += string(m[i])
 	}
 	return result

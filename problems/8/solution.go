@@ -1,7 +1,9 @@
 package leetcode150
 
+// code
 func myAtoi(str string) int {
 	num := 0
+
 	sym := 1
 	started := false
 	for i := 0; i < len(str); i++ {

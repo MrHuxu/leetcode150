@@ -1,5 +1,6 @@
 package leetcode150
 
+// code
 type node struct {
 	val  byte
 	cnt  int
