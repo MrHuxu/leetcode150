@@ -34,7 +34,7 @@ func BuildTree(vals []interface{}) *TreeNode {
 		var nextLevel []*TreeNode
 
 		for _, node := range level {
-			if node != nil {
+			if node != nil && len(vals) != 0 {
 				if vals[0] == nil {
 					nextLevel = append(nextLevel, nil)
 				} else {
