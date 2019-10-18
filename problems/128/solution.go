@@ -2,11 +2,7 @@ package leetcode150
 
 // code
 func longestConsecutive(nums []int) int {
-	if len(nums) == 0 {
-		return 0
-	}
-
-	result := 1
+	var result int
 
 	mapHeadToTail := make(map[int]int)
 	mapTailToHead := make(map[int]int)
@@ -23,31 +19,33 @@ func longestConsecutive(nums []int) int {
 
 		switch {
 		case ok1 && ok2:
-			if tail-head+1 > result {
-				result = tail - head + 1
-			}
+			result = max(result, tail-head+1)
 			mapHeadToTail[head] = tail
 			mapTailToHead[tail] = head
 
 		case ok1:
-			if tail-num+1 > result {
-				result = tail - num + 1
-			}
+			result = max(result, tail-num+1)
 			mapHeadToTail[num] = tail
 			mapTailToHead[tail] = num
 
 		case ok2:
-			if num-head+1 > result {
-				result = num - head + 1
-			}
+			result = max(result, num-head+1)
 			mapHeadToTail[head] = num
 			mapTailToHead[num] = head
 
 		default:
+			result = max(result, 1)
 			mapHeadToTail[num] = num
 			mapTailToHead[num] = num
 		}
 	}
 
 	return result
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
