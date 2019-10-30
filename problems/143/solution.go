@@ -1,8 +1,6 @@
 package leetcode150
 
-import (
-	. "github.com/MrHuxu/leetcode150/problems/utils"
-)
+import . "github.com/MrHuxu/leetcode150/problems/utils"
 
 // code
 /**
