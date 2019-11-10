@@ -3,58 +3,46 @@ package leetcode150
 // code
 func partition(s string) [][]string {
 	dp := make([]map[int]bool, len(s))
-	for i := 0; i < len(s); i++ {
-		dp[i] = make(map[int]bool, len(s))
-		dp[i][i] = true
+	for i := range dp {
+		dp[i] = make(map[int]bool)
 	}
 
-	return traverse(s, 0, len(s)-1, dp)
+	for l := 1; l <= len(s); l++ {
+		for i := 0; i+l <= len(s); i++ {
+			j := i + l - 1
+
+			switch l {
+			case 1:
+				dp[i][j] = true
+
+			case 2:
+				dp[i][j] = s[i] == s[j]
+
+			default:
+				dp[i][j] = dp[i+1][j-1] && (s[i] == s[j])
+			}
+		}
+	}
+
+	return traverse(s, 0, dp)
 }
 
-func traverse(s string, i, j int, dp []map[int]bool) [][]string {
-	if i == j {
-		return [][]string{
-			[]string{s[i : j+1]},
-		}
-	}
-
+func traverse(s string, i int, dp []map[int]bool) [][]string {
 	var result [][]string
-	if validate(s, i, j, dp) {
-		result = [][]string{
-			[]string{s[i : j+1]},
-		}
-	}
 
-	for k := i; k < j; k++ {
-		if validate(s, i, k, dp) {
-			left := s[i : k+1]
-			rights := traverse(s, k+1, j, dp)
+	for j := i; j < len(s); j++ {
+		if dp[i][j] {
+			left := s[i : j+1]
+			rights := traverse(s, j+1, dp)
 
 			for _, r := range rights {
 				result = append(result, append([]string{left}, r...))
 			}
-		}
-	}
-
-	return result
-}
-
-func validate(s string, i, j int, dp []map[int]bool) bool {
-	if i >= j {
-		return true
-	}
-
-	result := s[i] == s[j]
-	if result {
-		if i+1 < len(s) {
-			if _, ok := dp[i+1][j-1]; ok {
-				result = result && dp[i+1][j-1]
-			} else {
-				result = result && validate(s, i+1, j-1, dp)
+			if len(rights) == 0 {
+				result = append(result, []string{left})
 			}
 		}
 	}
 
-	dp[i][j] = result
 	return result
 }

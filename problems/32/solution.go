@@ -1,14 +1,11 @@
 package leetcode150
 
-import "fmt"
-
 // code
 func longestValidParentheses(s string) int {
 	var result int
 
 	dp := make([]int, len(s)+1)
 	for i := 1; i < len(s); i++ {
-		fmt.Println(dp)
 		if s[i] == ')' {
 			if i-1-dp[i-1] >= 0 && s[i-1-dp[i-1]] == '(' {
 				dp[i] = dp[i-1] + 2
