@@ -9,27 +9,25 @@ func combinationSum(candidates []int, target int) [][]int {
 	sort.Slice(candidates, func(i, j int) bool {
 		return candidates[i] < candidates[j]
 	})
-	return combine(candidates, []int{}, 0, 0, target)
-}
-
-func combine(candidates, arr []int, pos, sum, target int) [][]int {
-	if sum == target {
-		return [][]int{arr}
-	} else if sum > target {
-		return nil
-	}
 
 	var result [][]int
-	for j := pos; j < len(candidates); j++ {
-		candidate := candidates[j]
 
-		if sum+candidate > target {
-			break
-		} else {
-			result = append(result, combine(
-				candidates, append([]int{}, append(arr, candidate)...), j, sum+candidate, target,
-			)...)
+	var combine func(int, int, []int)
+	combine = func(idx, left int, curr []int) {
+		if left == 0 {
+			result = append(result, curr)
+			return
+		}
+
+		if left < 0 {
+			return
+		}
+
+		for i := idx; i < len(candidates); i++ {
+			combine(i, left-candidates[i], append([]int{}, append(curr, candidates[i])...))
 		}
 	}
+	combine(0, target, []int{})
+
 	return result
 }
