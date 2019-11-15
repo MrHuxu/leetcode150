@@ -9,7 +9,9 @@ COPY . /work
 RUN node scripts/merge.js
 RUN sed -i -e 's/solution/index/g' SUMMARY.md
 RUN rm .gitignore
-RUN gitbook build
+RUN gitbook install && gitbook build
+RUN sed -i -e 's/gitbook\/images\/apple-touch-icon-precomposed-152.png/https:\/\/raw.githubusercontent.com\/MrHuxu\/img-repo\/master\/leetcode150\/favicon.png/g' _book/index.html
+RUN sed -i -e 's/gitbook\/images\/favicon.ico/https:\/\/raw.githubusercontent.com\/MrHuxu\/img-repo\/master\/leetcode150\/favicon.png/g' _book/index.html
 
 FROM nginx:alpine
 

@@ -1,0 +1,18 @@
+{
+  "plugins": [
+    "github",
+    "prism",
+    "prism-themes",
+    "-highlight"
+  ],
+  "pluginsConfig": {
+    "github": {
+      "url": "https://github.com/MrHuxu/leetcode150"
+    },
+    "prism": {
+      "css": [
+        "prismjs/themes/prism-coy.css"
+      ]
+    }
+  }
+}

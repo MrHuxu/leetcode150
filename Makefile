@@ -9,6 +9,8 @@ build:
 	rm .gitignore
 
 	gitbook build
+	sed -i -e 's/gitbook\/images\/apple-touch-icon-precomposed-152.png/https:\/\/raw.githubusercontent.com\/MrHuxu\/img-repo\/master\/leetcode150\/favicon.png/g' _book/index.html
+	sed -i -e 's/gitbook\/images\/favicon.ico/https:\/\/raw.githubusercontent.com\/MrHuxu\/img-repo\/master\/leetcode150\/favicon.png/g' _book/index.html
 
 	git checkout .gitignore
 	sed -i -e 's/index/solution/g' SUMMARY.md
