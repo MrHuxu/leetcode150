@@ -6,6 +6,9 @@ RUN npm install gitbook-cli -g && gitbook fetch ${VERSION}
 WORKDIR /work
 COPY . /work
 
+RUN node scripts/merge.js
+RUN sed -i -e 's/solution/index/g' SUMMARY.md
+RUN rm .gitignore
 RUN gitbook build
 
 FROM nginx:alpine
