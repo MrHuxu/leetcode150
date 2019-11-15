@@ -12,3 +12,16 @@
 1. target 与 nums[i] 的差不在 map 中, 将 nums[i] 和 i 存储到 map 中, 继续向后遍历;
 2. target 与 nums[i] 的差已经在 map 中, 则可以获得差值的下标, 和 i 组成数组返回.
 
+## 代码
+
+    func twoSum(nums []int, target int) []int {
+      mapNumToPos := make(map[int]int, len(nums))
+      for i, v := range nums {
+        if pos, ok := mapNumToPos[target-v]; ok {
+          return []int{pos, i}
+        }
+
+        mapNumToPos[v] = i
+      }
+      return []int{}
+    }
