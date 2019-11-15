@@ -1,4 +1,4 @@
-package leetcode150
+package main
 
 // code
 func generate(numRows int) [][]int {

@@ -1,4 +1,4 @@
-package leetcode150
+package main
 
 // code
 func maxProfit(prices []int) int {

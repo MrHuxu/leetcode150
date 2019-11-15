@@ -1,4 +1,4 @@
-package leetcode150
+package main
 
 // code
 func wordBreak(s string, wordDict []string) bool {

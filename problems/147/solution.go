@@ -1,4 +1,4 @@
-package leetcode150
+package main
 
 import (
 	. "github.com/MrHuxu/leetcode150/problems/utils"

@@ -1,4 +1,4 @@
-package leetcode150
+package main
 
 // code
 func fullJustify(words []string, maxWidth int) []string {

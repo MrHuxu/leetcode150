@@ -1,4 +1,4 @@
-package leetcode150
+package main
 
 // code
 func exist(board [][]byte, word string) bool {

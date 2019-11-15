@@ -1,4 +1,4 @@
-package leetcode150
+package main
 
 // code
 func minDistance(word1, word2 string) int {

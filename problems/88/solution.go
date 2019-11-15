@@ -1,4 +1,4 @@
-package leetcode150
+package main
 
 // code
 func merge(nums1 []int, m int, nums2 []int, n int) {

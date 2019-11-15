@@ -1,4 +1,4 @@
-package leetcode150
+package main
 
 // code
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {

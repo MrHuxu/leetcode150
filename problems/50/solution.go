@@ -1,4 +1,4 @@
-package leetcode150
+package main
 
 // code
 func myPow(x float64, n int) float64 {

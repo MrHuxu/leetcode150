@@ -1,4 +1,4 @@
-package leetcode150
+package main
 
 // code
 func findSubstring(s string, words []string) []int {

@@ -1,4 +1,4 @@
-package leetcode150
+package main
 
 // code
 func ladderLength(beginWord string, endWord string, wordList []string) int {

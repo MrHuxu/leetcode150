@@ -1,4 +1,4 @@
-package leetcode150
+package main
 
 // code
 func numDistinct(S, T string) int {

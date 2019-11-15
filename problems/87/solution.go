@@ -1,4 +1,4 @@
-package leetcode150
+package main
 
 // code
 func isScramble(s1, s2 string) bool {

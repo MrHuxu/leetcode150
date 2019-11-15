@@ -1,4 +1,4 @@
-package leetcode150
+package main
 
 // code
 var mapNumToSym = map[int]map[int]string{

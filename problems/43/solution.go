@@ -1,4 +1,4 @@
-package leetcode150
+package main
 
 // code
 func multiply(num1, num2 string) string {

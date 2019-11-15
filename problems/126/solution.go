@@ -1,4 +1,4 @@
-package leetcode150
+package main
 
 // code
 func findLadders(beginWord string, endWord string, wordList []string) [][]string {
