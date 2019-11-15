@@ -7,12 +7,12 @@ build:
 	node scripts/merge.js
 	sed -i -e 's/solution/index/g' SUMMARY.md
 	rm .gitignore
+
 	gitbook build
 
-clear_build:
 	git checkout .gitignore
-	rm */*/index.md
 	sed -i -e 's/index/solution/g' SUMMARY.md
+	rm -rf */*/index.md SUMMARY.md-e
 
 dev:
 	gitbook serve
