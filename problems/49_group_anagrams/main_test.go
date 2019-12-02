@@ -1,0 +1,17 @@
+package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
+func Test_groupAnagrams(t *testing.T) {
+	assert := assert.New(t)
+
+	assert.Equal([][]string{
+		[]string{"eat", "tea", "ate"},
+		[]string{"tan", "nat"},
+		[]string{"bat"},
+	}, groupAnagrams([]string{"eat", "tea", "tan", "ate", "nat", "bat"}))
+}

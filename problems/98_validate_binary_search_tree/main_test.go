@@ -13,7 +13,7 @@ func Test_isValidBST(t *testing.T) {
 
 	assert.Equal(
 		true, isValidBST(BuildTree([]interface{}{2, 1, 3})),
-		)
+	)
 	assert.Equal(
 		false, isValidBST(BuildTree([]interface{}{5, 1, 4, nil, nil, 3, 6})),
 	)
