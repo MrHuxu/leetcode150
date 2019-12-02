@@ -11,7 +11,7 @@ import . "github.com/MrHuxu/leetcode150/problems/utils"
  *     Right *TreeNode
  * }
  */
-func isValidBST(root *TreeNode) bool {
+func isValidBST1(root *TreeNode) bool {
 	if root == nil {
 		return true
 	}
@@ -49,4 +49,32 @@ func validate(root *TreeNode) (int, int, bool) {
 	}
 
 	return max, min, true
+}
+
+func isValidBST(root *TreeNode) bool {
+	if root == nil {
+		return true
+	}
+
+	valid := true
+
+	var pre *TreeNode
+	var inOrderTraverse func(*TreeNode)
+	inOrderTraverse = func(node *TreeNode) {
+		if !valid || node == nil {
+			return
+		}
+
+		inOrderTraverse(node.Left)
+
+		if pre != nil && node.Val <= pre.Val {
+			valid = false
+		}
+		pre = node
+
+		inOrderTraverse(node.Right)
+	}
+	inOrderTraverse(root)
+
+	return valid
 }
