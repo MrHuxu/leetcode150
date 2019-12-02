@@ -18,7 +18,7 @@ const ProblemLink = styled.h1`
   }
 `;
 
-const Detail = ({ id, title, slug, difficulty, solution, explanation, algorithm }) => {
+const Detail = ({ id, title, slug, difficulty, code, explanation, algorithm }) => {
   return (
     <div>
       <ProblemLink>
@@ -42,7 +42,7 @@ const Detail = ({ id, title, slug, difficulty, solution, explanation, algorithm 
           borderRadius : '10px',
           fontSize     : '13px',
           lineHeight   : '18px'
-        } } lang="golang">{ solution }</code>
+        } } lang="golang">{ code }</code>
       </pre>
     </div>
   );
@@ -53,7 +53,7 @@ Detail.propTypes = {
   title       : string.isRequired,
   slug        : string.isRequired,
   difficulty  : number.isRequired,
-  solution    : string.isRequired,
+  code        : string.isRequired,
   explanation : string.isRequired,
   algorithm   : string.isRequired
 };

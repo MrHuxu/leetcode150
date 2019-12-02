@@ -23,7 +23,7 @@ func recoverTree(root *TreeNode) {
 
 		inOrderTraverse(node.Left)
 
-		if pre != nil && node1 == nil && node.Val < pre.Val{
+		if pre != nil && node1 == nil && node.Val < pre.Val {
 			node1 = pre
 			node2 = node
 		}
