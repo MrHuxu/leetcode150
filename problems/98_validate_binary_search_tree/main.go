@@ -52,10 +52,6 @@ func validate(root *TreeNode) (int, int, bool) {
 }
 
 func isValidBST(root *TreeNode) bool {
-	if root == nil {
-		return true
-	}
-
 	valid := true
 
 	var pre *TreeNode
