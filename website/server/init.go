@@ -16,7 +16,7 @@ type problem struct {
 var problems = make(map[string]*problem)
 
 func init() {
-	bytes, err := ioutil.ReadFile("./server/data.json")
+	bytes, err := ioutil.ReadFile("./data.json")
 	if err != nil {
 		panic(err)
 	}
