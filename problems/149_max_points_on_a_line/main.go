@@ -16,20 +16,21 @@ func maxPoints(points [][]int) int {
 		var samePos, sameCol int
 		tmp := 1
 		for j := i + 1; j < len(points); j++ {
-			if points[j][0] == points[i][0] {
-				if points[j][1] == points[i][1] {
+			horizontalDiff := points[j][0] - points[i][0]
+			verticalDiff := points[j][1] - points[i][1]
+
+			if horizontalDiff == 0 {
+				if verticalDiff == 0 {
 					samePos++
 				} else {
 					sameCol++
 					tmp = max(tmp, sameCol+1)
 				}
 			} else {
-				horizontalDiff := points[j][0] - points[i][0]
-				verticalDiff := points[j][1] - points[i][1]
 				divisor := gcd(horizontalDiff, verticalDiff)
-
 				key := strconv.Itoa(verticalDiff/divisor) + "@" + strconv.Itoa(horizontalDiff/divisor)
 				m[key]++
+
 				tmp = max(tmp, m[key]+1)
 			}
 		}
