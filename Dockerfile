@@ -36,7 +36,7 @@ WORKDIR /output
 COPY ./website/config/server.json /output/config/
 COPY ./website/server/templates /output/server/templates
 COPY ./problems /problems
-COPY ./website/data.json /output/server/
+COPY ./website/data.json /output/
 COPY --from=node-builder /work/client/public/bundle.js /output/client/public/
 COPY --from=go-builder /work/main /output/
 
