@@ -1,9 +1,27 @@
 {{ define "index" }}
 
+<div style="padding:15px 10px">
+	<span><h1> LeetCode 150 </h1></span>
+	<span>
+		Language: &nbsp;
+		<a target="_blank" href="https://golang.org/" >
+		Go
+		</a>
+	</span>
+	&nbsp;/&nbsp;
+	<span>
+		Author: &nbsp;
+		<a target="_blank" href="https://xhu.me/" >
+		xhu
+		</a>
+	</span>
+</div>
+
 {{ range . }}
-	<div class="widget">
-		<a class="price" href="/{{ .ID }}">{{ .ID }}. {{ .Title }}</a>
-	</div>
+<div class="ui divider"></div>
+<div style="padding: 0 0 0 10px">
+	<a class="price" href="/{{ .ID }}">{{ .ID }}. {{ .Title }}</a>
+</div>
 {{ end }}
 
 {{ end }}

@@ -89,7 +89,7 @@ func getCode(q data.Question) (string, error) {
 
 	arr := strings.Split(string(codeBytes), "// code\n")
 	if len(arr) < 2 {
-		return "", errors.New("cod content is empty")
+		return "", errors.New("code content is empty")
 	}
 	return arr[1], nil
 }
