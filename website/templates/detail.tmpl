@@ -1,8 +1,18 @@
 {{ define "detail" }}
 
+<link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/ocean.min.css" rel="stylesheet">
+
 <h2><a target="_blank" href="https://leetcode.com/problems/{{ .Slug }}/">{{ .ID }}. {{ .Title }}</a></h2>
 
 <p>{{ .Solution }}</p>
+
 <pre><code class="{{ .Lang }}">{{ .Code }}</code></pre>
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/{{ .Lang }}.min.js"></script>
+<script>
+  hljs.configure({tabReplace: '  '})
+  hljs.initHighlightingOnLoad();
+</script>
 
 {{ end }}
