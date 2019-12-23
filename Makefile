@@ -4,7 +4,7 @@ install_dependencies:
 
 dev:
 	cd website; \
-	npm run dev
+	gin --port 8283 --appPort 15050 --all -i
 
 test:
 	cd problems; \

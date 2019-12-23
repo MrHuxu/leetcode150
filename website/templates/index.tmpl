@@ -1,0 +1,9 @@
+{{ define "index" }}
+
+{{ range . }}
+	<div class="widget">
+		<a class="price" href="/{{ .ID }}">{{ .ID }}. {{ .Title }}</a>
+	</div>
+{{ end }}
+
+{{ end }}

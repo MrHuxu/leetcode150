@@ -1,0 +1,8 @@
+{{ define "detail" }}
+
+<h2><a target="_blank" href="https://leetcode.com/problems/{{ .Slug }}/">{{ .ID }}. {{ .Title }}</a></h2>
+
+<p>{{ .Solution }}</p>
+<pre><code class="{{ .Lang }}">{{ .Code }}</code></pre>
+
+{{ end }}

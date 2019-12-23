@@ -7,61 +7,21 @@
 	<title> {{ .title }} </title>
 	<link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans|Raleway" rel="stylesheet">
 	<link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/ocean.min.css" rel="stylesheet">
-	<link href="https://cdn.bootcss.com/semantic-ui/2.4.1/components/divider.min.css" rel="stylesheet">
-	<link href="https://cdn.bootcss.com/semantic-ui/2.4.1/components/segment.min.css" rel="stylesheet">
-	<link href="https://cdn.bootcss.com/semantic-ui/2.4.1/components/label.min.css" rel="stylesheet">
 	<link rel="shortcut icon" type="image" href="https://raw.githubusercontent.com/MrHuxu/img-repo/master/leetcode150/favicon.png">
 </head>
 
 <style>
-
-* {
-  font-family: Raleway,sans-serif;
-}
-
-code, code * {
-  font-family: Monaco, MonacoRegular, "Courier New", monospace !important;
-}
-
-.link-container {
-	padding: 10px 0px;
-	transition: transform 0.6s;
-}
-
-.link-container:hover {
-	background-color: #EEE;
-	transform: translate(10px, 0);
-}
-
-.link-container>a {
-	color: #333;
-}
-
-.difficulty {
-  display: inline;
-  color: #fff;
-  font-size: 10px;
-  padding: 0 2px;
-  border-radius: 3px;
-  margin-left: 8px;
-}
-
-.difficulty-1 {
-  background-color: #5cb85c;
-}
-
-.difficulty-2 {
-  background-color: #f0ad4e;
-}
-
-.difficulty-3 {
-  background-color: #d9534f;
-}
-
 </style>
 
 <body style="margin: 0; height: 100%">
-	{{ .body }}
+
+  {{ if eq .page "index" }}
+    {{ template "index" .questions }}
+  {{ else if eq .page "detail" }}
+    {{ template "detail" .question }}
+  {{ else }}
+    {{ template "error" .msg }}
+  {{ end }}
 
 	<a href="https://github.com/MrHuxu/leetcode150" target="_blank">
     <img style="position: fixed; top: 0; right: 0; border: 0; z-index: 901" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png">
@@ -69,6 +29,7 @@ code, code * {
 
 	<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
 	<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+	<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/javascript.min.js"></script>
 	<script>
 		hljs.configure({tabReplace: '  '})
 		hljs.initHighlightingOnLoad();
