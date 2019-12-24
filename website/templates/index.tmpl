@@ -9,15 +9,20 @@
 	}
 
 	#header>#desc {
-		padding: 1em 0;
+		position: absolute;
+		padding: 0;
 		right: 1em;
 		bottom: 2em;
 	}
 
-	@media (min-width: 992px) {
+	@media (max-width: 991px) {
+		#header {
+			padding: 0 2em 1.8em 2em;
+		}
+
 		#header>#desc {
-			position: absolute;
-			padding: 0;
+			position: unset;
+			padding: 1em 0;
 		}
 	}
 

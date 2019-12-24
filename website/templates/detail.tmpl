@@ -8,15 +8,20 @@
   }
 
   #header>#links {
-    padding: 1em 0;
+    position: absolute;
     right: 1em;
     bottom: 2em;
+    padding: 0;
   }
 
-  @media (min-width: 992px) {
+  @media (max-width: 991px) {
+    #header {
+      padding: 0 2em 1.8em 2em;
+    }
+
     #header>#links {
-      position: absolute;
-      padding: 0;
+      position: unset;
+      padding: 1em 0;
     }
   }
 
@@ -100,6 +105,7 @@
       <a id="next" href="/{{ .Next.ID }}">Next Question</a>
     {{ end }}
     &nbsp;&nbsp;
+    
     <a href="/"><i class="home icon"></i></a>
   </div>
 
