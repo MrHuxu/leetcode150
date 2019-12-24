@@ -1,17 +1,62 @@
 {{ define "detail" }}
 
-<link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/ocean.min.css" rel="stylesheet">
+<style>
+  #solution {
+    padding: 15px;
+  }
 
-<h2><a target="_blank" href="https://leetcode.com/problems/{{ .Slug }}/">{{ .ID }}. {{ .Title }}</a></h2>
+  h1,
+  h2,
+  h3,
+  h4 {
+    padding: .5em .5em;
+    color: #3d4852 !important;
+  }
 
-<p>{{ .Solution }}</p>
+  p {
+    padding: 0 1.2em;
+    color: #606f7b;
+    line-height: 1.5;
+  }
+
+  code {
+    font-family: 'Go Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  }
+
+  pre {
+    background-image: linear-gradient(30deg, #011627, #011627) !important;
+    font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace !important;
+    color: #f1f5f8 !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    padding-top: .75rem !important;
+    padding-bottom: .75rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+    border-bottom-width: 4px !important;
+    border-color: #606f7b !important;
+    overflow: auto !important;
+  }
+
+  pre code {
+    line-height: 1.5;
+  }
+</style>
+
+<link href="https://cdn.jsdelivr.net/npm/highlight.js@9.17.1/styles/night-owl.min.css" rel="stylesheet">
+
+<div id="solution">
+  <h2><a target="_blank" href="https://leetcode.com/problems/{{ .Slug }}/">{{ .ID }}. {{ .Title }}</a></h2>
+  <div class="ui divider"></div>
+  <p>{{ .Solution }}</p>
+</div>
 
 <pre><code class="{{ .Lang }}">{{ .Code }}</code></pre>
 
 <script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/{{ .Lang }}.min.js"></script>
 <script>
-  hljs.configure({tabReplace: '  '})
+  hljs.configure({ tabReplace: '  ' })
   hljs.initHighlightingOnLoad();
 </script>
 

@@ -1,26 +1,62 @@
 {{ define "index" }}
 
-<div style="padding:15px 10px">
-	<span><h1> LeetCode 150 </h1></span>
+<style>
+	#title {
+		padding: 1em 1.5em;
+	}
+
+	#title h1 {
+		color: #3d4852;
+	}
+
+	.item {
+		position: relative;
+		padding: 1em 1.5em;
+		border-top: 1px solid rgba(34, 36, 38, .15);
+		border-bottom: 1px solid rgba(255, 255, 255, .1);
+	}
+
+	.item>.label {
+		position: absolute;
+		right: 1.5em;
+	}
+
+	.item:hover {
+		background-color: ivory;
+	}
+
+</style>
+
+<div id="title">
+	<span>
+		<h1> LeetCode 150 </h1>
+	</span>
 	<span>
 		Language: &nbsp;
-		<a target="_blank" href="https://golang.org/" >
-		Go
+		<a target="_blank" href="https://golang.org/">
+			Go
 		</a>
 	</span>
 	&nbsp;/&nbsp;
 	<span>
 		Author: &nbsp;
-		<a target="_blank" href="https://xhu.me/" >
-		xhu
+		<a target="_blank" href="https://xhu.me/">
+			xhu
 		</a>
 	</span>
 </div>
 
 {{ range . }}
-<div class="ui divider"></div>
-<div style="padding: 0 0 0 10px">
-	<a class="price" href="/{{ .ID }}">{{ .ID }}. {{ .Title }}</a>
+<div class="item">
+	<a href="/{{ .ID }}">{{ .ID }}. {{ .Title }}</a>
+
+	{{ if eq .Difficulty 1 }}
+		<a class="ui green mini label">Easy</a>
+	{{ else if eq .Difficulty 2 }}
+		<a class="ui yellow mini label">Medium</a>
+	{{ else }}
+		<a class="ui red mini label">Hard</a>
+	{{ end }}
 </div>
 {{ end }}
 
