@@ -28,6 +28,7 @@ func main() {
 func serveIndex(ctx *gin.Context) {
 	ctx.HTML(http.StatusOK, "base.tmpl", gin.H(map[string]interface{}{
 		"page":      "index",
+		"title":     "LeetCode 150 - xhu",
 		"questions": data.Questions,
 	}))
 }
@@ -47,6 +48,7 @@ func serveDetail(ctx *gin.Context) {
 
 		ctx.HTML(http.StatusOK, "base.tmpl", gin.H(map[string]interface{}{
 			"page":     "detail",
+			"title":    fmt.Sprintf("%d. %s - xhu", q.ID, q.Title),
 			"question": q,
 		}))
 	}()
