@@ -1,12 +1,29 @@
-{{ define "index" }}
-
-<style>
-	#title {
-		padding: 1em 1.5em;
+{{ define "index" }} <style>
+	#header {
+		position: relative;
+		padding: 2em;
 	}
 
-	#title h1 {
+	#header h1 {
 		color: #3d4852;
+	}
+
+	#header>#desc {
+		padding: 1em 0;
+		right: 1em;
+		bottom: 2em;
+	}
+
+	@media (min-width: 992px) {
+		#header>#desc {
+			position: absolute;
+			padding: 0;
+		}
+	}
+
+	#header>#desc>a {
+		text-decoration: underline;
+		color: #606f7b !important;
 	}
 
 	.item {
@@ -24,25 +41,23 @@
 	.item:hover {
 		background-color: ivory;
 	}
-
 </style>
 
-<div id="title">
-	<span>
-		<h1> LeetCode 150 </h1>
-	</span>
-	<span>
+<div id="header">
+	<div id="desc">
 		Language: &nbsp;
 		<a target="_blank" href="https://golang.org/">
 			Go
 		</a>
-	</span>
-	&nbsp;/&nbsp;
-	<span>
+		&nbsp;&nbsp;
 		Author: &nbsp;
 		<a target="_blank" href="https://xhu.me/">
 			xhu
 		</a>
+	</div>
+
+	<span>
+		<h2> LeetCode 150 </h2>
 	</span>
 </div>
 

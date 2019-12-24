@@ -22,6 +22,13 @@ func init() {
 	if err = json.Unmarshal(bs, &Questions); err != nil {
 		log.Fatal(err)
 	}
+
+	for i := 1; i < len(Questions)-1; i++ {
+		Questions[i].Prev = &(Questions[i-1])
+		Questions[i].Next = &(Questions[i+1])
+	}
+	Questions[0].Next = &(Questions[1])
+	Questions[len(Questions)-1].Prev = &(Questions[len(Questions)-2])
 }
 
 // Question ...
@@ -34,6 +41,9 @@ type Question struct {
 
 	Code     string
 	Solution template.HTML
+
+	Prev *Question
+	Next *Question
 }
 
 // FolderName ...

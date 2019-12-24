@@ -1,16 +1,39 @@
 {{ define "detail" }}
 
 <style>
-  #solution {
-    padding: 15px;
+  #header {
+    position: relative;
+    padding: 2em;
+    border-bottom: 1px solid rgba(34, 36, 38, .15);
   }
 
-  h1,
-  h2,
-  h3,
-  h4 {
-    padding: .5em .5em;
-    color: #3d4852 !important;
+  #header>#links {
+    padding: 1em 0;
+    right: 1em;
+    bottom: 2em;
+  }
+
+  @media (min-width: 992px) {
+    #header>#links {
+      position: absolute;
+      padding: 0;
+    }
+  }
+
+  #header>#links>#prev,
+  #header>#links>#next {
+    color: #606f7b !important;
+    text-decoration: underline;
+  }
+
+  #solution {
+    padding: 2em;
+  }
+
+  #solution>#question-link {
+    text-decoration: underline;
+    color: lightcoral;
+    font-weight: 500;
   }
 
   p {
@@ -18,14 +41,16 @@
     line-height: 1.5;
   }
 
-  p, li {
+  p,
+  li {
     color: #606f7b;
   }
 
-  p code, li code {
+  p code,
+  li code {
     border-width: 1px;
     border-style: solid;
-    border-color: rgb(221,221,221);
+    border-color: rgb(221, 221, 221);
     border-image: initial;
     border-radius: 4px;
     padding: 0 3px;
@@ -57,9 +82,26 @@
 
 <link href="https://cdn.jsdelivr.net/npm/highlight.js@9.17.1/styles/night-owl.min.css" rel="stylesheet">
 
+<div id="header">
+  <div id="links">
+    {{ if .Prev }}
+      <a id="prev" href="/{{ .Prev.ID }}">Previous Question</a>
+    {{ end }}
+    &nbsp;&nbsp;
+    {{ if .Next }}
+      <a id="next" href="/{{ .Next.ID }}">Next Question</a>
+    {{ end }}
+    &nbsp;&nbsp;
+    <a href="/"><i class="home icon"></i></a>
+  </div>
+
+  <span>
+    <h2>{{ .ID }}. {{ .Title }}</h2>
+  </span>
+</div>
+
 <div id="solution">
-  <h2><a target="_blank" href="https://leetcode.com/problems/{{ .Slug }}/">{{ .ID }}. {{ .Title }}</a></h2>
-  <div class="ui divider"></div>
+  <a id="question-link" target="_blank" href="https://leetcode.com/problems/{{ .Slug }}/">>>题目链接</a>
   <p>{{ .Solution }}</p>
 </div>
 
