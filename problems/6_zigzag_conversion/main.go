@@ -26,7 +26,6 @@ func convert(s string, numRows int) string {
 
 	result := ""
 	for i := 0; i < numRows; i++ {
-		// code
 		result += string(m[i])
 	}
 	return result
