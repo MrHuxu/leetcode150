@@ -7,7 +7,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	head := &ListNode{}
 	tmp := head
 
-	var pre int
+	var plus int
 	for l1 != nil || l2 != nil {
 		var sum int
 		if l1 != nil {
@@ -19,13 +19,13 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 			l2 = l2.Next
 		}
 
-		sum += pre
-		pre = sum / 10
+		sum += plus
+		plus = sum / 10
 
 		tmp.Next = &ListNode{Val: sum % 10}
 		tmp = tmp.Next
 	}
-	if pre == 1 {
+	if plus == 1 {
 		tmp.Next = &ListNode{Val: 1}
 	}
 
