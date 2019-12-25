@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_func(t *testing.T) {
+func Test_recoverTree(t *testing.T) {
 	assert := assert.New(t)
 
 	tree := BuildTree([]interface{}{1,3,nil,nil,2})

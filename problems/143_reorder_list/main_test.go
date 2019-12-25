@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_func(t *testing.T) {
+func Test_reorderList(t *testing.T) {
 	assert := assert.New(t)
 
 	list := BuildList([]int{1, 2, 3, 4})

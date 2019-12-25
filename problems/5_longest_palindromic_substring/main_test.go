@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_func(t *testing.T) {
+func Test_longestPalindrome(t *testing.T) {
 	assert := assert.New(t)
 
 	assert.Equal("aba", longestPalindrome("babad"))

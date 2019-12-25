@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_func(t *testing.T) {
+func Test_findSubstring(t *testing.T) {
 	assert := assert.New(t)
 
 	assert.Equal([]int{0, 9}, findSubstring(

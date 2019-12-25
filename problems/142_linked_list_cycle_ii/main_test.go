@@ -4,5 +4,5 @@ import (
 	"testing"
 )
 
-func Test_func(t *testing.T) {
+func Test_detectCycle(t *testing.T) {
 }

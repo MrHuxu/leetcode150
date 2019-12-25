@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_func(t *testing.T) {
+func Test_nextPermutation(t *testing.T) {
 	assert := assert.New(t)
 
 	nums := []int{1, 2, 3}

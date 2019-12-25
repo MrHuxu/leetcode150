@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_func(t *testing.T) {
+func Test_search(t *testing.T) {
 	assert := assert.New(t)
 
 	assert.Equal(true, search([]int{2, 5, 6, 0, 0, 1, 2}, 0))

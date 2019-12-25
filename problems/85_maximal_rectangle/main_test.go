@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_func(t *testing.T) {
+func Test_maximalRectangle(t *testing.T) {
 	assert := assert.New(t)
 
 	assert.Equal(6, maximalRectangle([][]byte{

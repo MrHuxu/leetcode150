@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_func(t *testing.T) {
+func Test_merge(t *testing.T) {
 	assert := assert.New(t)
 
 	arr := []int{1, 2, 3, 0, 0, 0}

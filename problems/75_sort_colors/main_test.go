@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_func(t *testing.T) {
+func Test_sortColors(t *testing.T) {
 	assert := assert.New(t)
 
 	arr := []int{2, 0, 2, 1, 1, 0}

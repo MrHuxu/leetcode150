@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_func(t *testing.T) {
+func Test_singleNumber(t *testing.T) {
 	assert := assert.New(t)
 
 	assert.Equal(1, singleNumber([]int{2, 2, 1}))
