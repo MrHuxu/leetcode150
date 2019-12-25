@@ -2,21 +2,21 @@ package main
 
 // code
 func generateParenthesis(n int) []string {
-	return gen(1, 0, n, "(")
+	return generateParenthesisHelper(1, 0, n, "(")
 }
 
-func gen(numLeft, matchedLeft, total int, pre string) []string {
-	if numLeft < total {
-		tmp := gen(numLeft+1, matchedLeft, total, pre+"(")
+func generateParenthesisHelper(numLeft, matchedLeft, n int, pre string) []string {
+	if numLeft < n {
+		tmp := generateParenthesisHelper(numLeft+1, matchedLeft, n, pre+"(")
 		if matchedLeft < numLeft {
-			tmp = append(tmp, gen(numLeft, matchedLeft+1, total, pre+")")...)
+			tmp = append(tmp, generateParenthesisHelper(numLeft, matchedLeft+1, n, pre+")")...)
 		}
 
 		return tmp
 	}
 
 	if matchedLeft < numLeft {
-		return gen(numLeft, matchedLeft+1, total, pre+")")
+		return generateParenthesisHelper(numLeft, matchedLeft+1, n, pre+")")
 	}
 	return []string{pre}
 }
