@@ -1,10 +1,10 @@
 package main
 
-// code
 import (
 	"sort"
 )
 
+// code
 func combinationSum(candidates []int, target int) [][]int {
 	sort.Slice(candidates, func(i, j int) bool {
 		return candidates[i] < candidates[j]
@@ -13,21 +13,21 @@ func combinationSum(candidates []int, target int) [][]int {
 	var result [][]int
 
 	var combine func(int, int, []int)
-	combine = func(idx, left int, curr []int) {
-		if left == 0 {
-			result = append(result, curr)
+	combine = func(idx, sum int, arr []int) {
+		if sum == target {
+			result = append(result, arr)
 			return
 		}
 
-		if left < 0 {
+		if sum > target {
 			return
 		}
 
 		for i := idx; i < len(candidates); i++ {
-			combine(i, left-candidates[i], append([]int{}, append(curr, candidates[i])...))
+			combine(i, sum+candidates[i], append([]int{}, append(arr, candidates[i])...))
 		}
 	}
-	combine(0, target, []int{})
+	combine(0, 0, []int{})
 
 	return result
 }

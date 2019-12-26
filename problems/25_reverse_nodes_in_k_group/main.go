@@ -12,11 +12,11 @@ import . "github.com/MrHuxu/leetcode150/problems/utils"
  */
 func reverseKGroup(head *ListNode, k int) *ListNode {
 	tmpHead := &ListNode{Next: head}
-	reverse(tmpHead, head, head, nil, k, 0)
+	reverseKGroupHelper(tmpHead, head, head, nil, k, 0)
 	return tmpHead.Next
 }
 
-func reverse(head, start, curr, reversed *ListNode, k, reversedLen int) {
+func reverseKGroupHelper(head, start, curr, reversed *ListNode, k, reversedLen int) {
 	switch {
 	case reversedLen == k:
 		head.Next = reversed
@@ -24,13 +24,13 @@ func reverse(head, start, curr, reversed *ListNode, k, reversedLen int) {
 			head = head.Next
 		}
 
-		reverse(head, curr, curr, nil, k, 0)
+		reverseKGroupHelper(head, curr, curr, nil, k, 0)
 
 	case curr == nil:
 		head.Next = start
 
 	default:
-		reverse(
+		reverseKGroupHelper(
 			head, start, curr.Next, &ListNode{Val: curr.Val, Next: reversed}, k, reversedLen+1,
 		)
 	}
