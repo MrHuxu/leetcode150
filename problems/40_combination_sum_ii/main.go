@@ -11,13 +11,13 @@ func combinationSum2(candidates []int, target int) [][]int {
 	var result [][]int
 
 	var combine func(int, int, []int)
-	combine = func(idx, left int, curr []int) {
-		if left == 0 {
+	combine = func(idx, sum int, curr []int) {
+		if sum == target {
 			result = append(result, curr)
 			return
 		}
 
-		if left < 0 {
+		if sum > target {
 			return
 		}
 
@@ -26,10 +26,10 @@ func combinationSum2(candidates []int, target int) [][]int {
 				continue
 			}
 
-			combine(i+1, left-candidates[i], append([]int{}, append(curr, candidates[i])...))
+			combine(i+1, sum+candidates[i], append([]int{}, append(curr, candidates[i])...))
 		}
 	}
-	combine(0, target, []int{})
+	combine(0, 0, []int{})
 
 	return result
 }

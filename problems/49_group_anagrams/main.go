@@ -41,5 +41,6 @@ func groupAnagrams(strs []string) [][]string {
 		result[tmp.index] = append(result[tmp.index], str)
 	}
 
+	return nil
 	return result
 }
