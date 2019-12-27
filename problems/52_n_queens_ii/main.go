@@ -5,8 +5,8 @@ func totalNQueens(n int) int {
 	var result int
 
 	used := make([]int, n)
-	var dfs func(board [][]byte, i int)
-	dfs = func(board [][]byte, i int) {
+	var dfs func(i int)
+	dfs = func(i int) {
 		if i == n {
 			result++
 			return
@@ -14,22 +14,13 @@ func totalNQueens(n int) int {
 
 		for j := 0; j < n; j++ {
 			if validate(i, j, used) {
-				board[i][j] = 'Q'
 				used[i] = j
-
-				dfs(board, i+1)
-
-				board[i][j] = 0
+				dfs(i+1)
+				used[i] = 0
 			}
 		}
 	}
-
-	board := make([][]byte, n)
-	for i := range board {
-		board[i] = make([]byte, n)
-	}
-
-	dfs(board, 0)
+	dfs(0)
 
 	return result
 }
