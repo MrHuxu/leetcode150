@@ -1,8 +1,8 @@
 package main
 
-// code
 import "strings"
 
+// code
 func lengthOfLastWord(word string) int {
 	arr := strings.Split(strings.Trim(word, " "), " ")
 

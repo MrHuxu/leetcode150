@@ -26,4 +26,13 @@ func Test_insert(t *testing.T) {
 	assert.Equal([][]int{
 		[]int{5, 7},
 	}, insert([][]int{}, []int{5, 7}))
+
+	assert.Equal([][]int{
+		[]int{0, 5},
+	}, insert([][]int{[]int{1, 5}}, []int{0, 3}))
+
+	assert.Equal([][]int{
+		[]int{0, 0},
+		[]int{1, 5},
+	}, insert([][]int{[]int{1, 5}}, []int{0, 0}))
 }

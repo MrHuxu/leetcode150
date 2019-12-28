@@ -1,13 +1,10 @@
 package main
 
-import "fmt"
-
 // code
 func spiralOrder(matrix [][]int) []int {
 	var result []int
 
 	for level := 0; len(matrix) > 0 && len(result) < len(matrix)*len(matrix[0]); level++ {
-		fmt.Println(level, result)
 		for i := level; i < len(matrix[0])-level; i++ {
 			result = append(result, matrix[level][i])
 		}

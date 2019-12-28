@@ -1,39 +1,31 @@
 package main
 
-// code
 import "sort"
 
+// code
 func merge(intervals [][]int) [][]int {
-	var left, right []int
-	for _, interval := range intervals {
-		left = append(left, interval[0])
-		right = append(right, interval[1])
-	}
-	sort.Slice(left, func(i, j int) bool {
-		return left[i] < left[j]
-	})
-	sort.Slice(right, func(i, j int) bool {
-		return right[i] < right[j]
+	sort.Slice(intervals, func(i, j int) bool {
+		return intervals[i][0] < intervals[j][0]
 	})
 
 	var result [][]int
-	var stack []int
-	for len(left) != 0 || len(right) != 0 {
-		if len(right) == 0 || (len(left) != 0 && left[0] <= right[0]) {
-			stack = append(stack, left[0])
-			left = left[1:len(left)]
-			continue
-		}
 
-		if len(left) == 0 || (len(right) != 0 && right[0] < left[0]) {
-			preLeft := stack[len(stack)-1]
-			stack = stack[0 : len(stack)-1]
+	for i := 0; i < len(intervals); i++ {
+		left := intervals[i][0]
+		right := intervals[i][1]
 
-			if len(stack) == 0 {
-				result = append(result, []int{preLeft, right[0]})
+		for j := i + 1; j < len(intervals); j++ {
+			if intervals[j][0] <= right {
+				if intervals[j][1] > right {
+					right = intervals[j][1]
+				}
+
+				i = j
+			} else {
+				break
 			}
-			right = right[1:len(right)]
 		}
+		result = append(result, []int{left, right})
 	}
 
 	return result
