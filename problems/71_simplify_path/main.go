@@ -1,8 +1,8 @@
 package main
 
-// code
 import "strings"
 
+// code
 func simplifyPath(path string) string {
 	var stack []string
 

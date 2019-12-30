@@ -15,16 +15,14 @@ func minPathSum(grid [][]int) int {
 		for j := 0; j < len(grid[0]); j++ {
 			dp[i][j] = grid[i][j]
 
-			if i >= 1 && j >= 1 {
+			switch {
+			case i >= 1 && j >= 1:
 				dp[i][j] += min(dp[i-1][j], dp[i][j-1])
-				continue
-			}
 
-			if i >= 1 {
+			case i >= 1:
 				dp[i][j] += dp[i-1][j]
-			}
 
-			if j >= 1 {
+			case j >= 1:
 				dp[i][j] += dp[i][j-1]
 			}
 		}
