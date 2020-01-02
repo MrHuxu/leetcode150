@@ -11,8 +11,6 @@ import . "github.com/MrHuxu/leetcode150/problems/utils"
  * }
  */
 func deleteDuplicates(head *ListNode) *ListNode {
-	newHead := &ListNode{Next: head}
-
 	fast := head
 	slow := head
 	for fast != nil {
@@ -23,5 +21,5 @@ func deleteDuplicates(head *ListNode) *ListNode {
 		slow = slow.Next
 	}
 
-	return newHead.Next
+	return head
 }

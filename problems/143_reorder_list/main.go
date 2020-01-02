@@ -56,23 +56,23 @@ func merge(head1, head2 *ListNode) *ListNode {
 		return head1
 	}
 
-	newHead := &ListNode{}
-	newHeadPos := newHead
+	dummyHead := &ListNode{}
+	dummyHeadPos := dummyHead
 
 	var i int
 	for head1 != nil || head2 != nil {
 		if i%2 == 0 && head1 != nil {
-			newHeadPos.Next = head1
+			dummyHeadPos.Next = head1
 			head1 = head1.Next
-			newHeadPos = newHeadPos.Next
+			dummyHeadPos = dummyHeadPos.Next
 		} else {
-			newHeadPos.Next = head2
+			dummyHeadPos.Next = head2
 			head2 = head2.Next
-			newHeadPos = newHeadPos.Next
+			dummyHeadPos = dummyHeadPos.Next
 		}
 
 		i++
 	}
 
-	return newHead.Next
+	return dummyHead.Next
 }

@@ -3,18 +3,18 @@ package main
 // code
 func removeDuplicates(nums []int) int {
 	var preIndex int
-	var moved bool
+	var same bool
 
 	for i := 1; i < len(nums); i++ {
 		if nums[i] == nums[preIndex] {
-			if !moved {
-				moved = true
+			if !same {
+				same = true
 				preIndex++
 				nums[preIndex] = nums[i]
 			}
 		} else {
 			preIndex++
-			moved = false
+			same = false
 			nums[preIndex] = nums[i]
 		}
 	}

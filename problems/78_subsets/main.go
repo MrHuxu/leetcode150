@@ -2,16 +2,17 @@ package main
 
 // code
 func subsets(nums []int) [][]int {
-	return dfs([]int{}, nums, 0)
-}
+	var result [][]int
 
-func dfs(pre, nums []int, curr int) [][]int {
-	result := [][]int{pre}
+	var dfs func([]int, int)
+	dfs = func(pre []int, idx int) {
+		result = append(result, pre)
 
-	for ; curr < len(nums); curr++ {
-		result = append(
-			result, dfs(append([]int{}, append(pre, nums[curr])...), nums, curr+1)...,
-		)
+		for ; idx < len(nums); idx++ {
+			dfs(append([]int{}, append(pre, nums[idx])...), idx+1)
+		}
 	}
+	dfs([]int{}, 0)
+
 	return result
 }

@@ -17,7 +17,7 @@ func insertionSortList(head *ListNode) *ListNode {
 		return nil
 	}
 
-	newHead := &ListNode{Next: head}
+	dummyHead := &ListNode{Next: head}
 
 	preNode := head
 	node := head.Next
@@ -25,7 +25,7 @@ func insertionSortList(head *ListNode) *ListNode {
 		nextPreNode := node
 		nextNode := node.Next
 
-		tmp := newHead
+		tmp := dummyHead
 		for tmp.Next != node {
 			if tmp.Next.Val > node.Val {
 				preNode.Next = node.Next
@@ -44,5 +44,5 @@ func insertionSortList(head *ListNode) *ListNode {
 		node = nextNode
 	}
 
-	return newHead.Next
+	return dummyHead.Next
 }

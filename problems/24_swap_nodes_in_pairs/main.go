@@ -11,9 +11,9 @@ import . "github.com/MrHuxu/leetcode150/problems/utils"
  * }
  */
 func swapPairs(head *ListNode) *ListNode {
-	newHead := &ListNode{Next: head}
+	dummyHead := &ListNode{Next: head}
 
-	tmp := newHead
+	tmp := dummyHead
 	for head != nil {
 		if head.Next != nil {
 			tmp.Next = &ListNode{
@@ -27,5 +27,5 @@ func swapPairs(head *ListNode) *ListNode {
 			break
 		}
 	}
-	return newHead.Next
+	return dummyHead.Next
 }
