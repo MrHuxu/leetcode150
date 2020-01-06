@@ -11,9 +11,9 @@ import . "github.com/MrHuxu/leetcode150/problems/utils"
  * }
  */
 func reverseKGroup(head *ListNode, k int) *ListNode {
-	tmpHead := &ListNode{Next: head}
-	reverseKGroupHelper(tmpHead, head, head, nil, k, 0)
-	return tmpHead.Next
+	dummyHead := &ListNode{Next: head}
+	reverseKGroupHelper(dummyHead, head, head, nil, k, 0)
+	return dummyHead.Next
 }
 
 func reverseKGroupHelper(head, start, curr, reversed *ListNode, k, reversedLen int) {

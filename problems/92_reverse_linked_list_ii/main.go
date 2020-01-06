@@ -11,10 +11,10 @@ import . "github.com/MrHuxu/leetcode150/problems/utils"
  * }
  */
 func reverseBetween(head *ListNode, m int, n int) *ListNode {
-	newHead := &ListNode{Next: head}
-	recursion(newHead, newHead.Next, nil, m, n, 1)
+	dummyHead := &ListNode{Next: head}
+	recursion(dummyHead, dummyHead.Next, nil, m, n, 1)
 
-	return newHead.Next
+	return dummyHead.Next
 }
 
 func recursion(pre, curr, reversed *ListNode, m, n, seq int) {

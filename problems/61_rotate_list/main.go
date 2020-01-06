@@ -22,9 +22,9 @@ func rotateRight(head *ListNode, k int) *ListNode {
 	}
 	k = k % len
 
-	newHead := &ListNode{Next: head}
-	fast := newHead
-	slow := newHead
+	dummyHead := &ListNode{Next: head}
+	fast := dummyHead
+	slow := dummyHead
 	for ; k > 0; k-- {
 		fast = fast.Next
 	}
@@ -33,8 +33,8 @@ func rotateRight(head *ListNode, k int) *ListNode {
 		slow = slow.Next
 	}
 	fast.Next = head
-	newHead.Next = slow.Next
+	dummyHead.Next = slow.Next
 	slow.Next = nil
 
-	return newHead.Next
+	return dummyHead.Next
 }

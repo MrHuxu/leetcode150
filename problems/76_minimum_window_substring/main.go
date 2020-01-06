@@ -26,8 +26,8 @@ func minWindow(s string, t string) string {
 			}
 
 			for cnt == 0 {
-				if right-left-1 < resultLen {
-					resultLen = right - left - 1
+				if right-left+1 <= resultLen {
+					resultLen = right - left + 1
 					resultL = left
 					resultR = right
 				}

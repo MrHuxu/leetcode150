@@ -10,4 +10,5 @@ func Test_minWindow(t *testing.T) {
 	assert := assert.New(t)
 
 	assert.Equal("BANC", minWindow("ADOBECODEBANC", "ABC"))
+	assert.Equal("AA", minWindow("AA", "AA"))
 }

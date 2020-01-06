@@ -11,19 +11,19 @@ import . "github.com/MrHuxu/leetcode150/problems/utils"
  * }
  */
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
-	tmpHead := &ListNode{Next: head}
+	dummyHead := &ListNode{Next: head}
 
-	fast := tmpHead
+	fast := dummyHead
 	for i := 0; i <= n; i++ {
 		fast = fast.Next
 	}
 
-	slow := tmpHead
+	slow := dummyHead
 	for fast != nil {
 		fast = fast.Next
 		slow = slow.Next
 	}
 	slow.Next = slow.Next.Next
 
-	return tmpHead.Next
+	return dummyHead.Next
 }

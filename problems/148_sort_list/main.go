@@ -47,8 +47,8 @@ func sortList(head *ListNode) *ListNode {
 	smaller = sortList(smaller.Next)
 	greater = sortList(greater.Next)
 
-	newHead := &ListNode{Next: smaller}
-	tmp := newHead
+	dummyHead := &ListNode{Next: smaller}
+	tmp := dummyHead
 	for tmp.Next != nil {
 		tmp = tmp.Next
 	}
@@ -58,5 +58,5 @@ func sortList(head *ListNode) *ListNode {
 	}
 	tmp.Next = greater
 
-	return newHead.Next
+	return dummyHead.Next
 }
