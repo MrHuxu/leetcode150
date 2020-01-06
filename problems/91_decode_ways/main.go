@@ -20,7 +20,7 @@ func numDecodings(s string) int {
 
 	for i := 2; i < len(s); i++ {
 		if s[i] != '0' {
-			dp[i] = dp[i-1]
+			dp[i] += dp[i-1]
 		}
 
 		if (s[i-1] == '1') || (s[i-1] == '2' && s[i] <= '6') {

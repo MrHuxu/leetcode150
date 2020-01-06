@@ -2,6 +2,10 @@ package main
 
 // code
 func isScramble(s1, s2 string) bool {
+	if len(s1) != len(s2) {
+		return false
+	}
+
 	if s1 == s2 {
 		return true
 	}

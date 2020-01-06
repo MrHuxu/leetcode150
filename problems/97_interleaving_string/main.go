@@ -18,10 +18,10 @@ func isInterleave(s1 string, s2 string, s3 string) bool {
 				dp[i][j] = true
 
 			case i == 0:
-				dp[i][j] = s2[j-1] == s3[j-1] && dp[i][j-1]
+				dp[i][j] = s3[0:j] == s2[0:j]
 
 			case j == 0:
-				dp[i][j] = s1[i-1] == s3[i-1] && dp[i-1][j]
+				dp[i][j] = s3[0:i] == s1[0:i]
 
 			default:
 				dp[i][j] = (s2[j-1] == s3[i+j-1] && dp[i][j-1]) || (s1[i-1] == s3[i+j-1] && dp[i-1][j])
