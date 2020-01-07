@@ -22,13 +22,10 @@ func maxPathSum(root *TreeNode) int {
 
 		leftSum := traverse(root.Left)
 		rightSum := traverse(root.Right)
+
 		result = max(result, root.Val, root.Val+leftSum+rightSum)
 
-		maxChildSum := max(leftSum, rightSum)
-		if maxChildSum+root.Val > 0 {
-			return maxChildSum + root.Val
-		}
-		return 0
+		return max(0, max(leftSum, rightSum)+root.Val)
 	}
 	traverse(root)
 
