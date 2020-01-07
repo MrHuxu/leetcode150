@@ -22,13 +22,13 @@ function Node(val,left,right,next) {
 let connect = function(root) {
   if (null == root) return root;
 
-  let head = new Node();
-  head.next = root;
-  while (head.next) {
+  let dummyHead = new Node();
+  dummyHead.next = root;
+  while (dummyHead.next) {
     const nextHead = new Node();
     let tmp = nextHead;
 
-    curr = head.next;
+    curr = dummyHead.next;
     while (curr) {
       if (curr.left) {
         tmp.next = curr.left;
@@ -41,7 +41,7 @@ let connect = function(root) {
       curr = curr.next;
     }
 
-    head = nextHead;
+    dummyHead = nextHead;
   }
   
   return root; 
