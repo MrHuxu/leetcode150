@@ -14,18 +14,18 @@ import . "github.com/MrHuxu/leetcode150/problems/utils"
 func maxPathSum(root *TreeNode) int {
 	result := root.Val
 
-	var traverse func(root *TreeNode) int
-	traverse = func(root *TreeNode) int {
-		if root == nil {
+	var traverse func(node *TreeNode) int
+	traverse = func(node *TreeNode) int {
+		if node == nil {
 			return 0
 		}
 
-		leftSum := traverse(root.Left)
-		rightSum := traverse(root.Right)
+		leftSum := traverse(node.Left)
+		rightSum := traverse(node.Right)
 
-		result = max(result, root.Val, root.Val+leftSum+rightSum)
+		result = max(result, node.Val, node.Val+leftSum+rightSum)
 
-		return max(0, max(leftSum, rightSum)+root.Val)
+		return max(0, max(leftSum, rightSum)+node.Val)
 	}
 	traverse(root)
 

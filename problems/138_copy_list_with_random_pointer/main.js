@@ -1,3 +1,4 @@
+// code
 /**
  * // Definition for a Node.
  * function Node(val,next,random) {

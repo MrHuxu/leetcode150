@@ -24,25 +24,24 @@ func partition(s string) [][]string {
 		}
 	}
 
-	return traverse(s, 0, dp)
-}
-
-func traverse(s string, i int, dp []map[int]bool) [][]string {
 	var result [][]string
 
-	for j := i; j < len(s); j++ {
-		if dp[i][j] {
-			left := s[i : j+1]
-			rights := traverse(s, j+1, dp)
+	var traverse func(int, []string)
+	traverse = func(idx int, arr []string) {
+		if idx == len(s) {
+			result = append(result, arr)
+			return
+		}
 
-			for _, r := range rights {
-				result = append(result, append([]string{left}, r...))
-			}
-			if len(rights) == 0 {
-				result = append(result, []string{left})
+		for i := idx; i < len(s); i++ {
+			if dp[idx][i] {
+				traverse(i+1, append(
+					[]string{}, append(arr, s[idx:i+1])...,
+				))
 			}
 		}
 	}
+	traverse(0, nil)
 
 	return result
 }
