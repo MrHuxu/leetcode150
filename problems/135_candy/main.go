@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 // code
 func candy1(ratings []int) int {
 	var result int
@@ -30,7 +28,6 @@ func candy1(ratings []int) int {
 				curr = 1
 			}
 		}
-		println(i, downward, curr)
 		result += curr
 	}
 
@@ -63,7 +60,6 @@ func candy(ratings []int) int {
 		}
 	}
 
-	fmt.Println(candies)
 	var result int
 	for _, c := range candies {
 		result += c

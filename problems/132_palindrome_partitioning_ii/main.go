@@ -24,25 +24,28 @@ func minCut(s string) int {
 		}
 	}
 
-	min := make([]int, len(s))
+	dp2 := make([]int, len(s))
 	for i := 1; i < len(s); i++ {
-		tmp := i
+		dp2[i] = i
 
 		for j := 0; j <= i; j++ {
 			if dp[j][i] {
 				if j == 0 {
-					tmp = 0
+					dp2[i] = 0
 					break
 				} else {
-					if min[j-1]+1 < tmp {
-						tmp = min[j-1] + 1
-					}
+					dp2[i] = min(dp2[i], dp2[j-1]+1)
 				}
 			}
 		}
-
-		min[i] = tmp
 	}
 
-	return min[len(s)-1]
+	return dp2[len(s)-1]
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }
