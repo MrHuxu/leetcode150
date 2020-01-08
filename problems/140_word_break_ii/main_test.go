@@ -13,4 +13,13 @@ func Test_wordBreak(t *testing.T) {
 		"cat sand dog",
 		"cats and dog",
 	}, wordBreak("catsanddog", []string{"cat", "cats", "and", "sand", "dog"}))
+
+	assert.Equal(
+		[]string(nil),
+		wordBreak(
+			"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+			[]string{
+				"a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa",
+			},
+		))
 }
