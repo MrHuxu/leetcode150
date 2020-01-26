@@ -1,16 +1,15 @@
 package main
 
-// code
 import "strconv"
 
+// code
 func evalRPN(tokens []string) int {
 	var stack []int
 
 	eval := func(sym string) {
 		num2 := stack[len(stack)-1]
-		stack = stack[0 : len(stack)-1]
-		num1 := stack[len(stack)-1]
-		stack = stack[0 : len(stack)-1]
+		num1 := stack[len(stack)-2]
+		stack = stack[0 : len(stack)-2]
 
 		switch sym {
 		case "+":
