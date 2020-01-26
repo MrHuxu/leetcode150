@@ -17,7 +17,7 @@ type TreeNode struct {
 // String formats the print content of a node
 func (node *TreeNode) String() string {
 	if node == nil {
-		return ""
+		return "[nil]"
 	}
 
 	var levels [][]string
