@@ -3,7 +3,7 @@ package main
 import (
 	"testing"
 
-	. "github.com/MrHuxu/leetcode150/problems/utils"
+	. "github.com/MrHuxu/types"
 
 	"github.com/stretchr/testify/assert"
 )

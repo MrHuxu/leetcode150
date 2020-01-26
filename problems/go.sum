@@ -1,3 +1,9 @@
+github.com/MrHuxu/types v0.0.0-20200126092202-667fc30b8c06 h1:Tb56hhbkYhK7Mqu36qK4ZmvTskNgoRFgteCRZFEps8o=
+github.com/MrHuxu/types v0.0.0-20200126092202-667fc30b8c06/go.mod h1:Mt1ELXfSNa1lgbKpHZMaCP+9GeU7YYSdHXqHHU1IrJs=
+github.com/MrHuxu/types v0.0.0-20200126093428-4c7d1c98cdd9 h1:WYdUJkeGhInZwwFu7Pn3oKxNT2JJzZffgVvqpzYxIgA=
+github.com/MrHuxu/types v0.0.0-20200126093428-4c7d1c98cdd9/go.mod h1:Mt1ELXfSNa1lgbKpHZMaCP+9GeU7YYSdHXqHHU1IrJs=
+github.com/MrHuxu/types v0.0.0-20200126093648-5504a6fbb201 h1:DbAaKq4wMiSl5V4GjUkMD249ZYi2M5PvQTbrqpKb83w=
+github.com/MrHuxu/types v0.0.0-20200126093648-5504a6fbb201/go.mod h1:Mt1ELXfSNa1lgbKpHZMaCP+9GeU7YYSdHXqHHU1IrJs=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

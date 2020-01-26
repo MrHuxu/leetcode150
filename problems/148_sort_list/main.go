@@ -1,7 +1,7 @@
 package main
 
 import (
-	. "github.com/MrHuxu/leetcode150/problems/utils"
+	. "github.com/MrHuxu/types"
 )
 
 // code

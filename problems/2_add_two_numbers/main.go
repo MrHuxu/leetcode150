@@ -1,6 +1,6 @@
 package main
 
-import . "github.com/MrHuxu/leetcode150/problems/utils"
+import . "github.com/MrHuxu/types"
 
 // code
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
