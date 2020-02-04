@@ -11,33 +11,39 @@ import . "github.com/MrHuxu/types"
  * }
  */
 func detectCycle(head *ListNode) *ListNode {
-	if head == nil || head.Next == nil {
+	if head == nil {
 		return nil
 	}
 
-	var meet *ListNode
 	slow := head
-	fast := head
-
-	for fast != nil {
-		if fast.Next == nil {
+	fast := head.Next
+	for fast != slow {
+		if fast == nil || fast.Next == nil {
 			return nil
 		}
 
-		slow = slow.Next
 		fast = fast.Next.Next
-
-		if fast == slow {
-			meet = fast
-
-			for meet != head {
-				head = head.Next
-				meet = meet.Next
-			}
-
-			return head
-		}
+		slow = slow.Next
 	}
 
-	return nil
+	nodeInList := fast
+	listLen := 1
+	tmp := nodeInList.Next
+	for tmp != nodeInList {
+		listLen++
+		tmp = tmp.Next
+	}
+
+	fast = head
+	slow = head
+	for i := 0; i < listLen; i++ {
+		slow = slow.Next
+	}
+
+	for fast != slow {
+		fast = fast.Next
+		slow = slow.Next
+	}
+
+	return fast
 }
