@@ -2,27 +2,26 @@ package main
 
 // code
 func ladderLength(beginWord string, endWord string, wordList []string) int {
-	// list: map[ "*ot": []string{ "hot", "lot" } ]
-	list := make(map[string][]string)
+	// changeMap: map[ "*ot": []string{ "hot", "lot" } ]
+	changeMap := make(map[string][]string)
 	for _, w := range wordList {
 		for i := 0; i < len(w); i++ {
 			bytes := []byte(w)
 			bytes[i] = '*'
-			list[string(bytes)] = append(list[string(bytes)], w)
+			changeMap[string(bytes)] = append(changeMap[string(bytes)], w)
 		}
 	}
 
-	return bfs(beginWord, endWord, list)
+	return bfs(beginWord, endWord, changeMap)
 }
 
-func bfs(beginWord, endWord string, changeList map[string][]string) int {
+func bfs(beginWord, endWord string, changeMap map[string][]string) int {
 	result := make(map[string][]string)
 	depth := 1
 
 	level := []string{beginWord}
 	used := map[string]bool{beginWord: true}
 	for len(level) != 0 {
-		var found bool
 		var nextLevel []string
 
 		for _, w1 := range level {
@@ -30,11 +29,8 @@ func bfs(beginWord, endWord string, changeList map[string][]string) int {
 				return depth
 			}
 
-			result[w1] = canChange(w1, changeList, used)
+			result[w1] = canChange(w1, changeMap, used)
 			nextLevel = append(nextLevel, result[w1]...)
-		}
-		if found {
-			break
 		}
 
 		for _, w := range nextLevel {
@@ -47,14 +43,14 @@ func bfs(beginWord, endWord string, changeList map[string][]string) int {
 	return 0
 }
 
-func canChange(word string, list map[string][]string, used map[string]bool) []string {
+func canChange(word string, changeMap map[string][]string, used map[string]bool) []string {
 	var result []string
 
 	for i := 0; i < len(word); i++ {
 		bytes := []byte(word)
 		bytes[i] = '*'
 
-		for _, w := range list[string(bytes)] {
+		for _, w := range changeMap[string(bytes)] {
 			if !used[w] {
 				result = append(result, w)
 			}
