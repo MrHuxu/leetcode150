@@ -85,22 +85,36 @@
   }
 
   pre {
+    position: relative;
     background-image: linear-gradient(30deg, #011627, #011627) !important;
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace !important;
     color: #f1f5f8 !important;
-    padding-left: 1.5rem !important;
+    padding-left: 3.2rem !important;
     padding-right: 1.5rem !important;
-    padding-top: .75rem !important;
-    padding-bottom: .75rem !important;
     margin-top: 1rem !important;
     margin-bottom: 1rem !important;
     border-bottom-width: 4px !important;
-    border-color: #606f7b !important;
+    border-color: #606F7B !important;
     overflow: auto !important;
   }
 
   pre code {
+    padding-top: .75rem !important;
+    padding-bottom: .75rem !important;
     line-height: 1.5;
+  }
+
+  pre>.line-num-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3rem;
+    border-right: #D1D0CE solid 1px;
+  }
+
+  .line-num-container>div {
+    text-align: right;
+    color: #A0AfBB;
   }
 </style>
 
@@ -109,14 +123,14 @@
 <div id="header">
   <div id="links">
     {{ if .Prev }}
-      <a id="prev" href="/{{ .Prev.ID }}">Previous Question</a>
+    <a id="prev" href="/{{ .Prev.ID }}">Previous Question</a>
     {{ end }}
     &nbsp;&nbsp;
     {{ if .Next }}
-      <a id="next" href="/{{ .Next.ID }}">Next Question</a>
+    <a id="next" href="/{{ .Next.ID }}">Next Question</a>
     {{ end }}
     &nbsp;&nbsp;
-    
+
     <a href="/"><i class="home icon"></i></a>
   </div>
 
@@ -137,6 +151,20 @@
 <script>
   hljs.configure({ tabReplace: '  ' })
   hljs.initHighlightingOnLoad();
+</script>
+
+<script>
+  for (let pre of document.getElementsByTagName('pre')) {
+    const lineNumContainer = document.createElement('code');
+    lineNumContainer.classList.add('line-num-container');
+    for (let i = 1; i <= pre.innerText.split('\n').length - 1; i++) {
+      const ele = document.createElement('div');
+      ele.innerText = i;
+      lineNumContainer.appendChild(ele);
+    }
+
+    pre.appendChild(lineNumContainer);
+  }
 </script>
 
 {{ end }}

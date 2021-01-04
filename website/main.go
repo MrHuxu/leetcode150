@@ -22,7 +22,7 @@ func main() {
 	server.GET("/:id", serveDetail)
 	server.GET("/", serveIndex)
 
-	server.Run(fmt.Sprintf(":%d", port))
+	server.Run(fmt.Sprintf("0.0.0.0:%d", port))
 }
 
 func serveIndex(ctx *gin.Context) {
