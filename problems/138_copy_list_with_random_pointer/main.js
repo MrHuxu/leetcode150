@@ -26,4 +26,3 @@ let copyRandomList = function(head) {
   
   return visit(head);
 };
-
