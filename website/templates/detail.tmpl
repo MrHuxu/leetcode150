@@ -146,11 +146,28 @@
 
 <pre><code class="{{ .Lang }}">{{ .Code }}</code></pre>
 
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/{{ .Lang }}.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.5.0/languages/{{ .Lang }}.min.js"></script>
 <script>
   hljs.configure({ tabReplace: '  ' })
   hljs.initHighlightingOnLoad();
+</script>
+
+<script>
+document.addEventListener('keydown', event => {
+  {{ if .Prev }}
+  if (event.code === 'ArrowLeft') {
+    window.location.href = '/{{ .Prev.ID }}';
+  }
+  {{ end }}
+
+
+  {{ if .Next }}
+  if (event.code === 'ArrowRight') {
+    window.location.href = '/{{ .Next.ID }}';
+  }
+  {{ end }}
+});
 </script>
 
 <script>
