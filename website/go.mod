@@ -1,6 +1,6 @@
 module github.com/MrHuxu/leetcode150/website
 
-go 1.13
+go 1.17
 
 require (
 	github.com/gin-gonic/gin v1.5.0

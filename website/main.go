@@ -77,10 +77,10 @@ func getCode(q data.Question) (string, error) {
 	var err error
 	switch q.Lang {
 	case fileTypeGo:
-		codeBytes, err = ioutil.ReadFile("../problems/" + q.FolderName() + "/main.go")
+		codeBytes, err = ioutil.ReadFile("../go/" + q.FolderName() + "/main.go")
 
 	case fileTypeJavascript:
-		codeBytes, err = ioutil.ReadFile("../problems/" + q.FolderName() + "/main.js")
+		codeBytes, err = ioutil.ReadFile("../go/" + q.FolderName() + "/main.js")
 
 	default:
 		err = errors.New("language of question undefined")
@@ -97,7 +97,7 @@ func getCode(q data.Question) (string, error) {
 }
 
 func getSolution(q data.Question) (template.HTML, error) {
-	solutionBytes, err := ioutil.ReadFile("../problems/" + q.FolderName() + "/solution.md")
+	solutionBytes, err := ioutil.ReadFile("../go/" + q.FolderName() + "/solution.md")
 	if err != nil {
 		return "", err
 	}
