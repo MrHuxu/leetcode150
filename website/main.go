@@ -12,7 +12,7 @@ import (
 	"github.com/MrHuxu/leetcode150/website/data"
 
 	"github.com/gin-gonic/gin"
-	"gopkg.in/russross/blackfriday.v2"
+	"github.com/russross/blackfriday/v2"
 )
 
 func main() {

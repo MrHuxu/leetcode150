@@ -1,9 +1,8 @@
 module github.com/MrHuxu/leetcode150/website
 
-go 1.17
+go 1.16
 
 require (
-	github.com/gin-gonic/gin v1.5.0
-	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
-	gopkg.in/russross/blackfriday.v2 v2.0.0
+	github.com/gin-gonic/gin v1.7.7
+	github.com/russross/blackfriday/v2 v2.1.0
 )
