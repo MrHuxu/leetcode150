@@ -8,11 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-
     - name: Set up Go
       uses: actions/setup-go@v2
       with:
         go-version: 1.17
-
-    - name: Run Unit Tests
+    - name: Run Tests
       run: cd go && go mod download && go test ./...
+
+  test-rust-solutions:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run Tests
+      run: cd rust && cargo test --verbose
