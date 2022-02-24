@@ -97,7 +97,7 @@ func getCode(q data.Question) (string, error) {
 }
 
 func getSolution(q data.Question) (template.HTML, error) {
-	solutionBytes, err := ioutil.ReadFile("../go/" + q.FolderName() + "/solution.md")
+	solutionBytes, err := ioutil.ReadFile("../documents/" + q.FolderName() + ".md")
 	if err != nil {
 		return "", err
 	}
