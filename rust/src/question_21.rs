@@ -32,36 +32,9 @@ impl Solution {
 fn test() {
     assert_eq!(
         Solution::merge_two_lists(
-            Some(Box::new(ListNode {
-                val: 1,
-                next: Some(Box::new(ListNode {
-                    val: 2,
-                    next: Some(Box::new(ListNode { val: 4, next: None }))
-                }))
-            })),
-            Some(Box::new(ListNode {
-                val: 1,
-                next: Some(Box::new(ListNode {
-                    val: 3,
-                    next: Some(Box::new(ListNode { val: 4, next: None }))
-                }))
-            }))
+            ListNode::new_by_vec(vec![1, 2, 4]),
+            ListNode::new_by_vec(vec![1, 3, 4]),
         ),
-        Some(Box::new(ListNode {
-            val: 1,
-            next: Some(Box::new(ListNode {
-                val: 1,
-                next: Some(Box::new(ListNode {
-                    val: 2,
-                    next: Some(Box::new(ListNode {
-                        val: 3,
-                        next: Some(Box::new(ListNode {
-                            val: 4,
-                            next: Some(Box::new(ListNode { val: 4, next: None }))
-                        }))
-                    }))
-                }))
-            }))
-        }))
+        ListNode::new_by_vec(vec![1, 1, 2, 3, 4, 4])
     );
 }

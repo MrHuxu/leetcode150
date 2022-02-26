@@ -34,73 +34,19 @@ impl Solution {
 #[test]
 fn test() {
     assert_eq!(
-        Solution::remove_nth_from_end(
-            Some(Box::new(ListNode {
-                val: 1,
-                next: Some(Box::new(ListNode {
-                    val: 2,
-                    next: Some(Box::new(ListNode {
-                        val: 3,
-                        next: Some(Box::new(ListNode {
-                            val: 4,
-                            next: Some(Box::new(ListNode { val: 5, next: None }))
-                        })),
-                    })),
-                })),
-            })),
-            2
-        ),
-        Some(Box::new(ListNode {
-            val: 1,
-            next: Some(Box::new(ListNode {
-                val: 2,
-                next: Some(Box::new(ListNode {
-                    val: 3,
-                    next: Some(Box::new(ListNode { val: 5, next: None })),
-                })),
-            })),
-        })),
+        Solution::remove_nth_from_end(ListNode::new_by_vec(vec![1, 2, 3, 4, 5]), 2),
+        ListNode::new_by_vec(vec![1, 2, 3, 5]),
     );
     assert_eq!(
-        Solution::remove_nth_from_end(
-            Some(Box::new(ListNode {
-                val: 1,
-                next: Some(Box::new(ListNode {
-                    val: 2,
-                    next: Some(Box::new(ListNode {
-                        val: 3,
-                        next: Some(Box::new(ListNode {
-                            val: 4,
-                            next: Some(Box::new(ListNode { val: 5, next: None }))
-                        })),
-                    })),
-                })),
-            })),
-            1
-        ),
-        Some(Box::new(ListNode {
-            val: 1,
-            next: Some(Box::new(ListNode {
-                val: 2,
-                next: Some(Box::new(ListNode {
-                    val: 3,
-                    next: Some(Box::new(ListNode { val: 4, next: None })),
-                })),
-            })),
-        })),
+        Solution::remove_nth_from_end(ListNode::new_by_vec(vec![1, 2, 3, 4, 5]), 1),
+        ListNode::new_by_vec(vec![1, 2, 3, 4])
     );
     assert_eq!(
-        Solution::remove_nth_from_end(Some(Box::new(ListNode { val: 1, next: None })), 1),
+        Solution::remove_nth_from_end(ListNode::new_by_vec(vec![1]), 1),
         None,
     );
     assert_eq!(
-        Solution::remove_nth_from_end(
-            Some(Box::new(ListNode {
-                val: 1,
-                next: Some(Box::new(ListNode { val: 2, next: None }))
-            })),
-            1
-        ),
-        Some(Box::new(ListNode { val: 1, next: None }))
+        Solution::remove_nth_from_end(ListNode::new_by_vec(vec![1, 2]), 1),
+        ListNode::new_by_vec(vec![1])
     );
 }
