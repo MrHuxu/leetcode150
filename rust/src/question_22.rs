@@ -31,20 +31,6 @@ impl Solution {
     }
 }
 
-/*
-
-Example 1:
-
-Input: n = 3
-Output: ["((()))","(()())","(())()","()(())","()()()"]
-Example 2:
-
-Input: n = 1
-Output: ["()"]
-
-
-*/
-
 #[test]
 fn test() {
     assert_eq!(Solution::generate_parenthesis(1), vec![String::from("()")]);
