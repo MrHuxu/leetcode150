@@ -2,4 +2,4 @@
 
 ---
 
-[![CircleCI](https://circleci.com/gh/MrHuxu/leetcode150.svg?style=svg)](https://circleci.com/gh/MrHuxu/leetcode150)
+![example workflow](https://github.com/MrHuxu/leetcode150/actions/workflows/test-solutions.yaml/badge.svg)

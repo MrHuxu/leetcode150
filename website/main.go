@@ -1,10 +1,8 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"html/template"
-	"io/ioutil"
 	"net/http"
 	"strconv"
 	"strings"
@@ -12,25 +10,28 @@ import (
 	"github.com/MrHuxu/leetcode150/website/data"
 
 	"github.com/gin-gonic/gin"
-	"gopkg.in/russross/blackfriday.v2"
 )
 
 func main() {
 	server := gin.Default()
+
+	server.SetFuncMap(template.FuncMap{
+		"getDisplayLang": getDisplayLang,
+	})
 	server.LoadHTMLGlob(templatesPath)
 
-	server.GET("/:id", serveDetail)
 	server.GET("/", serveIndex)
+	server.GET("/:id", serveDetail)
 
-	server.Run(fmt.Sprintf("0.0.0.0:%d", port))
+	server.Run(fmt.Sprintf(":%d", port))
 }
 
 func serveIndex(ctx *gin.Context) {
-	ctx.HTML(http.StatusOK, "base.tmpl", gin.H(map[string]interface{}{
+	ctx.HTML(http.StatusOK, "base.tmpl", gin.H{
 		"page":      "index",
 		"title":     "LeetCode 150 - xhu",
 		"questions": data.Questions,
-	}))
+	})
 }
 
 func serveDetail(ctx *gin.Context) {
@@ -39,18 +40,18 @@ func serveDetail(ctx *gin.Context) {
 
 	defer func() {
 		if err != nil {
-			ctx.HTML(http.StatusInternalServerError, "base.tmpl", gin.H(map[string]interface{}{
+			ctx.HTML(http.StatusInternalServerError, "base.tmpl", gin.H{
 				"page": "error",
 				"msg":  err.Error(),
-			}))
+			})
 			return
 		}
 
-		ctx.HTML(http.StatusOK, "base.tmpl", gin.H(map[string]interface{}{
+		ctx.HTML(http.StatusOK, "base.tmpl", gin.H{
 			"page":     "detail",
 			"title":    fmt.Sprintf("%d. %s - xhu", q.ID, q.Title),
 			"question": q,
-		}))
+		})
 	}()
 
 	id, err := strconv.Atoi(ctx.Param("id"))
@@ -62,45 +63,8 @@ func serveDetail(ctx *gin.Context) {
 	if err != nil {
 		return
 	}
-
-	if q.Solution, err = getSolution(q); err != nil {
-		return
-	}
-
-	if q.Code, err = getCode(q); err != nil {
-		return
-	}
 }
 
-func getCode(q data.Question) (string, error) {
-	var codeBytes []byte
-	var err error
-	switch q.Lang {
-	case fileTypeGo:
-		codeBytes, err = ioutil.ReadFile("../problems/" + q.FolderName() + "/main.go")
-
-	case fileTypeJavascript:
-		codeBytes, err = ioutil.ReadFile("../problems/" + q.FolderName() + "/main.js")
-
-	default:
-		err = errors.New("language of question undefined")
-	}
-	if err != nil {
-		return "", err
-	}
-
-	arr := strings.Split(string(codeBytes), "// code\n")
-	if len(arr) < 2 {
-		return "", errors.New("code content is empty")
-	}
-	return arr[1], nil
-}
-
-func getSolution(q data.Question) (template.HTML, error) {
-	solutionBytes, err := ioutil.ReadFile("../problems/" + q.FolderName() + "/solution.md")
-	if err != nil {
-		return "", err
-	}
-
-	return template.HTML(blackfriday.Run(solutionBytes)), nil
+func getDisplayLang(lang string) string {
+	return strings.ToUpper(lang[:1]) + lang[1:]
 }

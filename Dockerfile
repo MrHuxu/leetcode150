@@ -18,7 +18,9 @@ ENV INSIDE_DOCKER true
 WORKDIR /output
 COPY ./website/data /output/data
 COPY ./website/templates /output/templates
-COPY ./problems /problems
+COPY ./documents /documents
+COPY ./go /go
+COPY ./rust /rust
 COPY --from=go-builder /work/main /output/
 
 EXPOSE 15050
