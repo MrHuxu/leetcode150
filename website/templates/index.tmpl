@@ -26,25 +26,42 @@
 		}
 	}
 
+	.tag-difficulty {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+	}
+
+	@media (max-width: 768px) {
+		.tag-difficulty {
+			position: absolute;
+			right: 0px !important;
+			bottom: 20px !important;
+		}
+	}
+
 	#header>#desc>a {
 		text-decoration: underline;
 		color: #606f7b !important;
 	}
 
-	.item {
-		position: relative;
-		padding: 1em 1.5em;
-		border-top: 1px solid rgba(34, 36, 38, .15);
-		border-bottom: 1px solid rgba(255, 255, 255, .1);
-	}
-
-	.item>.label {
-		position: absolute;
-		right: 1.5em;
+	#table-container {
+		width: 100%;
+		overflow-x: scroll;
 	}
 
 	.item:hover {
 		background-color: ivory;
+	}
+
+	.lang-tag-go {
+		color: aliceblue !important;
+		background-color: #00ADD8 !important;
+	}
+
+	.lang-tag-rust {
+		color: aliceblue !important;
+		background-color: #DEA584 !important;
 	}
 </style>
 
@@ -53,6 +70,10 @@
 		Language: &nbsp;
 		<a target="_blank" href="https://golang.org/">
 			Go
+		</a>
+		&nbsp;
+		<a target="_blank" href="https://www.rust-lang.org/">
+			Rust
 		</a>
 		&nbsp;&nbsp;
 		Author: &nbsp;
@@ -66,18 +87,36 @@
 	</span>
 </div>
 
-{{ range . }}
-<div class="item">
-	<a href="/{{ .ID }}">{{ .ID }}. {{ .Title }}</a>
+<div id="table-container">
+	<table class="ui single line table">
+		<tbody>
+			{{ range . }}
+			<tr class="item" style="position:relative">
+				<td>
+					<a href="/{{ .ID }}">{{ .ID }}. {{ .Title }}</a>
+				</td>
 
-	{{ if eq .Difficulty 1 }}
-		<a class="ui green mini label">Easy</a>
-	{{ else if eq .Difficulty 2 }}
-		<a class="ui yellow mini label">Medium</a>
-	{{ else }}
-		<a class="ui red mini label">Hard</a>
-	{{ end }}
+				<td>
+					{{ range $lang, $content := .Code }}
+					<a class="ui tag mini label lang-tag-{{ $lang }}">{{ getDisplayLang $lang }}</a>
+					{{ end }}
+				</td>
+
+				<td></td>
+
+				<td class="tag-difficulty">
+					{{ if eq .Difficulty 1 }}
+					<a class="ui green mini label">Easy</a>
+					{{ else if eq .Difficulty 2 }}
+					<a class="ui yellow mini label">Medium</a>
+					{{ else }}
+					<a class="ui red mini label">Hard</a>
+					{{ end }}
+				</td>
+			</tr>
+			{{ end }}
+		</tbody>
+	</table>
 </div>
-{{ end }}
 
 {{ end }}

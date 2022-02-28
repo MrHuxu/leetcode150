@@ -31,19 +31,19 @@
     text-decoration: underline;
   }
 
-  #solution {
+  #document {
     padding: 2em;
   }
 
-  #solution h1,
-  #solution h2,
-  #solution h3,
-  #solution h4 {
+  #document h1,
+  #document h2,
+  #document h3,
+  #document h4 {
     padding: 0 0 .6em 0;
     color: #3d4852 !important;
   }
 
-  #solution>#question-link {
+  #document>#question-link {
     text-decoration: underline;
     color: lightcoral;
     font-weight: 500;
@@ -80,8 +80,21 @@
   }
 
   code {
-    font-family: 'GoMonoRegular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-    font-size: 13px;
+    font-family: 'JetBrains Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-size: 14px;
+    font-variant-ligatures: contextual;
+  }
+
+  #tab {
+    padding: 0 20px;
+  }
+
+  .chosen-lang {
+    display: block !important;
+  }
+
+  .unchosen-lang {
+    display: none !important;
   }
 
   pre {
@@ -99,8 +112,6 @@
   }
 
   pre code {
-    padding-top: .75rem !important;
-    padding-bottom: .75rem !important;
     line-height: 1.5;
   }
 
@@ -109,6 +120,8 @@
     top: 0;
     left: 0;
     width: 3rem;
+    height: 100%;
+    padding-top: 2em !important;
     border-right: #D1D0CE solid 1px;
   }
 
@@ -139,15 +152,32 @@
   </span>
 </div>
 
-<div id="solution">
+<div id="document">
   <a id="question-link" target="_blank" href="https://leetcode.com/problems/{{ .Slug }}/">>>题目链接</a>
-  <p>{{ .Solution }}</p>
+  <p>{{ .Document }}</p>
 </div>
 
-<pre><code class="{{ .Lang }}">{{ .Code }}</code></pre>
+<div x-data="{ lang: 'go' }">
+  <div id="tab" class="ui top attached tabular menu">
+    {{ range $lang, $content := .Code }}
+    <div :class="lang == '{{ $lang }}' ? 'item active' : 'item'" x-on:click="lang = '{{ $lang }}'">
+      {{ getDisplayLang $lang }}
+    </div>
+    {{ end }}
+  </div>
 
-<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.5.0/languages/{{ .Lang }}.min.js"></script>
+  {{ range $lang, $content := .Code }}
+  <pre style="display:none" :class="lang == '{{ $lang }}' ? 'chosen-lang' : 'unchosen-lang'">
+    <code class="{{ $lang }}">{{ $content }}</code>
+  </pre>
+  {{ end }}
+</div>
+
+<script src="//unpkg.com/alpinejs" defer></script>
+<script src="https://cdn.bootcss.com/highlight.js/10.5.0/highlight.min.js"></script>
+{{ range $lang, $content := .Code }}
+<script src="https://cdn.bootcss.com/highlight.js/10.5.0/languages/{{ $lang }}.min.js"></script>
+{{ end }}
 <script>
   hljs.configure({ tabReplace: '  ' })
   hljs.initHighlightingOnLoad();
@@ -172,6 +202,7 @@ document.addEventListener('keydown', event => {
 
 <script>
   for (let pre of document.getElementsByTagName('pre')) {
+    console.log(pre.innerText.split('\n').length);
     const lineNumContainer = document.createElement('code');
     lineNumContainer.classList.add('line-num-container');
     for (let i = 1; i <= pre.innerText.split('\n').length - 1; i++) {
