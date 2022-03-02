@@ -13,12 +13,12 @@ impl ListNode {
 
     #[inline]
     pub fn new_by_vec(vals: Vec<i32>) -> Option<Box<Self>> {
-        match vals[..] {
-            [first, ..] => Some(Box::new(ListNode {
-                val: first,
+        match vals.first() {
+            None => None,
+            Some(val) => Some(Box::new(ListNode {
+                val: *val,
                 next: Self::new_by_vec(vals[1..].to_vec()),
             })),
-            _ => None,
         }
     }
 }

@@ -2,6 +2,22 @@ use super::list::*;
 
 struct Solution;
 
+// Definition for singly-linked list.
+// #[derive(PartialEq, Eq, Clone, Debug)]
+// pub struct ListNode {
+//   pub val: i32,
+//   pub next: Option<Box<ListNode>>
+// }
+//
+// impl ListNode {
+//   #[inline]
+//   fn new(val: i32) -> Self {
+//     ListNode {
+//       next: None,
+//       val
+//     }
+//   }
+// }
 impl Solution {
     pub fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {
         if head.is_none() {
@@ -10,9 +26,9 @@ impl Solution {
 
         let mut len = 0;
         let mut tmp = head.as_ref();
-        while tmp.is_some() {
+        while let Some(tmp_node) = tmp {
             len += 1;
-            tmp = tmp.unwrap().next.as_ref();
+            tmp = tmp_node.next.as_ref();
         }
 
         let mut ret = Some(Box::new(ListNode { val: 0, next: head }));
@@ -39,7 +55,7 @@ fn test() {
     );
     assert_eq!(
         Solution::remove_nth_from_end(ListNode::new_by_vec(vec![1, 2, 3, 4, 5]), 1),
-        ListNode::new_by_vec(vec![1, 2, 3, 4])
+        ListNode::new_by_vec(vec![1, 2, 3, 4]),
     );
     assert_eq!(
         Solution::remove_nth_from_end(ListNode::new_by_vec(vec![1]), 1),

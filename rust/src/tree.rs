@@ -60,7 +60,6 @@ impl TreeNode {
         Self::new_by_vec_helper(0, &full_vals.concat())
     }
 
-    #[inline]
     fn new_by_vec_helper(idx: usize, vals: &Vec<&Option<i32>>) -> Option<Rc<RefCell<Self>>> {
         if idx >= vals.len() {
             return None;
