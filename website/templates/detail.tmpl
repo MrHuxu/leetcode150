@@ -121,7 +121,6 @@
     left: 0;
     width: 3rem;
     height: 100%;
-    padding-top: 2em !important;
     border-right: #D1D0CE solid 1px;
   }
 
@@ -167,9 +166,7 @@
   </div>
 
   {{ range $lang, $content := .Code }}
-  <pre style="display:none" :class="lang == '{{ $lang }}' ? 'chosen-lang' : 'unchosen-lang'">
-    <code class="{{ $lang }}">{{ $content }}</code>
-  </pre>
+  <pre style="display:none" :class="lang == '{{ $lang }}' ? 'chosen-lang' : 'unchosen-lang'"><code class="{{ $lang }}">{{ $content }}</code></pre>
   {{ end }}
 </div>
 
@@ -184,28 +181,27 @@
 </script>
 
 <script>
-document.addEventListener('keydown', event => {
-  {{ if .Prev }}
-  if (event.code === 'ArrowLeft') {
-    window.location.href = '/{{ .Prev.ID }}';
-  }
-  {{ end }}
+  document.addEventListener('keydown', event => {
+    {{ if .Prev }}
+      if (event.code === 'ArrowLeft') {
+        window.location.href = '/{{ .Prev.ID }}';
+      }
+    {{ end }}
 
 
-  {{ if .Next }}
-  if (event.code === 'ArrowRight') {
-    window.location.href = '/{{ .Next.ID }}';
-  }
-  {{ end }}
-});
+    {{ if .Next }}
+      if (event.code === 'ArrowRight') {
+        window.location.href = '/{{ .Next.ID }}';
+      }
+    {{ end }}
+  });
 </script>
 
 <script>
   for (let pre of document.getElementsByTagName('pre')) {
-    console.log(pre.innerText.split('\n').length);
     const lineNumContainer = document.createElement('code');
     lineNumContainer.classList.add('line-num-container');
-    for (let i = 1; i <= pre.innerText.split('\n').length - 1; i++) {
+    for (let i = 1; i <= pre.innerText.trim('\n').split('\n').length; i++) {
       const ele = document.createElement('div');
       ele.innerText = i;
       lineNumContainer.appendChild(ele);
