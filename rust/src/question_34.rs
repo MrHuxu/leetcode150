@@ -16,7 +16,7 @@ impl Solution {
             let mid = (left + right) / 2;
             match nums[mid as usize].cmp(&target) {
                 Ordering::Less => left = mid + 1,
-                Ordering::Equal | Ordering::Greater => right = mid,
+                _ => right = mid,
             }
         }
         if nums[((left + right) / 2) as usize] == target {
@@ -28,8 +28,8 @@ impl Solution {
         while left <= right {
             let mid = (left + right) / 2;
             match nums[mid as usize].cmp(&target) {
-                Ordering::Less | Ordering::Equal => left = mid + 1,
                 Ordering::Greater => right = mid - 1,
+                _ => left = mid + 1,
             }
         }
         if nums[((left + right) / 2) as usize] == target {

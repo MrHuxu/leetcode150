@@ -17,11 +17,10 @@ func isValidSudoku(board [][]byte) bool {
 				continue
 			}
 
-			rect := rects[rectangleIdx(i, j)]
-			if rect[b-48] {
+			if rects[i/3*3+j/3][b-48] {
 				return false
 			}
-			rect[b-48] = true
+			rects[i/3*3+j/3][b-48] = true
 
 			if rows[i][b-48] {
 				return false
@@ -36,46 +35,4 @@ func isValidSudoku(board [][]byte) bool {
 	}
 
 	return true
-}
-
-func rectangleIdx(i, j int) int {
-	switch {
-	case i < 3:
-		switch {
-		case j < 3:
-			return 0
-
-		case j >= 3 && j < 6:
-			return 1
-
-		case j >= 6:
-			return 2
-		}
-
-	case i >= 3 && i < 6:
-		switch {
-		case j < 3:
-			return 3
-
-		case j >= 3 && j < 6:
-			return 4
-
-		case j >= 6:
-			return 5
-		}
-
-	case i >= 6:
-		switch {
-		case j < 3:
-			return 6
-
-		case j >= 3 && j < 6:
-			return 7
-
-		case j >= 6:
-			return 8
-		}
-
-	}
-	return 0
 }

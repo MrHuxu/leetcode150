@@ -2,36 +2,38 @@ package main
 
 // code
 func search(nums []int, target int) int {
-	dividePos := -1
-	for i := 0; i < len(nums)-1; i++ {
-		if nums[i] > nums[i+1] {
-			dividePos = i
-			break
-		}
-	}
-
 	left := 0
 	right := len(nums) - 1
-	if dividePos == -1 {
-		right = len(nums) - 1
-	} else {
-		if target > nums[0] {
-			right = dividePos
-		} else if target < nums[0] {
-			left = dividePos + 1
-		} else {
-			return 0
+
+	for left <= right {
+		mid := (left + right) / 2
+
+		switch {
+		case nums[mid] < nums[0]:
+			right = mid - 1
+
+		default:
+			left = mid + 1
 		}
+	}
+	rotateIdx := (left + right) / 2
+	if target >= nums[0] {
+		left, right = 0, rotateIdx
+	} else {
+		left, right = rotateIdx+1, len(nums)-1
 	}
 
 	for left <= right {
 		mid := (left + right) / 2
 
-		if target > nums[mid] {
+		switch {
+		case nums[mid] < target:
 			left = mid + 1
-		} else if target < nums[mid] {
+
+		case nums[mid] > target:
 			right = mid - 1
-		} else {
+
+		default:
 			return mid
 		}
 	}

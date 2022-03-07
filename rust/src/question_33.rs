@@ -8,10 +8,10 @@ impl Solution {
         let mut right: i32 = nums.len() as i32 - 1;
 
         while left <= right {
-            let mid = (left as usize + right as usize) / 2;
+            let mid = ((left + right) / 2) as usize;
             match nums[mid].cmp(&nums[0]) {
-                Ordering::Greater | Ordering::Equal => left = mid as i32 + 1,
                 Ordering::Less => right = mid as i32 - 1,
+                _ => left = mid as i32 + 1,
             };
         }
         let rotate_idx = (left + right) / 2;
@@ -26,9 +26,9 @@ impl Solution {
         while left <= right {
             let mid = (left + right) / 2;
             match nums[mid as usize].cmp(&target) {
-                Ordering::Equal => return mid as i32,
-                Ordering::Greater => right = mid - 1,
                 Ordering::Less => left = mid + 1,
+                Ordering::Greater => right = mid - 1,
+                Ordering::Equal => return mid as i32,
             };
         }
 

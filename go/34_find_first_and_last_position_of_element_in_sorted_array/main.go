@@ -2,39 +2,45 @@ package main
 
 // code
 func searchRange(nums []int, target int) []int {
-	var found bool
-	var pos int
+	ret := []int{-1, -1}
+
+	if len(nums) == 0 {
+		return ret
+	}
 
 	left := 0
 	right := len(nums) - 1
+	for left < right {
+		mid := (left + right) / 2
+
+		switch {
+		case nums[mid] < target:
+			left = mid + 1
+
+		default:
+			right = mid
+		}
+	}
+	if nums[(left+right)/2] == target {
+		ret[0] = (left + right) / 2
+	}
+
+	left = 0
+	right = len(nums) - 1
 	for left <= right {
 		mid := (left + right) / 2
 
-		if nums[mid] == target {
-			found = true
-			pos = mid
-			break
-		}
-
-		if nums[mid] > target {
+		switch {
+		case nums[mid] > target:
 			right = mid - 1
-		} else {
+
+		default:
 			left = mid + 1
 		}
 	}
-
-	if !found {
-		return []int{-1, -1}
+	if nums[(left+right)/2] == target {
+		ret[1] = (left + right) / 2
 	}
 
-	first := pos
-	for first > 0 && nums[first-1] == nums[first] {
-		first--
-	}
-	last := pos
-	for last < len(nums)-1 && nums[last+1] == nums[last] {
-		last++
-	}
-
-	return []int{first, last}
+	return ret
 }
