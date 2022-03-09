@@ -17,16 +17,11 @@ struct Solution;
 //     }
 //   }
 // }
-
 impl Solution {
     pub fn merge_two_lists(
         list1: Option<Box<ListNode>>,
         list2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
-        Self::helper(list1, list2)
-    }
-
-    fn helper(list1: Option<Box<ListNode>>, list2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         match (list1, list2) {
             (None, None) => None,
             (Some(node1), None) => Some(node1),
@@ -34,11 +29,11 @@ impl Solution {
             (Some(node1), Some(node2)) => {
                 if node1.val < node2.val {
                     let mut node = Box::clone(&node1);
-                    node.next = Self::helper(node1.next, Some(node2));
+                    node.next = Self::merge_two_lists(node1.next, Some(node2));
                     Some(node)
                 } else {
                     let mut node = Box::clone(&node2);
-                    node.next = Self::helper(Some(node1), node2.next);
+                    node.next = Self::merge_two_lists(Some(node1), node2.next);
                     Some(node)
                 }
             }

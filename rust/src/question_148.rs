@@ -18,7 +18,6 @@ struct Solution;
 //     }
 //   }
 // }
-
 impl Solution {
     pub fn sort_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         Self::sort(head.as_ref())

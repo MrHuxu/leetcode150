@@ -16,8 +16,8 @@ struct Solution;
 //       next: None,
 //       val
 //     }
-//
-
+//   }
+// }
 impl Solution {
     pub fn swap_pairs(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         if head.is_none() {

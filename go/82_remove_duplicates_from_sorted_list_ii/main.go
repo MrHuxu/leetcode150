@@ -11,27 +11,18 @@ import . "github.com/MrHuxu/types"
  * }
  */
 func deleteDuplicates(head *ListNode) *ListNode {
+	return helper(nil, head)
+}
+
+func helper(pre *ListNode, head *ListNode) *ListNode {
 	if head == nil {
 		return nil
 	}
 
-	dummyHead := &ListNode{Next: head}
-
-	fast := dummyHead.Next
-	slow := dummyHead
-	for fast != nil && fast.Next != nil {
-		if fast.Next.Val == slow.Next.Val {
-			for fast.Next != nil && fast.Next.Val == slow.Next.Val {
-				fast = fast.Next
-			}
-
-			slow.Next = fast.Next
-			fast = fast.Next
-		} else {
-			slow = slow.Next
-			fast = fast.Next
-		}
+	if (pre != nil && pre.Val == head.Val) || (head.Next != nil && head.Next.Val == head.Val) {
+		return helper(head, head.Next)
 	}
 
-	return dummyHead.Next
+	head.Next = helper(head, head.Next)
+	return head
 }
