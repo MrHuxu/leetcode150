@@ -17,25 +17,19 @@ func isMatch(s, p string) bool {
 				dp[i][j] = false
 
 			case j == 0:
-				dp[i][j] = p[i-1] == '*' && dp[i-1][j]
+				dp[i][j] = p[i-1] == '*' && dp[i-1][0]
 
 			default:
-				var matched bool
+				switch p[i-1] {
+				case '*':
+					dp[i][j] = dp[i-1][j-1] || dp[i][j-1] || dp[i-1][j]
 
-				if p[i-1] == s[j-1] || p[i-1] == '?' {
-					matched = dp[i-1][j-1]
+				case '?':
+					dp[i][j] = dp[i-1][j-1]
+
+				default:
+					dp[i][j] = dp[i-1][j-1] && p[i-1] == s[j-1]
 				}
-
-				if !matched && p[i-1] == '*' {
-					for k := j; k >= 0; k-- {
-						if dp[i-1][k] == true {
-							matched = true
-							break
-						}
-					}
-				}
-
-				dp[i][j] = matched
 			}
 		}
 	}
