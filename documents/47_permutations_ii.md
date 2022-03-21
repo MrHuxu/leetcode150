@@ -4,6 +4,4 @@
 
 ## 解答
 
-首先我们改造一下 [31 题](https://leetcode150.xhu.me/31) 的 `nextPermutation` 函数, 使其返回一个 bool 值, 表示在这一次求解 next permutation 的过程有没有进行过位置的调换.
-
-然后对 nums 进行从小到大排序, 然后对数组不断调用 nextPermutation 函数, 并且对返回的 bool 值进行判断, 如果返回为 false, 表示这一次没有进行数字调换, 已经得到了 大->小 排序的排列, 循环结束.
+这题同样可以使用 DFS 求解, 关键在于 `i > 0 && nums[i] == nums[i-1] && !used[i-1]` 这个条件, 当 `used[i-1]=true` 时, 表示相邻的 nums[i-1] 和 nums[i] 在一个遍历分支里, 需要执行下去, 当 `used[i-1]=false` 时, 表示跳过 nums[i-1] 对相同的 nums[i] 执行了相同的分支, 需要被剪枝, 这样遍历完可得结果.

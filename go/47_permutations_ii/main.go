@@ -8,54 +8,27 @@ func permuteUnique(nums []int) [][]int {
 		return nums[i] < nums[j]
 	})
 
-	result := [][]int{nums}
-
-	for {
-		next := append([]int{}, result[len(result)-1]...)
-		adjusted := nextPermutation(next)
-
-		if adjusted {
-			result = append(result, next)
-		} else {
-			break
-		}
-	}
-
-	return result
+	return dfs(nums, make(map[int]bool))
 }
 
-func nextPermutation(nums []int) (adjusted bool) {
-	for i := len(nums) - 2; i >= 0; i-- {
-		var hasBigger bool
-		var minBiggerIdx int
+func dfs(nums []int, used map[int]bool) [][]int {
+	var ret [][]int
 
-		for j := len(nums) - 1; j > i; j-- {
-			if nums[j] > nums[i] {
-				if hasBigger {
-					if nums[j] < nums[minBiggerIdx] {
-						minBiggerIdx = j
-					}
-				} else {
-					minBiggerIdx = j
-					hasBigger = true
-				}
-			}
+	for i, num := range nums {
+		if used[i] || (i > 0 && nums[i] == nums[i-1] && !used[i-1]) {
+			continue
 		}
 
-		if hasBigger {
-			tmp := nums[minBiggerIdx]
-			nums[minBiggerIdx] = nums[i]
-			nums[i] = tmp
-
-			subNums := nums[i+1 : len(nums)]
-			sort.Slice(subNums, func(a, b int) bool {
-				return subNums[a] < subNums[b]
-			})
-
-			adjusted = true
-			return
+		used[i] = true
+		for _, item := range dfs(nums, used) {
+			ret = append(ret, append([]int{num}, item...))
 		}
+		used[i] = false
 	}
 
-	return
+	if len(ret) == 0 {
+		return [][]int{{}}
+	}
+
+	return ret
 }
