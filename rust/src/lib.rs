@@ -1,4 +1,6 @@
 mod list;
+mod tree;
+
 mod question_1;
 mod question_10;
 mod question_12;
@@ -54,8 +56,13 @@ mod question_61;
 mod question_62;
 mod question_63;
 mod question_64;
+mod question_66;
+mod question_67;
+mod question_69;
 mod question_7;
+mod question_70;
+mod question_71;
+mod question_72;
 mod question_82;
 mod question_9;
 mod question_94;
-mod tree;
