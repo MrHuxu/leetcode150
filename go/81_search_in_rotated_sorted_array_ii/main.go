@@ -2,26 +2,18 @@ package main
 
 // code
 func search(nums []int, target int) bool {
-	dividePos := -1
-	for i := 0; i < len(nums)-1; i++ {
-		if nums[i] > nums[i+1] {
-			dividePos = i
-			break
-		}
+	if target == nums[0] {
+		return true
 	}
 
-	left := 0
-	right := len(nums) - 1
-	if dividePos == -1 {
-		right = len(nums) - 1
+	rotateIdx := findRotateIdx(nums, 0, len(nums)-1)
+	var left, right int
+	if target > nums[0] {
+		left = 0
+		right = *rotateIdx
 	} else {
-		if target > nums[0] {
-			right = dividePos
-		} else if target < nums[0] {
-			left = dividePos + 1
-		} else {
-			return true
-		}
+		left = *rotateIdx + 1
+		right = len(nums) - 1
 	}
 
 	for left <= right {
@@ -37,4 +29,28 @@ func search(nums []int, target int) bool {
 	}
 
 	return false
+}
+
+func findRotateIdx(nums []int, left, right int) *int {
+	for left <= right {
+		mid := (left + right) / 2
+		if mid == len(nums)-1 || nums[mid] > nums[mid+1] {
+			return &mid
+		}
+
+		if nums[mid] < nums[0] {
+			right = mid - 1
+			continue
+		}
+		if nums[mid] > nums[0] {
+			left = mid + 1
+			continue
+		}
+
+		if idx := findRotateIdx(nums, left, mid-1); idx != nil {
+			return idx
+		}
+		return findRotateIdx(nums, mid+1, right)
+	}
+	return nil
 }
