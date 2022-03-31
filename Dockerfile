@@ -1,26 +1,41 @@
-FROM golang:latest AS go-builder
+FROM rust:latest AS builder
 
-ENV GO111MODULE on
-ENV GOPROXY https://goproxy.io
-ENV CGO_ENABLED 0
+RUN rustup target add x86_64-unknown-linux-musl
+RUN apt update && apt install -y musl-tools musl-dev
+RUN update-ca-certificates
 
-WORKDIR /work
-COPY ./website /work
+ENV USER=website
+ENV UID=10001
 
-RUN go mod download
-RUN go build -o main *.go
+RUN adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "/nonexistent" \
+    --shell "/sbin/nologin" \
+    --no-create-home \
+    --uid "${UID}" \
+    "${USER}"
+
+WORKDIR /website
+COPY ./website/src /website/src
+COPY ./website/templates /website/templates
+COPY ./website/Cargo.toml /website/Cargo.toml
+COPY ./website/Cargo.lock /website/Cargo.lock
+
+RUN cargo build --target x86_64-unknown-linux-musl --release
 
 FROM scratch
 
-ENV GIN_MODE release
+COPY --from=builder /etc/passwd /etc/passwd
+COPY --from=builder /etc/group /etc/group
 
-WORKDIR /output
-COPY ./website/data /output/data
-COPY ./website/templates /output/templates
+WORKDIR /website
+COPY --from=builder /website/target/x86_64-unknown-linux-musl/release/website ./
 COPY ./documents /documents
 COPY ./go /go
 COPY ./rust/src /rust/src
-COPY --from=go-builder /work/main /output/
+
+USER website:website
 
 EXPOSE 15050
-ENTRYPOINT [ "./main" ]
+ENTRYPOINT [ "/website/website" ]

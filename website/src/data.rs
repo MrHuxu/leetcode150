@@ -1,19 +1,23 @@
-use std::collections::HashMap;
 use std::fs::File;
 use std::io::{BufReader, Read};
 
 use serde::Deserialize;
 
-#[derive(Deserialize, Debug)]
-pub struct Question {
+#[derive(Deserialize)]
+pub struct QuestionData {
     pub id: i32,
     pub difficulty: i32,
     pub title: String,
     pub slug: String,
+}
 
-    pub document: Option<String>,
-    pub langs: Option<Vec<String>>,
-    pub codes: Option<HashMap<String, String>>,
+pub struct Question {
+    pub data: QuestionData,
+
+    pub document: String,
+    pub langs: Vec<String>,
+    pub display_langs: Vec<String>,
+    pub codes: Vec<String>,
 
     pub prev_id: Option<i32>,
     pub next_id: Option<i32>,
@@ -21,9 +25,9 @@ pub struct Question {
 
 impl Question {
     fn go_folder_name(&self) -> String {
-        let mut folder_name = itoa::Buffer::new().format(self.id).to_owned();
+        let mut folder_name = itoa::Buffer::new().format(self.data.id).to_owned();
         folder_name.push_str("_");
-        folder_name.push_str(self.slug.replace("-", "_").as_str());
+        folder_name.push_str(self.data.slug.replace("-", "_").as_str());
         folder_name
     }
 
@@ -55,7 +59,7 @@ impl Question {
 
     fn rust_file_path(&self) -> String {
         let mut file_path = String::from("../rust/src/question_");
-        file_path.push_str(itoa::Buffer::new().format(self.id));
+        file_path.push_str(itoa::Buffer::new().format(self.data.id));
         file_path.push_str(".rs");
         file_path
     }
@@ -76,31 +80,29 @@ impl Question {
         Some(strs[0].to_owned())
     }
 
-    fn fill_data(&mut self) {
-        self.document = Some(self.get_doc_content());
+    fn fill_info(&mut self) {
+        self.document = self.get_doc_content();
 
-        let mut langs = vec![String::from("Go")];
-        let mut codes = HashMap::new();
-        codes.insert(String::from("Go"), self.get_go_content());
+        self.langs.push(String::from("go"));
+        self.display_langs.push(String::from("Go"));
+        self.codes.push(self.get_go_content());
         if let Some(content) = self.get_rust_content() {
-            langs.push(String::from("Rust"));
-            codes.insert(String::from("Rust"), content);
+            self.langs.push(String::from("rust"));
+            self.display_langs.push(String::from("Rust"));
+            self.codes.push(content);
         }
-        self.langs = Some(langs);
-        self.codes = Some(codes);
 
-        match self.id {
+        match self.data.id {
             1 => self.next_id = Some(2),
             150 => self.prev_id = Some(149),
             _ => {
-                self.prev_id = Some(self.id - 1);
-                self.next_id = Some(self.id + 1);
+                self.prev_id = Some(self.data.id - 1);
+                self.next_id = Some(self.data.id + 1);
             }
         }
     }
 }
 
-#[derive(Deserialize)]
 pub struct Questions(Vec<Question>);
 
 impl Questions {
@@ -110,7 +112,7 @@ impl Questions {
 
     pub fn find_by_id(&self, id: i32) -> Option<&Question> {
         for question in self.0.iter() {
-            if question.id == id {
+            if question.data.id == id {
                 return Some(question);
             }
         }
@@ -122,12 +124,25 @@ lazy_static! {
     pub static ref QUESTIONS: Questions = {
         let file = File::open("src/data.json").unwrap();
         let reader = BufReader::new(file);
-        let mut questions: Questions = serde_json::from_reader(reader).unwrap();
+        let mut question_data: Vec<QuestionData> = serde_json::from_reader(reader).unwrap();
 
-        for i in 0..questions.0.len() {
-            questions.0[i].fill_data();
+        let mut questions = Vec::new();
+        for data in question_data {
+            let mut question = Question {
+                data: data,
+
+                document: String::from(""),
+                langs: Vec::new(),
+                display_langs: Vec::new(),
+                codes: Vec::new(),
+
+                prev_id: None,
+                next_id: None,
+            };
+            question.fill_info();
+            questions.push(question);
         }
 
-        questions
+        Questions(questions)
     };
 }
