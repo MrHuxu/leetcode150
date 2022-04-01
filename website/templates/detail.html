@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<link href="//unpkg.com/semantic-ui@2.4.2/dist/components/menu.min.css" rel="stylesheet">
-<link href="//unpkg.com/semantic-ui@2.4.2/dist/components/icon.min.css" rel="stylesheet">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/night-owl.min.css">
+<link href="//cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/components/menu.min.css" rel="stylesheet">
+<link href="//cdn.bootcdn.net/ajax/libs/highlight.js/10.5.0/styles/night-owl.min.css" rel="stylesheet">
 
 <style>
     #header {
@@ -184,10 +183,10 @@
 
 </div>
 
-<script src="//unpkg.com/alpinejs" defer></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+<script src="//cdn.bootcdn.net/ajax/libs/alpinejs/3.9.5/cdn.min.js"></script>
+<script src="//cdn.bootcdn.net/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
 {% for lang in question.langs.iter() -%}
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/{{ lang }}.min.js"></script>
+<script src="//cdn.bootcdn.net/ajax/libs/highlight.js/10.5.0/languages/{{ lang }}.min.js"></script>
 {% endfor -%}
 <script>
     hljs.configure({ tabReplace: '    ' })
