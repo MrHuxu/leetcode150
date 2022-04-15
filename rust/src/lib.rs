@@ -78,4 +78,6 @@ mod question_86;
 mod question_88;
 mod question_89;
 mod question_9;
+mod question_91;
+mod question_92;
 mod question_94;
