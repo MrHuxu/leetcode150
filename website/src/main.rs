@@ -61,7 +61,7 @@ async fn detail(params: web::Path<i32>) -> impl Responder {
                 DetailTemplate {
                     title: title.as_str(),
                     meta: question.document.as_str(),
-                    question: question,
+                    question,
                 }
                 .render()
                 .unwrap(),

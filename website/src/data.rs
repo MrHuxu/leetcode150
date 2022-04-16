@@ -66,7 +66,7 @@ impl Question {
 
     fn get_rust_content(&self) -> Option<String> {
         let file_path = self.rust_file_path();
-        let mut file = File::open(file_path.as_str());
+        let file = File::open(file_path.as_str());
         if file.is_err() {
             return None;
         }
@@ -124,7 +124,7 @@ lazy_static! {
     pub static ref QUESTIONS: Questions = {
         let file = File::open("src/data.json").unwrap();
         let reader = BufReader::new(file);
-        let mut question_data: Vec<QuestionData> = serde_json::from_reader(reader).unwrap();
+        let question_data: Vec<QuestionData> = serde_json::from_reader(reader).unwrap();
 
         let mut questions = Vec::new();
         for data in question_data {
