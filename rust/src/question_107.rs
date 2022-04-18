@@ -23,9 +23,10 @@ struct Solution;
 use std::cell::RefCell;
 use std::rc::Rc;
 impl Solution {
-    pub fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
+    pub fn level_order_bottom(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
         let mut ret = Vec::new();
         Self::helper(root.as_ref(), &mut ret, 0);
+        ret.reverse();
         ret
     }
 
@@ -45,7 +46,7 @@ impl Solution {
 #[test]
 fn test() {
     assert_eq!(
-        Solution::level_order(TreeNode::new_by_vec(vec![
+        Solution::level_order_bottom(TreeNode::new_by_vec(vec![
             Some(3),
             Some(9),
             Some(20),
@@ -54,6 +55,7 @@ fn test() {
             Some(15),
             Some(7)
         ])),
-        vec![vec![3], vec![9, 20], vec![15, 7]]
+        vec![vec![15, 7], vec![9, 20], vec![3]]
     );
 }
+
