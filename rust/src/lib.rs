@@ -36,6 +36,8 @@ mod question_132;
 mod question_134;
 mod question_136;
 mod question_137;
+mod question_144;
+mod question_145;
 mod question_14;
 mod question_148;
 mod question_15;

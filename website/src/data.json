@@ -861,13 +861,13 @@
     "id": 144,
     "title": "Binary Tree Preorder Traversal",
     "slug": "binary-tree-preorder-traversal",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 145,
     "title": "Binary Tree Postorder Traversal",
     "slug": "binary-tree-postorder-traversal",
-    "difficulty": 3
+    "difficulty": 1
   },
   {
     "id": 146,
