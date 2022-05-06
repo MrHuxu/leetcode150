@@ -20,6 +20,7 @@ COPY ./website/src/data.json ./src/data.json
 COPY ./documents /documents
 COPY ./go /go
 COPY ./rust/src /rust/src
+COPY ./java/src /java/src
 
 EXPOSE 15050
 ENTRYPOINT [ "/website/website" ]
