@@ -7,7 +7,7 @@ jobs:
   test-go-solutions:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Go
       uses: actions/setup-go@v2
       with:
@@ -18,6 +18,19 @@ jobs:
   test-rust-solutions:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Run Tests
       run: cd rust && cargo test --verbose
+  
+  test-java-solutions:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '18'
+        distribution: 'temurin'
+        cache: maven
+    - name: Run Tests
+      run: cd java && mvn test
