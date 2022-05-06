@@ -1,9 +1,10 @@
-package me.xhu.leetcode150.question_1;
+package question_1;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Solution {
+// code
+class Solution {
     public int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> m = new HashMap<Integer, Integer>();
         int ret[] = new int[2];
