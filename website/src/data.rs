@@ -24,13 +24,6 @@ pub struct Question {
 }
 
 impl Question {
-    fn go_folder_name(&self) -> String {
-        let mut folder_name = itoa::Buffer::new().format(self.data.id).to_owned();
-        folder_name.push_str("_");
-        folder_name.push_str(self.data.slug.replace("-", "_").as_str());
-        folder_name
-    }
-
     fn doc_file_path(&self) -> String {
         let mut file_path = String::from("../documents/");
         file_path.push_str(self.go_folder_name().as_str());
@@ -43,6 +36,13 @@ impl Question {
         let mut content = String::new();
         file.read_to_string(&mut content);
         markdown::to_html(content.as_str())
+    }
+
+    fn go_folder_name(&self) -> String {
+        let mut folder_name = itoa::Buffer::new().format(self.data.id).to_owned();
+        folder_name.push_str("_");
+        folder_name.push_str(self.data.slug.replace("-", "_").as_str());
+        folder_name
     }
 
     fn get_go_content(&self) -> String {
@@ -71,13 +71,43 @@ impl Question {
             return None;
         }
 
-        let mut file = File::open(file_path.as_str()).unwrap();
         let mut content = String::new();
-        file.read_to_string(&mut content);
+        file.unwrap().read_to_string(&mut content);
 
         let mut strs: Vec<&str> = content.split("struct Solution;\n\n").collect();
         strs = strs[1].split("\n#[test]").collect();
         Some(strs[0].to_owned())
+    }
+
+    fn java_folder_name(&self) -> String {
+        let mut folder_name = String::from("question_");
+        folder_name.push_str(itoa::Buffer::new().format(self.data.id));
+        folder_name
+    }
+
+    fn get_java_content(&self) -> Option<String> {
+        let mut file_path = String::from("../java/src/main/java/");
+        file_path.push_str(self.java_folder_name().as_str());
+        file_path.push_str("/Solution.java");
+        let file = File::open(file_path.as_str());
+        if file.is_err() {
+            return None;
+        }
+
+        let mut content = String::new();
+        file.unwrap().read_to_string(&mut content);
+
+        let mut idx = content.find("/**");
+        if let Some(idx) = idx {
+            return Some(content[idx..].to_string());
+        }
+
+        idx = content.find("class ");
+        if let Some(idx) = idx {
+            return Some(content[idx..].to_string());
+        }
+
+        None
     }
 
     fn fill_info(&mut self) {
@@ -89,6 +119,11 @@ impl Question {
         if let Some(content) = self.get_rust_content() {
             self.langs.push(String::from("rust"));
             self.display_langs.push(String::from("Rust"));
+            self.codes.push(content);
+        }
+        if let Some(content) = self.get_java_content() {
+            self.langs.push(String::from("java"));
+            self.display_langs.push(String::from("Java"));
             self.codes.push(content);
         }
 
