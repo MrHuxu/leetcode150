@@ -1,4 +1,4 @@
-package question_4;
+package question_5;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
