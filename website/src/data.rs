@@ -97,7 +97,7 @@ impl Question {
         let mut content = String::new();
         file.unwrap().read_to_string(&mut content);
 
-        let mut idx = content.find("/**");
+        let mut idx = content.find("/*");
         if let Some(idx) = idx {
             return Some(content[idx..].to_string());
         }
