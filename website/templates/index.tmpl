@@ -32,11 +32,11 @@
 
 {{ range . }}
 <div class="border-t-2 border-gray-200 hover:bg-yellow-50 md:flex md:justify-between md:p-4">
-  <div class="w-screen pl-2 pr-2 pt-1 lg:w-7/12 lg:p-0">
+  <div class="w-screen pl-2 pr-2 pt-4 lg:w-7/12 lg:p-0">
     <a class="text-blue-500" href="/{{ .ID }}">{{ .ID }}. {{ .Title }}</a>
   </div>
 
-  <div class="flex w-screen justify-between p-2 pt-1 lg:w-5/12 lg:p-0">
+  <div class="flex w-screen justify-between p-2 pb-4 lg:w-5/12 lg:p-0">
     <div>
       {{ range $lang, $content := .Code }}
       <a class="ui tag mini label lang-tag-{{ $lang }}">{{ getDisplayLang $lang }}</a>
