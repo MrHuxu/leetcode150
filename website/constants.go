@@ -1,10 +1,15 @@
 package main
 
 const (
-	port          = 15050
+	port = 15050
+
+	assetsPath    = "./assets"
 	templatesPath = "templates/*"
-	goCodePath    = "../go"
-	rustCodePath  = "../rust"
+
+	documentFilePath = "../documents"
+	goFilePath       = "../go"
+	rustFilePath     = "../rust"
+	javaCodePath     = "../java"
 )
 
 const (

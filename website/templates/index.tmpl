@@ -4,47 +4,6 @@
 <link href="//unpkg.com/semantic-ui@2.4.2/dist/components/label.min.css" rel="stylesheet">
 
 <style>
-	#header {
-		position: relative;
-		padding: 2em;
-	}
-
-	#header h1 {
-		color: #3d4852;
-	}
-
-	#header>#desc {
-		position: absolute;
-		padding: 0;
-		right: 1em;
-		bottom: 2em;
-	}
-
-	@media (max-width: 991px) {
-		#header {
-			padding: 0 2em 1.8em 2em;
-		}
-
-		#header>#desc {
-			position: unset;
-			padding: 1em 0;
-		}
-	}
-
-	#header>#desc>a {
-		text-decoration: underline;
-		color: #606f7b !important;
-	}
-
-	#table-container {
-		width: 100%;
-		overflow-x: scroll;
-	}
-
-	.item:hover {
-		background-color: ivory;
-	}
-
 	.lang-tag-go {
 		color: aliceblue !important;
 		background-color: #00ADD8 !important;
@@ -54,70 +13,47 @@
 		color: aliceblue !important;
 		background-color: #DEA584 !important;
 	}
-
-	.tag-difficulty {
-		position: absolute;
-		right: 15px;
-		bottom: 15px;
-	}
-
-	@media (max-width: 768px) {
-		.tag-difficulty {
-			position: absolute;
-			right: 10px;
-			bottom: 30px !important;
-		}
-	}
 </style>
 
-<div id="header">
-	<div id="desc">
-		Language: &nbsp;
-		<a target="_blank" href="https://golang.org/">Go</a>
-		&nbsp;
-		<a target="_blank" href="https://www.rust-lang.org/">Rust</a>
-		&nbsp;&nbsp;
-		Author: &nbsp;
-		<a target="_blank" href="https://xhu.me/">
-			xhu
-		</a>
+<div class="justify-between p-7 pt-9 md:flex md:justify-between">
+	<div>
+		<p class="text-4xl text-gray-500">LeetCode 150</p>
 	</div>
 
-	<span>
-		<h2> LeetCode 150 </h2>
-	</span>
+	<div class="mt-3 flex flex-wrap content-end md:mt-0">
+		Language: &nbsp;
+		<a class="text-gray-500 underline" target="_blank" href="https://golang.org/">Go</a>
+		&nbsp;
+		<a class="text-gray-500 underline" target="_blank" href="https://www.rust-lang.org/">Rust</a>
+		&nbsp;&nbsp; Author: &nbsp;
+		<a class="text-gray-500 underline" target="_blank" href="https://xhu.me/"> xhu </a>
+	</div>
 </div>
 
-<div id="table-container">
-	<table class="ui single line table">
-		<tbody>
-			{{ range . }}
-			<tr class="item" style="position:relative">
-				<td style="padding: 15px 0 15px 20px">
-					<a href="/{{ .ID }}">{{ .ID }}. {{ .Title }}</a>
-				</td>
+{{ range . }}
+<div class="border-t-2 border-gray-200 hover:bg-yellow-50 md:flex md:justify-between md:p-4">
+	<div class="w-screen pl-2 pr-2 pt-1 lg:w-7/12 lg:p-0">
+		<a class="text-blue-500" href="/{{ .ID }}">{{ .ID }}. {{ .Title }}</a>
+	</div>
 
-				<td>
-					{{ range $lang, $content := .Code }}
-					<a class="ui tag mini label lang-tag-{{ $lang }}">{{ getDisplayLang $lang }}</a>
-					{{ end }}
-				</td>
-
-				<td></td>
-
-				<td>
-					{{ if eq .Difficulty 1 }}
-					<a class="ui green mini label tag-difficulty">Easy</a>
-					{{ else if eq .Difficulty 2 }}
-					<a class="ui yellow mini label tag-difficulty">Medium</a>
-					{{ else }}
-					<a class="ui red mini label tag-difficulty">Hard</a>
-					{{ end }}
-				</td>
-			</tr>
+	<div class="flex w-screen justify-between p-2 pt-1 lg:w-5/12 lg:p-0">
+		<div>
+			{{ range $lang, $content := .Code }}
+			<a class="ui tag mini label lang-tag-{{ $lang }}">{{ getDisplayLang $lang }}</a>
 			{{ end }}
-		</tbody>
-	</table>
+		</div>
+
+		<div>
+			{{ if eq .Difficulty 1 }}
+			<a class="ui green mini label tag-difficulty">Easy</a>
+			{{ else if eq .Difficulty 2 }}
+			<a class="ui yellow mini label tag-difficulty">Medium</a>
+			{{ else }}
+			<a class="ui red mini label tag-difficulty">Hard</a>
+			{{ end }}
+		</div>
+	</div>
 </div>
+{{ end }}
 
 {{ end }}

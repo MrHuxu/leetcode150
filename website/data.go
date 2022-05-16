@@ -1,4 +1,4 @@
-package data
+package main
 
 import (
 	"encoding/json"
@@ -14,8 +14,10 @@ import (
 	"github.com/russross/blackfriday/v2"
 )
 
-// Question ...
-type Question struct {
+// Questions defines a global variable holding question data list
+var Questions questions
+
+type question struct {
 	ID         int    `json:"id"`
 	Difficulty int    `json:"difficulty"`
 	Title      string `json:"title"`
@@ -24,18 +26,15 @@ type Question struct {
 	Code     map[string]string
 	Document template.HTML
 
-	Prev *Question
-	Next *Question
+	Prev *question
+	Next *question
 }
 
 // questions ...
-type questions []Question
+type questions []question
 
-// Questions ...
-var Questions questions
-
-func init() {
-	bs, err := ioutil.ReadFile("data/data.json")
+func initData() {
+	bs, err := ioutil.ReadFile("data.json")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -61,8 +60,8 @@ func init() {
 	}
 }
 
-func (q *Question) loadDocument() error {
-	bytes, err := ioutil.ReadFile("../documents/" + q.goFolderName() + ".md")
+func (q *question) loadDocument() error {
+	bytes, err := ioutil.ReadFile(path.Join(documentFilePath, q.goFolderName()+".md"))
 	if err != nil {
 		return err
 	}
@@ -71,16 +70,16 @@ func (q *Question) loadDocument() error {
 	return nil
 }
 
-func (q *Question) loadCode() error {
+func (q *question) loadCode() error {
 	q.Code = make(map[string]string)
 
-	if goCode, err := getGoContent(path.Join("../go", q.goFolderName(), "main.go")); err != nil {
+	if goCode, err := getGoContent(path.Join(goFilePath, q.goFolderName(), "main.go")); err != nil {
 		return err
 	} else if goCode != "" {
 		q.Code["go"] = strings.Trim(goCode, "\n")
 	}
 
-	if rustCode, err := getRustContent(path.Join("../rust", "src", q.rustFileName())); err != nil {
+	if rustCode, err := getRustContent(path.Join(rustFilePath, "src", q.rustFileName())); err != nil {
 		return err
 	} else if rustCode != "" {
 		q.Code["rust"] = strings.Trim(rustCode, "\n")
@@ -123,21 +122,21 @@ func getRustContent(path string) (string, error) {
 	return arr[0], nil
 }
 
-func (q Question) goFolderName() string {
+func (q question) goFolderName() string {
 	return strconv.Itoa(q.ID) + "_" + strings.Replace(q.Slug, "-", "_", -1)
 }
 
-func (q Question) rustFileName() string {
+func (q question) rustFileName() string {
 	return "question_" + strconv.Itoa(q.ID) + ".rs"
 }
 
 // FindByID ...
-func (q questions) FindByID(id int) (Question, error) {
+func (q questions) FindByID(id int) (question, error) {
 	for _, q := range q {
 		if q.ID == id {
 			return q, nil
 		}
 	}
 
-	return Question{}, errors.New("question not found")
+	return question{}, errors.New("question not found")
 }
