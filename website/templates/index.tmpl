@@ -1,0 +1,59 @@
+{{ define "index" }}
+
+<link href="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/semantic-ui/2.4.1/components/table.min.css" type="text/css" rel="stylesheet" />
+<link href="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/semantic-ui/2.4.1/components/label.min.css" type="text/css" rel="stylesheet" />
+
+<style>
+  .lang-tag-go {
+    color: aliceblue !important;
+    background-color: #00ADD8 !important;
+  }
+
+  .lang-tag-rust {
+    color: aliceblue !important;
+    background-color: #DEA584 !important;
+  }
+</style>
+
+<div class="justify-between p-7 pt-9 md:flex md:justify-between">
+  <div>
+    <p class="text-2xl text-gray-700">LeetCode 150</p>
+  </div>
+
+  <div class="mt-3 flex flex-wrap content-center md:mt-0">
+    Language: &nbsp;
+    <a class="text-gray-500 underline" target="_blank" href="https://golang.org/">Go</a>
+    &nbsp;
+    <a class="text-gray-500 underline" target="_blank" href="https://www.rust-lang.org/">Rust</a>
+    &nbsp;&nbsp; Author: &nbsp;
+    <a class="text-gray-500 underline" target="_blank" href="https://xhu.me/"> xhu </a>
+  </div>
+</div>
+
+{{ range . }}
+<div class="border-t-2 border-gray-200 hover:bg-yellow-50 md:flex md:justify-between md:p-4">
+  <div class="w-screen pl-2 pr-2 pt-4 lg:w-7/12 lg:p-0">
+    <a class="text-blue-500" href="/{{ .ID }}">{{ .ID }}. {{ .Title }}</a>
+  </div>
+
+  <div class="flex w-screen justify-between p-2 pb-4 lg:w-5/12 lg:p-0">
+    <div>
+      {{ range $lang, $content := .Code }}
+      <a class="ui tag mini label lang-tag-{{ $lang }}">{{ getDisplayLang $lang }}</a>
+      {{ end }}
+    </div>
+
+    <div>
+      {{ if eq .Difficulty 1 }}
+      <a class="ui green mini label tag-difficulty">Easy</a>
+      {{ else if eq .Difficulty 2 }}
+      <a class="ui yellow mini label tag-difficulty">Medium</a>
+      {{ else }}
+      <a class="ui red mini label tag-difficulty">Hard</a>
+      {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}
+
+{{ end }}
