@@ -13,6 +13,11 @@
     color: aliceblue !important;
     background-color: #DEA584 !important;
   }
+
+  .lang-tag-java {
+    color: aliceblue !important;
+    background-color: #B07219 !important;
+  }
 </style>
 
 <div class="justify-between p-7 pt-9 md:flex md:justify-between">
@@ -38,7 +43,7 @@
 
   <div class="flex w-screen justify-between p-2 pb-4 lg:w-5/12 lg:p-0">
     <div>
-      {{ range $lang, $content := .Code }}
+      {{ range $lang := .Langs }}
       <a class="ui tag mini label lang-tag-{{ $lang }}">{{ getDisplayLang $lang }}</a>
       {{ end }}
     </div>

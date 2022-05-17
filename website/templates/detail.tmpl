@@ -152,21 +152,21 @@
 
   <div x-data="{ lang: 'go' }">
     <div id="tab" class="ui top attached tabular menu">
-      {{ range $lang, $content := .Code }}
+      {{ range $lang := .Langs }}
       <div :class="lang == '{{ $lang }}' ? 'item active' : 'item'" x-on:click="lang = '{{ $lang }}'">
         {{ getDisplayLang $lang }}
       </div>
       {{ end }}
     </div>
 
-    {{ range $lang, $content := .Code }}
+    {{ range $lang, $content := .Codes }}
     <pre style="display:none" :class="lang == '{{ $lang }}' ? 'chosen-lang' : 'unchosen-lang'"><code class="{{ $lang }}">{{ $content }}</code></pre>
     {{ end }}
   </div>
 
 <script src="//lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/alpinejs/3.9.0/cdn.min.js" type="application/javascript"></script>
 <script src="//lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/highlight.js/10.5.0/highlight.min.js" type="application/javascript"></script>
-{{ range $lang, $content := .Code }}
+{{ range $lang := .Langs }}
 <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/highlight.js/10.5.0/languages/{{ $lang }}.min.js" type="application/javascript"></script>
 {{ end }}
 <script>

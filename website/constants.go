@@ -6,13 +6,14 @@ const (
 	assetsPath    = "./assets"
 	templatesPath = "templates/*"
 
-	documentFilePath = "../documents"
-	goFilePath       = "../go"
-	rustFilePath     = "../rust"
-	javaCodePath     = "../java"
+	documentDirectory = "../documents"
+	goCodeDirectory   = "../go"
+	rustCodeDirectory = "../rust"
+	javaCodeDirectory = "../java"
 )
 
 const (
 	langGo   = "go"
 	langRust = "rust"
+	langJava = "java"
 )

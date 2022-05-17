@@ -23,7 +23,8 @@ type question struct {
 	Title      string `json:"title"`
 	Slug       string `json:"slug"`
 
-	Code     map[string]string
+	Langs    []string
+	Codes    map[string]string
 	Document template.HTML
 
 	Prev *question
@@ -61,7 +62,7 @@ func initData() {
 }
 
 func (q *question) loadDocument() error {
-	bytes, err := ioutil.ReadFile(path.Join(documentFilePath, q.goFolderName()+".md"))
+	bytes, err := ioutil.ReadFile(path.Join(documentDirectory, q.goFolderName()+".md"))
 	if err != nil {
 		return err
 	}
@@ -71,18 +72,27 @@ func (q *question) loadDocument() error {
 }
 
 func (q *question) loadCode() error {
-	q.Code = make(map[string]string)
+	q.Codes = make(map[string]string)
 
-	if goCode, err := getGoContent(path.Join(goFilePath, q.goFolderName(), "main.go")); err != nil {
+	if goCode, err := getGoContent(path.Join(goCodeDirectory, q.goFolderName(), "main.go")); err != nil {
 		return err
 	} else if goCode != "" {
-		q.Code["go"] = strings.Trim(goCode, "\n")
+		q.Langs = append(q.Langs, langGo)
+		q.Codes[langGo] = strings.Trim(goCode, "\n")
 	}
 
-	if rustCode, err := getRustContent(path.Join(rustFilePath, "src", q.rustFileName())); err != nil {
+	if rustCode, err := getRustContent(path.Join(rustCodeDirectory, "src", q.rustFileName())); err != nil {
 		return err
 	} else if rustCode != "" {
-		q.Code["rust"] = strings.Trim(rustCode, "\n")
+		q.Langs = append(q.Langs, langRust)
+		q.Codes[langRust] = strings.Trim(rustCode, "\n")
+	}
+
+	if javaCode, err := getJavaContent(path.Join(javaCodeDirectory, "src/main/java", q.javaFileName())); err != nil {
+		return err
+	} else if javaCode != "" {
+		q.Langs = append(q.Langs, langJava)
+		q.Codes[langJava] = strings.Trim(javaCode, "\n")
 	}
 
 	return nil
@@ -122,12 +132,34 @@ func getRustContent(path string) (string, error) {
 	return arr[0], nil
 }
 
+func getJavaContent(path string) (string, error) {
+	bytes, err := os.ReadFile(path)
+	if errors.Is(err, os.ErrNotExist) {
+		return "", nil
+	} else if err != nil {
+		return "", err
+	}
+
+	content := string(bytes)
+	if strings.Contains(content, "/*") {
+		return content[strings.Index(content, "/*"):], nil
+	} else if strings.Contains(content, "class Solution") {
+		return content[strings.Index(content, "class Solution"):], nil
+	}
+
+	return "", errors.New("code content is empty")
+}
+
 func (q question) goFolderName() string {
 	return strconv.Itoa(q.ID) + "_" + strings.Replace(q.Slug, "-", "_", -1)
 }
 
 func (q question) rustFileName() string {
 	return "question_" + strconv.Itoa(q.ID) + ".rs"
+}
+
+func (q question) javaFileName() string {
+	return "question_" + strconv.Itoa(q.ID) + "/Solution.java"
 }
 
 // FindByID ...
