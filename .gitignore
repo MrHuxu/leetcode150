@@ -2,3 +2,4 @@
 .vscode/
 gin-bin
 target
+built.css
