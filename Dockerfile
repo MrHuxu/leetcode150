@@ -1,26 +1,40 @@
-FROM rust:latest AS builder
+FROM golang:alpine AS go-builder
 
-RUN rustup target add x86_64-unknown-linux-musl
-RUN apt update && apt install -y musl-tools musl-dev
-RUN update-ca-certificates
+ENV GO111MODULE on
+ENV GOPROXY https://goproxy.io
+ENV CGO_ENABLED 0
 
-WORKDIR /website
-COPY ./website/src ./src
-COPY ./website/templates ./templates
-COPY ./website/Cargo.toml ./Cargo.toml
-COPY ./website/Cargo.lock ./Cargo.lock
+WORKDIR /work
+COPY ./website /work
 
-RUN cargo build --target x86_64-unknown-linux-musl --release
+RUN go mod download
+RUN go build -o main *.go
+
+FROM node:alpine AS node-builder
+
+ENV NODE_ENV production
+
+WORKDIR /work
+
+COPY ./website/templates /work/templates
+COPY ./website/tailwind.config.js /work/
+
+RUN npx tailwindcss -o ./built.css --minify
 
 FROM scratch
 
-WORKDIR /website
-COPY --from=builder /website/target/x86_64-unknown-linux-musl/release/website ./
-COPY ./website/src/data.json ./src/data.json
+ENV GIN_MODE release
+
+WORKDIR /output
+COPY ./website/assets/favicon.png /output/assets/
+COPY ./website/templates /output/templates
+COPY ./website/data.json /output/data.json
 COPY ./documents /documents
 COPY ./go /go
 COPY ./rust/src /rust/src
 COPY ./java/src /java/src
+COPY --from=go-builder /work/main /output/
+COPY --from=node-builder /work/built.css /output/assets/
 
 EXPOSE 15050
-ENTRYPOINT [ "/website/website" ]
+ENTRYPOINT [ "./main" ]
