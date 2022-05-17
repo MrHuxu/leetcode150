@@ -1,26 +1,26 @@
-FROM golang:latest AS go-builder
+FROM rust:latest AS builder
 
-ENV GO111MODULE on
-ENV GOPROXY https://goproxy.io
-ENV CGO_ENABLED 0
+RUN rustup target add x86_64-unknown-linux-musl
+RUN apt update && apt install -y musl-tools musl-dev
+RUN update-ca-certificates
 
-WORKDIR /work
-COPY ./website /work
+WORKDIR /website
+COPY ./website/src ./src
+COPY ./website/templates ./templates
+COPY ./website/Cargo.toml ./Cargo.toml
+COPY ./website/Cargo.lock ./Cargo.lock
 
-RUN go mod download
-RUN go build -o main *.go
+RUN cargo build --target x86_64-unknown-linux-musl --release
 
 FROM scratch
 
-ENV GIN_MODE release
-
-WORKDIR /output
-COPY ./website/data /output/data
-COPY ./website/templates /output/templates
+WORKDIR /website
+COPY --from=builder /website/target/x86_64-unknown-linux-musl/release/website ./
+COPY ./website/src/data.json ./src/data.json
 COPY ./documents /documents
 COPY ./go /go
 COPY ./rust/src /rust/src
-COPY --from=go-builder /work/main /output/
+COPY ./java/src /java/src
 
 EXPOSE 15050
-ENTRYPOINT [ "./main" ]
+ENTRYPOINT [ "/website/website" ]

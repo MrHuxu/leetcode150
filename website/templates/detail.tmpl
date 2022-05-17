@@ -1,8 +1,8 @@
 {{ define "detail" }}
 
-<link href="//unpkg.com/semantic-ui@2.4.2/dist/components/menu.min.css" rel="stylesheet">
-<link href="//unpkg.com/semantic-ui@2.4.2/dist/components/icon.min.css" rel="stylesheet">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/night-owl.min.css">
+<link href="//lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/semantic-ui/2.4.1/components/menu.min.css" type="text/css" rel="stylesheet" />
+<link href="//lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/semantic-ui/2.4.1/components/icon.min.css" type="text/css" rel="stylesheet" />
+<link href="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/highlight.js/10.5.0/styles/night-owl.min.css" type="text/css" rel="stylesheet" />
 
 <style>
   #document {
@@ -164,10 +164,10 @@
     {{ end }}
   </div>
 
-<script src="//unpkg.com/alpinejs" defer></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+<script src="//lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/alpinejs/3.9.0/cdn.min.js" type="application/javascript"></script>
+<script src="//lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/highlight.js/10.5.0/highlight.min.js" type="application/javascript"></script>
 {{ range $lang, $content := .Code }}
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/{{ $lang }}.min.js"></script>
+<script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/highlight.js/10.5.0/languages/{{ $lang }}.min.js" type="application/javascript"></script>
 {{ end }}
 <script>
   hljs.configure({ tabReplace: '    ' })

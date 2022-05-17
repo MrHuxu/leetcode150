@@ -2,60 +2,60 @@ package main
 
 // code
 func exist(board [][]byte, word string) bool {
-	used := make([][]bool, len(board))
-	for i := range used {
-		used[i] = make([]bool, len(board[i]))
+	visited := make([][]bool, len(board))
+	for i := range visited {
+		visited[i] = make([]bool, len(board[0]))
 	}
 
-	var dfs func(int, int, int) bool
-	dfs = func(i, j, k int) bool {
-		if k == len(word) {
+	for x := range board {
+		for y := range board[x] {
+			if board[x][y] != word[0] {
+				continue
+			}
+
+			visited[x][y] = true
+			if dfs(board, word, x, y, 1, visited) {
+				return true
+			}
+			visited[x][y] = false
+		}
+	}
+
+	return false
+}
+
+func dfs(board [][]byte, word string, x, y, idx int, visited [][]bool) bool {
+	if idx == len(word) {
+		return true
+	}
+
+	if x > 0 && board[x-1][y] == word[idx] && !visited[x-1][y] {
+		visited[x-1][y] = true
+		if dfs(board, word, x-1, y, idx+1, visited) {
 			return true
 		}
-
-		if i-1 >= 0 && board[i-1][j] == word[k] && !used[i-1][j] {
-			used[i-1][j] = true
-			if dfs(i-1, j, k+1) {
-				return true
-			}
-			used[i-1][j] = false
-		}
-		if i+1 < len(board) && board[i+1][j] == word[k] && !used[i+1][j] {
-			used[i+1][j] = true
-			if dfs(i+1, j, k+1) {
-				return true
-			}
-			used[i+1][j] = false
-		}
-		if j-1 >= 0 && board[i][j-1] == word[k] && !used[i][j-1] {
-			used[i][j-1] = true
-			if dfs(i, j-1, k+1) {
-				return true
-			}
-			used[i][j-1] = false
-		}
-		if j+1 < len(board[0]) && board[i][j+1] == word[k] && !used[i][j+1] {
-			used[i][j+1] = true
-			if dfs(i, j+1, k+1) {
-				return true
-			}
-			used[i][j+1] = false
-		}
-
-		return false
+		visited[x-1][y] = false
 	}
-
-	for i := range board {
-		for j := range board[i] {
-			if board[i][j] == word[0] {
-				used[i][j] = true
-				if dfs(i, j, 1) {
-					return true
-				}
-				used[i][j] = false
-			}
+	if x < len(board)-1 && board[x+1][y] == word[idx] && !visited[x+1][y] {
+		visited[x+1][y] = true
+		if dfs(board, word, x+1, y, idx+1, visited) {
+			return true
 		}
+		visited[x+1][y] = false
 	}
-
+	if y > 0 && board[x][y-1] == word[idx] && !visited[x][y-1] {
+		visited[x][y-1] = true
+		if dfs(board, word, x, y-1, idx+1, visited) {
+			return true
+		}
+		visited[x][y-1] = false
+	}
+	if y < len(board[0])-1 && board[x][y+1] == word[idx] && !visited[x][y+1] {
+		visited[x][y+1] = true
+		if dfs(board, word, x, y+1, idx+1, visited) {
+			return true
+		}
+		visited[x][y+1] = false
+	}
 	return false
 }

@@ -1,33 +1,22 @@
 package main
 
+import "math"
+
 // code
 func maxProfit(prices []int) int {
-	if len(prices) == 0 {
+	if len(prices) < 2 {
 		return 0
 	}
 
-	dp := make([][]int, len(prices)+1)
-	for i := range dp {
-		dp[i] = make([]int, 3)
+	buy1, sell1, buy2, sell2 := math.MinInt32, 0, math.MinInt32, 0
+	for _, price := range prices {
+		buy1 = max(buy1, -price)
+		sell1 = max(sell1, buy1+price)
+		buy2 = max(buy2, sell1-price)
+		sell2 = max(sell2, buy2+price)
 	}
 
-	for i := 1; i <= 2; i++ {
-		minVal := prices[0]
-
-		for j := 1; j <= len(prices); j++ {
-			minVal = min(prices[j-1]-dp[j][i-1], minVal)
-			dp[j][i] = max(dp[j-1][i], prices[j-1]-minVal)
-		}
-	}
-
-	return dp[len(prices)][2]
-}
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
+	return sell2
 }
 
 func max(a, b int) int {
