@@ -15,8 +15,7 @@ class Solution {
                     continue;
                 }
 
-                dp[i][j] = (i > 0 && obstacleGrid[i - 1][j] == 0 ? dp[i - 1][j] : 0)
-                        + (j > 0 && obstacleGrid[i][j - 1] == 0 ? dp[i][j - 1] : 0);
+                dp[i][j] = (i > 0 ? dp[i - 1][j] : 0) + (j > 0 ? dp[i][j - 1] : 0);
             }
         }
 
