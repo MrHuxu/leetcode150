@@ -1,18 +1,17 @@
 package main
 
-import "math"
-
 // code
 func reverse(x int) int {
-	return helper(0, x)
+	return helper(0, int32(x))
 }
 
-func helper(pre, num int) int {
-	if pre > math.MaxInt32 || pre < math.MinInt32 {
-		return 0
-	}
+func helper(pre, num int32) int {
 	if num == 0 {
-		return pre
+		return int(pre)
+	}
+
+	if (num > 0 && (pre*10+num%10)/10 < pre) || (num < 0 && (pre*10+num%10)/10 > pre) {
+		return 0
 	}
 
 	return helper(pre*10+num%10, num/10)
