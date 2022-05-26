@@ -26,13 +26,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Set up JDK 11
+    - name: Set up JDK
       uses: actions/setup-java@v3
       with:
-        java-version: '11'
+        java-version: '18'
         distribution: 'temurin'
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
-    
-    - name: Execute Gradle build
-      run: cd java && gradle test
+    - name: Run Tests
+      run: cd java && gradle test --info
