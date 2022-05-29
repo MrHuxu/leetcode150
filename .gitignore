@@ -3,3 +3,5 @@
 gin-bin
 target
 built.css
+.gradle
+build
