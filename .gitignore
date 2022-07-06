@@ -6,3 +6,4 @@ built.css
 .gradle
 build
 bin
+*.class
