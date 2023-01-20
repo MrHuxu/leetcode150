@@ -37,7 +37,7 @@ func serveIndex(ctx *gin.Context) {
 }
 
 func serveDetail(ctx *gin.Context) {
-	var q data.Question
+	var q *data.Question
 	var err error
 
 	defer func() {

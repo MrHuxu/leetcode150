@@ -15,7 +15,7 @@ import (
 )
 
 // Questions defines a global variable holding question data list
-var Questions questions
+var Questions QuestionList
 
 // Question ...
 type Question struct {
@@ -32,8 +32,8 @@ type Question struct {
 	Next *Question
 }
 
-// questions ...
-type questions []Question
+// QuestionList ...
+type QuestionList []Question
 
 // Init ...
 func Init() {
@@ -54,10 +54,10 @@ func Init() {
 			Questions[i].Prev = &(Questions[i-1])
 		}
 
-		if err = Questions[i].loadDocument(); err != nil {
+		if err := Questions[i].loadDocument(); err != nil {
 			log.Fatal(err)
 		}
-		if err = Questions[i].loadCode(); err != nil {
+		if err := Questions[i].loadCode(); err != nil {
 			log.Fatal(err)
 		}
 	}
@@ -108,7 +108,11 @@ func getGoContent(path string) (string, error) {
 		return "", err
 	}
 
-	arr := strings.Split(string(bytes), "// code\n")
+	return extractGoCode(string(bytes))
+}
+
+func extractGoCode(text string) (string, error) {
+	arr := strings.Split(text, "// code\n")
 	if len(arr) < 2 {
 		return "", errors.New("code content is empty")
 	}
@@ -123,7 +127,11 @@ func getRustContent(path string) (string, error) {
 		return "", err
 	}
 
-	arr := strings.Split(string(bytes), "struct Solution;\n\n")
+	return extractRustCode(string(bytes))
+}
+
+func extractRustCode(text string) (string, error) {
+	arr := strings.Split(text, "struct Solution;\n\n")
 	if len(arr) < 2 {
 		return "", errors.New("code content is empty")
 	}
@@ -142,7 +150,11 @@ func getJavaContent(path string) (string, error) {
 		return "", err
 	}
 
-	content := string(bytes)
+	return extractJavaCode(string(bytes))
+}
+
+func extractJavaCode(text string) (string, error) {
+	content := text
 	if strings.Contains(content, "/*") {
 		return content[strings.Index(content, "/*"):], nil
 	} else if strings.Contains(content, "class Solution") {
@@ -165,12 +177,12 @@ func (q Question) javaFileName() string {
 }
 
 // FindByID ...
-func (q questions) FindByID(id int) (Question, error) {
+func (q QuestionList) FindByID(id int) (*Question, error) {
 	for _, q := range q {
 		if q.ID == id {
-			return q, nil
+			return &q, nil
 		}
 	}
 
-	return Question{}, errors.New("question not found")
+	return nil, errors.New("question not found")
 }

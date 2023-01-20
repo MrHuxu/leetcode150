@@ -8,8 +8,8 @@ import (
 	"github.com/MrHuxu/leetcode150/website/templates"
 )
 
-// Handler ...
-func Handler(w http.ResponseWriter, r *http.Request) {
+// Index ...
+func Index(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := templates.GetTemplate()
 	if err != nil {
 		log.Fatal(err)
