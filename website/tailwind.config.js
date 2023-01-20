@@ -1,8 +1,7 @@
 module.exports = {
-  purge: [
+  content: [
     './templates/*.tmpl'
   ],
-  content: [],
   theme: {
     extend: {},
   },
