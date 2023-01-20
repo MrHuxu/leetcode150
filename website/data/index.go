@@ -1,4 +1,4 @@
-package main
+package data
 
 import (
 	"encoding/json"
@@ -17,7 +17,8 @@ import (
 // Questions defines a global variable holding question data list
 var Questions questions
 
-type question struct {
+// Question ...
+type Question struct {
 	ID         int    `json:"id"`
 	Difficulty int    `json:"difficulty"`
 	Title      string `json:"title"`
@@ -27,14 +28,15 @@ type question struct {
 	Codes    map[string]string
 	Document template.HTML
 
-	Prev *question
-	Next *question
+	Prev *Question
+	Next *Question
 }
 
 // questions ...
-type questions []question
+type questions []Question
 
-func initData() {
+// Init ...
+func Init() {
 	bs, err := ioutil.ReadFile("data.json")
 	if err != nil {
 		log.Fatal(err)
@@ -61,7 +63,7 @@ func initData() {
 	}
 }
 
-func (q *question) loadDocument() error {
+func (q *Question) loadDocument() error {
 	bytes, err := ioutil.ReadFile(path.Join(documentDirectory, q.goFolderName()+".md"))
 	if err != nil {
 		return err
@@ -71,7 +73,7 @@ func (q *question) loadDocument() error {
 	return nil
 }
 
-func (q *question) loadCode() error {
+func (q *Question) loadCode() error {
 	q.Codes = make(map[string]string)
 
 	if goCode, err := getGoContent(path.Join(goCodeDirectory, q.goFolderName(), "main.go")); err != nil {
@@ -150,25 +152,25 @@ func getJavaContent(path string) (string, error) {
 	return "", errors.New("code content is empty")
 }
 
-func (q question) goFolderName() string {
+func (q Question) goFolderName() string {
 	return strconv.Itoa(q.ID) + "_" + strings.Replace(q.Slug, "-", "_", -1)
 }
 
-func (q question) rustFileName() string {
+func (q Question) rustFileName() string {
 	return "question_" + strconv.Itoa(q.ID) + ".rs"
 }
 
-func (q question) javaFileName() string {
+func (q Question) javaFileName() string {
 	return "question_" + strconv.Itoa(q.ID) + "/Solution.java"
 }
 
 // FindByID ...
-func (q questions) FindByID(id int) (question, error) {
+func (q questions) FindByID(id int) (Question, error) {
 	for _, q := range q {
 		if q.ID == id {
 			return q, nil
 		}
 	}
 
-	return question{}, errors.New("question not found")
+	return Question{}, errors.New("question not found")
 }

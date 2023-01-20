@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/MrHuxu/leetcode150/website/data"
 	"github.com/gin-gonic/gin"
 )
 
@@ -31,12 +32,12 @@ func serveIndex(ctx *gin.Context) {
 	ctx.HTML(http.StatusOK, "base.tmpl", gin.H{
 		"page":      "index",
 		"title":     "LeetCode 150 - xhu",
-		"questions": Questions,
+		"questions": data.Questions,
 	})
 }
 
 func serveDetail(ctx *gin.Context) {
-	var q question
+	var q data.Question
 	var err error
 
 	defer func() {
@@ -60,7 +61,7 @@ func serveDetail(ctx *gin.Context) {
 		return
 	}
 
-	q, err = Questions.FindByID(id)
+	q, err = data.Questions.FindByID(id)
 	if err != nil {
 		return
 	}

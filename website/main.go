@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/MrHuxu/leetcode150/website/data"
 )
 
 func init() {
-	initData()
+	data.Init()
 	initServer()
 }
 
