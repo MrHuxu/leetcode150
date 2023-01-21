@@ -22,7 +22,7 @@ func initServer() {
 	})
 	Server.LoadHTMLGlob(templatesPath)
 
-	Server.Static("/static/assets", assetsPath)
+	Server.Static("/assets", assetsPath)
 
 	Server.GET("/", serveIndex)
 	Server.GET("/:id", serveDetail)

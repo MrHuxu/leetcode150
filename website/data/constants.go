@@ -1,11 +1,6 @@
 package data
 
 const (
-	port = 15050
-
-	assetsPath    = "./assets"
-	templatesPath = "templates/*"
-
 	documentDirectory = "../documents"
 	goCodeDirectory   = "../go"
 	rustCodeDirectory = "../rust"

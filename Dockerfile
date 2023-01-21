@@ -28,7 +28,7 @@ ENV GIN_MODE release
 WORKDIR /output
 COPY ./website/assets/favicon.png /output/assets/
 COPY ./website/templates /output/templates
-COPY ./website/data.json /output/data.json
+COPY ./website/data/data.json /output/data.json
 COPY ./documents /documents
 COPY ./go /go
 COPY ./rust/src /rust/src
