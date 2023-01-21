@@ -1,0 +1,12 @@
+{
+    "rewrites": [
+        {
+            "source": "/",
+            "destination": "/api/index.go"
+        },
+        {
+            "source": "/:id",
+            "destination": "/api/detail.go"
+        }
+    ]
+}
