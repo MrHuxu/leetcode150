@@ -17,19 +17,32 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
+	var question *data.Question
+
+	defer func() {
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			tmpl.Execute(w, map[string]any{
+				"page": "error",
+				"msg":  err.Error(),
+			})
+			return
+		}
+
+		tmpl.Execute(w, map[string]any{
+			"page":     "detail",
+			"title":    fmt.Sprintf("%d. %s - xhu", question.ID, question.Title),
+			"question": question,
+		})
+	}()
+
 	idParams := r.URL.Query().Get("id")
 	id, err := strconv.Atoi(idParams)
 	if err != nil {
-		log.Fatal(err)
+		return
 	}
-	question, err := data.GetQuestion(id)
+	question, err = data.GetQuestion(id)
 	if err != nil {
-		log.Fatal(err)
+		return
 	}
-
-	tmpl.Execute(w, map[string]any{
-		"page":     "detail",
-		"title":    fmt.Sprintf("%d. %s - xhu", question.ID, question.Title),
-		"question": question,
-	})
 }
