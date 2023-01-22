@@ -5,9 +5,10 @@ import (
 	"html/template"
 	"net/http"
 	"strconv"
-	"strings"
 
 	"github.com/MrHuxu/leetcode150/website/data"
+	"github.com/MrHuxu/leetcode150/website/templates"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,7 +19,7 @@ func initServer() {
 	Server = gin.Default()
 
 	Server.SetFuncMap(template.FuncMap{
-		"getDisplayLang": getDisplayLang,
+		"getDisplayLang": templates.GetDisplayLang,
 	})
 	Server.LoadHTMLGlob(templatesPath)
 
@@ -65,8 +66,4 @@ func serveDetail(ctx *gin.Context) {
 	if err != nil {
 		return
 	}
-}
-
-func getDisplayLang(lang string) string {
-	return strings.ToUpper(lang[:1]) + lang[1:]
 }

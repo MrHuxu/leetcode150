@@ -1,3 +1,5 @@
+github.com/MrHuxu/types v0.0.0-20200131133409-b17673ea3387 h1:C270dQIbUEY1SLocUgs5O6MXHRRb9Pla3E3w4iE/td0=
+github.com/MrHuxu/types v0.0.0-20200131133409-b17673ea3387/go.mod h1:ELJtV2/MgRgCNo9EnsbTOK5fce/euHgZ3+GKl3zBr3g=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
