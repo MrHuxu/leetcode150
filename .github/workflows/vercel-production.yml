@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
-      - name: Pull Vercel Environment Information
-        run: cd website && vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       - name: Move data files
         run: mv documents website/data/ && mkdir website/data/solutions && rm go/go.* && mv go website/data/solutions/ && mv rust website/data/solutions/ && mv java website/data/solutions/
       - name: Build Tailwind
         run: cd website && npx tailwindcss -o ./assets/built.css --minify
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: cd website && vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
         run: cd website && vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
