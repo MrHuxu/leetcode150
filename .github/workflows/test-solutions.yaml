@@ -45,4 +45,4 @@ jobs:
       with:
         node-version: 18
     - name: Run Tests
-      run: cd typescript && npm test
+      run: cd typescript && npm install && npm test
