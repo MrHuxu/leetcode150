@@ -37,6 +37,9 @@ func GetQuestions() (QuestionList, error) {
 		if _, err := solutionsFS.Open(fmt.Sprintf("solutions/java/src/main/java/%s", questions[i].javaFileName())); err == nil {
 			questions[i].Langs = append(questions[i].Langs, langJava)
 		}
+		if _, err := solutionsFS.Open(fmt.Sprintf("solutions/typescript/%s", questions[i].typeScriptFileName())); err == nil {
+			questions[i].Langs = append(questions[i].Langs, langTypeScript)
+		}
 	}
 
 	return questions, err
@@ -99,6 +102,18 @@ func GetQuestion(id int) (*Question, error) {
 			return nil, err
 		}
 		question.Codes[langJava] = javaCode
+	} else if !errors.Is(err, os.ErrNotExist) {
+		return nil, err
+	}
+
+	bytes, err = solutionsFS.ReadFile(fmt.Sprintf("solutions/typescript/%s", question.typeScriptFileName()))
+	if err == nil {
+		question.Langs = append(question.Langs, langTypeScript)
+		typeScriptCode, err := extractTypeScriptCode(string(bytes))
+		if err != nil {
+			return nil, err
+		}
+		question.Codes[langTypeScript] = typeScriptCode
 	} else if !errors.Is(err, os.ErrNotExist) {
 		return nil, err
 	}

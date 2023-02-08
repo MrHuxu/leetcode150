@@ -164,6 +164,10 @@ func extractJavaCode(text string) (string, error) {
 	return "", errors.New("code content is empty")
 }
 
+func extractTypeScriptCode(text string) (string, error) {
+	return text[:strings.Index(text, "test('")], nil
+}
+
 func (q Question) goFolderName() string {
 	return strconv.Itoa(q.ID) + "_" + strings.Replace(q.Slug, "-", "_", -1)
 }
@@ -174,6 +178,10 @@ func (q Question) rustFileName() string {
 
 func (q Question) javaFileName() string {
 	return "question_" + strconv.Itoa(q.ID) + "/Solution.java"
+}
+
+func (q Question) typeScriptFileName() string {
+	return strconv.Itoa(q.ID) + ".ts"
 }
 
 // FindByID ...

@@ -22,5 +22,8 @@ func GetTemplate() (*template.Template, error) {
 
 // GetDisplayLang ...
 func GetDisplayLang(lang string) string {
+	if lang == "typescript" {
+		return "TypeScript"
+	}
 	return strings.ToUpper(lang[:1]) + lang[1:]
 }
