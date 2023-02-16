@@ -14,6 +14,11 @@
             "jsx",
             "json",
             "node"
+        ],
+        "testPathIgnorePatterns": [
+            "/node_modules/",
+            "/list.ts",
+            "/tree.ts"
         ]
     },
     "devDependencies": {
