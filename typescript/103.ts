@@ -38,6 +38,6 @@ function zigzagLevelOrder(root: TreeNode | null): number[][] {
 };
 
 test('103', () => {
-    expect(zigzagLevelOrder(buildTree([3, 9, 20, null, null, 15, 7]))).toBe([[3], [20, 9], [15, 7]]);
-    expect(zigzagLevelOrder(buildTree([1]))).toBe([[1]]);
+    expect(zigzagLevelOrder(buildTree([3, 9, 20, null, null, 15, 7]))).toStrictEqual([[3], [20, 9], [15, 7]]);
+    expect(zigzagLevelOrder(buildTree([1]))).toStrictEqual([[1]]);
 });
