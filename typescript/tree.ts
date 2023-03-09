@@ -9,7 +9,7 @@ export class TreeNode {
     }
 }
 
-export function buildTree(vals: (number | null)[]): TreeNode | null {
+export const buildTree = (vals: (number | null)[]): TreeNode | null => {
     if (!vals.length) return null;
 
     const root = new TreeNode(vals[0]!);
