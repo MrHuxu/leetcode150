@@ -165,7 +165,11 @@ func extractJavaCode(text string) (string, error) {
 }
 
 func extractTypeScriptCode(text string) (string, error) {
-	return text[:strings.Index(text, "test('")], nil
+	var startPos int
+	if strings.Contains(text, "/*") {
+		startPos = strings.Index(text, "/*")
+	}
+	return text[startPos:strings.Index(text, "test('")], nil
 }
 
 func (q Question) goFolderName() string {

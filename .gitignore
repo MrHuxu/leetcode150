@@ -7,3 +7,4 @@ built.css
 build
 bin
 *.class
+node_modules
