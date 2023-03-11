@@ -1,6 +1,8 @@
 package main
 
-import . "github.com/MrHuxu/types"
+import (
+	. "github.com/MrHuxu/types"
+)
 
 // code
 /**
@@ -19,31 +21,29 @@ import . "github.com/MrHuxu/types"
  * }
  */
 func sortedListToBST(head *ListNode) *TreeNode {
-	if head == nil {
+	var len int
+	tmp := head
+	for tmp != nil {
+		len++
+		tmp = tmp.Next
+	}
+	return helper(head, len)
+}
+
+func helper(head *ListNode, len int) *TreeNode {
+	if len == 0 || head == nil {
 		return nil
 	}
 
-	fast := head
-	slow := head
-	preSlow := &ListNode{Next: slow}
-	for fast.Next != nil && fast.Next.Next != nil {
-		fast = fast.Next.Next
-		slow = slow.Next
-		preSlow = preSlow.Next
+	left := helper(head, len/2)
+	treeNode := &TreeNode{
+		Val:  head.Val,
+		Left: left,
+	}
+	if head.Next != nil {
+		*head = *head.Next
+		treeNode.Right = helper(head, len-len/2-1)
 	}
 
-	if fast == slow {
-		if slow.Next == nil {
-			return &TreeNode{Val: head.Val}
-		}
-		return &TreeNode{Val: head.Val, Right: &TreeNode{Val: head.Next.Val}}
-	}
-
-	root := &TreeNode{Val: slow.Val}
-
-	preSlow.Next = nil
-	root.Left = sortedListToBST(head)
-	root.Right = sortedListToBST(slow.Next)
-
-	return root
+	return treeNode
 }
