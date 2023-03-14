@@ -19,7 +19,6 @@ function sumNumbers(root: TreeNode | null): number {
 };
 
 const helper = (pre: number, root: TreeNode | null): number => {
-    console.log({ pre, root });
     if (!root) return pre;
 
     const curr = pre * 10 + root.val;
