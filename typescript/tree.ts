@@ -19,11 +19,11 @@ export const buildTree = (vals: (number | null)[]): TreeNode | null => {
         const node = nodes[0];
         nodes = nodes.slice(1);
 
-        if (vals[0] !== null) {
+        if (vals[0] !== null && vals[0] !== undefined) {
             node.left = new TreeNode(vals[0]!);
             nodes.push(node.left);
         }
-        if (vals[1] !== null) {
+        if (vals[1] !== null && vals[1] !== undefined) {
             node.right = new TreeNode(vals[1]!);
             nodes.push(node.right);
         }
