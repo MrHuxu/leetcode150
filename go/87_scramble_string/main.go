@@ -5,41 +5,29 @@ func isScramble(s1, s2 string) bool {
 	if len(s1) != len(s2) {
 		return false
 	}
+	len := len(s1)
 
-	if s1 == s2 {
-		return true
-	}
-
-	l := len(s1)
-
-	if l == 1 {
-		return s1 == s2
-	}
-
-	if l == 2 {
-		return (s1[0] == s2[0] && s1[1] == s2[1]) || (s1[0] == s2[1] && s1[1] == s2[0])
-	}
-
-	cnt := make([]int, 26)
-	for i := 0; i < l; i++ {
-		cnt[s1[i]-'a']++
-		cnt[s2[i]-'a']--
-	}
-	for i := 0; i < 26; i++ {
-		if cnt[i] != 0 {
-			return false
+	dp := make([][][]bool, len)
+	for i := range dp {
+		dp[i] = make([][]bool, len)
+		for j := range dp[i] {
+			dp[i][j] = make([]bool, len+1)
 		}
 	}
 
-	for i := 1; i < l; i++ {
-		if isScramble(s1[0:i], s2[0:i]) && isScramble(s1[i:l], s2[i:l]) {
-			return true
-		}
-
-		if isScramble(s1[0:i], s2[l-i:l]) && isScramble(s1[i:l], s2[0:l-i]) {
-			return true
+	for k := 1; k <= len; k++ {
+		for i := 0; i+k <= len; i++ {
+			for j := 0; j+k <= len; j++ {
+				if k == 1 {
+					dp[i][j][k] = s1[i] == s2[j]
+				} else {
+					for q := 1; q < k && !dp[i][j][k]; q++ {
+						dp[i][j][k] = (dp[i][j][q] && dp[i+q][j+q][k-q]) || (dp[i][j+k-q][q] && dp[i+q][j][k-q])
+					}
+				}
+			}
 		}
 	}
 
-	return false
+	return dp[0][0][len]
 }
