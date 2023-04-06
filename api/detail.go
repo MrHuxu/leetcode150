@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/MrHuxu/leetcode150/website/data"
-	"github.com/MrHuxu/leetcode150/website/templates"
+	"github.com/MrHuxu/leetcode150/data"
+	"github.com/MrHuxu/leetcode150/templates"
 )
 
 // Detail ...
