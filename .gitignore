@@ -9,5 +9,5 @@ bin
 *.class
 node_modules
 .vercel
-data/documents
-data/solutions
+website/data/documents
+website/data/solutions

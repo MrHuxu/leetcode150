@@ -4,8 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/MrHuxu/leetcode150/data"
-	"github.com/MrHuxu/leetcode150/templates"
+	"github.com/MrHuxu/leetcode150/website/data"
+	"github.com/MrHuxu/leetcode150/website/templates"
 )
 
 // Index ...
