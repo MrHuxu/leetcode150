@@ -6,13 +6,12 @@ function mySqrt(x: number): number {
     while (left <= right) {
         const mid = Math.ceil((left + right) / 2);
         const pow = mid * mid;
-        if (pow === x) {
+        if (pow === x)
             return mid;
-        } else if (pow > x) {
+        else if (pow > x)
             right = mid - 1;
-        } else {
+        else
             left = mid + 1;
-        }
     }
 
     return right;
