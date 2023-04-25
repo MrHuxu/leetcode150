@@ -16,8 +16,7 @@ export const buildTree = (vals: (number | null)[]): TreeNode | null => {
     let nodes: TreeNode[] = [root];
     vals = vals.slice(1);
     while (vals.length) {
-        const node = nodes[0];
-        nodes = nodes.slice(1);
+        const node = nodes.shift()!;
 
         if (vals[0] !== null && vals[0] !== undefined) {
             node.left = new TreeNode(vals[0]!);

@@ -114,7 +114,7 @@ func BuildTree(vals []interface{}) *TreeNode {
 	}
 
 	root := &TreeNode{Val: vals[0].(int)}
-	vals = vals[1:len(vals)]
+	vals = vals[1:]
 
 	level := []*TreeNode{root}
 	for len(vals) != 0 {
@@ -129,7 +129,7 @@ func BuildTree(vals []interface{}) *TreeNode {
 					node.Left.Parent = node
 					nextLevel = append(nextLevel, node.Left)
 				}
-				vals = vals[1:len(vals)]
+				vals = vals[1:]
 
 				if len(vals) == 0 {
 					break
@@ -141,7 +141,7 @@ func BuildTree(vals []interface{}) *TreeNode {
 						node.Right.Parent = node
 						nextLevel = append(nextLevel, node.Right)
 					}
-					vals = vals[1:len(vals)]
+					vals = vals[1:]
 				}
 			}
 		}
