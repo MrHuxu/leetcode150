@@ -6,6 +6,7 @@ const (
 	rustCodeDirectory       = "../rust"
 	javaCodeDirectory       = "../java"
 	typeScriptCodeDirectory = "../typescript"
+	pythonCodeDirectory     = "../python"
 )
 
 const (
@@ -13,4 +14,5 @@ const (
 	langRust       = "rust"
 	langJava       = "java"
 	langTypeScript = "typescript"
+	langPython     = "python"
 )
