@@ -172,6 +172,14 @@ func extractTypeScriptCode(text string) (string, error) {
 	return text[startPos:strings.Index(text, "test('")], nil
 }
 
+func extractPythonCode(text string) (string, error) {
+	var startPos int
+	if strings.Contains(text, "class Solution") {
+		startPos = strings.Index(text, "class Solution")
+	}
+	return text[startPos:strings.Index(text, "class TestSolution")], nil
+}
+
 func (q Question) goFolderName() string {
 	return strconv.Itoa(q.ID) + "_" + strings.Replace(q.Slug, "-", "_", -1)
 }
@@ -186,6 +194,10 @@ func (q Question) javaFileName() string {
 
 func (q Question) typeScriptFileName() string {
 	return strconv.Itoa(q.ID) + ".ts"
+}
+
+func (q Question) pythonFileName() string {
+	return strconv.Itoa(q.ID) + ".py"
 }
 
 // FindByID ...

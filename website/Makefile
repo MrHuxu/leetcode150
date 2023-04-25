@@ -6,6 +6,7 @@ copy-files:
 	cp -rf ../rust data/solutions/
 	cp -rf ../java data/solutions/
 	cp -rf ../typescript data/solutions/
+	cp -rf ../python data/solutions/python
 
 vercel-dev: copy-files
 	vercel dev

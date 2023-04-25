@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"html/template"
 	"os"
+	"strings"
 
 	"github.com/russross/blackfriday/v2"
 )
@@ -39,6 +40,9 @@ func GetQuestions() (QuestionList, error) {
 		}
 		if _, err := solutionsFS.Open(fmt.Sprintf("solutions/typescript/%s", questions[i].typeScriptFileName())); err == nil {
 			questions[i].Langs = append(questions[i].Langs, langTypeScript)
+		}
+		if _, err := solutionsFS.Open(fmt.Sprintf("solutions/python/%s", questions[i].pythonFileName())); err == nil {
+			questions[i].Langs = append(questions[i].Langs, langPython)
 		}
 	}
 
@@ -114,6 +118,18 @@ func GetQuestion(id int) (*Question, error) {
 			return nil, err
 		}
 		question.Codes[langTypeScript] = typeScriptCode
+	} else if !errors.Is(err, os.ErrNotExist) {
+		return nil, err
+	}
+
+	bytes, err = solutionsFS.ReadFile(fmt.Sprintf("solutions/python/%s", question.pythonFileName()))
+	if err == nil {
+		question.Langs = append(question.Langs, langPython)
+		pythonCode, err := extractPythonCode(string(bytes))
+		if err != nil {
+			return nil, err
+		}
+		question.Codes[langPython] = strings.Trim(pythonCode, "\n")
 	} else if !errors.Is(err, os.ErrNotExist) {
 		return nil, err
 	}

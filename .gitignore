@@ -9,5 +9,6 @@ bin
 *.class
 node_modules
 .vercel
+__pycache__
 website/data/documents
 website/data/solutions
