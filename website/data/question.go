@@ -173,9 +173,9 @@ func extractTypeScriptCode(text string) (string, error) {
 }
 
 func extractPythonCode(text string) (string, error) {
-	var startPos int
-	if strings.Contains(text, "class Solution") {
-		startPos = strings.Index(text, "class Solution")
+	startPos := strings.Index(text, "class Solution")
+	if strings.Contains(text, "# Definition") {
+		startPos = strings.Index(text, "# Definition")
 	}
 	return text[startPos:strings.Index(text, "class TestSolution")], nil
 }
