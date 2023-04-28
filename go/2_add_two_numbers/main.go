@@ -11,30 +11,24 @@ import . "github.com/MrHuxu/types"
  * }
  */
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	head := &ListNode{}
-	tmp := head
+	return helper(l1, l2, 0)
+}
 
-	var plus int
-	for l1 != nil || l2 != nil {
-		var sum int
-		if l1 != nil {
-			sum += l1.Val
-			l1 = l1.Next
-		}
-		if l2 != nil {
-			sum += l2.Val
-			l2 = l2.Next
-		}
-
-		sum += plus
-		plus = sum / 10
-
-		tmp.Next = &ListNode{Val: sum % 10}
-		tmp = tmp.Next
+func helper(l1, l2 *ListNode, carry int) *ListNode {
+	if l1 == nil && l2 == nil && carry == 0 {
+		return nil
 	}
-	if plus == 1 {
-		tmp.Next = &ListNode{Val: 1}
+	val := carry
+	if l1 != nil {
+		val += l1.Val
+		l1 = l1.Next
 	}
-
-	return head.Next
+	if l2 != nil {
+		val += l2.Val
+		l2 = l2.Next
+	}
+	return &ListNode{
+		Val:  val % 10,
+		Next: helper(l1, l2, val/10),
+	}
 }

@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Move data files
-        run: mv documents website/data/ && mkdir website/data/solutions && rm go/go.* && mv go website/data/solutions/ && mv rust website/data/solutions/ && mv java website/data/solutions/ && mv typescript website/data/solutions/ && mv python website/data/solutions/
+        run: cd website && make copy-files
       - name: Build Tailwind
         run: cd website && npx tailwindcss -o ./assets/built.css --minify
       - name: Install Vercel CLI

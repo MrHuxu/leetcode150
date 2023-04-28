@@ -1,4 +1,5 @@
 copy-files:
+	rm -rf data/documents data/solutions
 	cp -rf ../documents data/
 	mkdir -p data/solutions
 	cp -rf ../go data/solutions/
