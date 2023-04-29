@@ -22,7 +22,7 @@ class Solution:
             list1.val if list1.val < list2.val else list2.val,
             self.mergeTwoLists(
                 list1.next if list1.val < list2.val else list1,
-                list2.next if list1.val >= list2.val else list2
+                list2 if list1.val < list2.val else list2.next
             )
         )
 
