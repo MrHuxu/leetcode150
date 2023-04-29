@@ -21,4 +21,4 @@ test('20', () => {
     expect(isValid('()')).toBeTruthy();
     expect(isValid('()[]{}')).toBeTruthy();
     expect(isValid('(]')).toBeFalsy();
-})
+});

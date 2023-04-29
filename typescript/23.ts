@@ -40,4 +40,4 @@ test('23', () => {
     ])).toStrictEqual(buildList([1, 1, 2, 3, 4, 4, 5, 6]));
     expect(mergeKLists([])).toStrictEqual(null);
     expect(mergeKLists([null])).toStrictEqual(null);
-})
+});

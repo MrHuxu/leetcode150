@@ -30,4 +30,4 @@ export const buildTree = (vals: (number | null)[]): TreeNode | null => {
     }
 
     return root;
-}
+};
