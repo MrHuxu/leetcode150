@@ -1,5 +1,7 @@
 function minPathSum(grid: number[][]): number {
-    const dp = Array<Array<number>>(grid.length).fill(new Array());
+    const dp: number[][] = new Array(grid.length).fill(false).map(
+        () => new Array(grid.length).fill(0)
+    );
 
     for (let i = 0; i < grid.length; i++) {
         for (let j = 0; j < grid[i].length; j++) {

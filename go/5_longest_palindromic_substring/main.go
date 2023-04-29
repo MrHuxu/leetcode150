@@ -12,13 +12,12 @@ func longestPalindrome(s string) string {
 	}
 
 	var resultL, resultR int
-	max := 1
 	for l := 1; l <= len(s); l++ {
 		for i := 0; i+l <= len(s); i++ {
 			j := i + l - 1
 			dp[i][j] = s[i] == s[j] && (l < 3 || dp[i+1][j-1])
 
-			if dp[i][j] && l > max {
+			if dp[i][j] {
 				resultL = i
 				resultR = j
 			}
