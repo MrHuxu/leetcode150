@@ -16,7 +16,7 @@ class Solution:
             for i in range(len(s) - l + 1):
                 j = i + l - 1
                 dp[i][j] = s[i] == s[j] and (l < 3 or dp[i + 1][j - 1])
-                if dp[i][j] and l > max:
+                if dp[i][j]:
                     resultL = i
                     resultR = j
 
@@ -26,5 +26,5 @@ class Solution:
 class TestSolution(unittest.TestCase):
     def test(self):
         solution = Solution()
-        self.assertEqual("bab", solution.longestPalindrome("babad"))
+        self.assertEqual("aba", solution.longestPalindrome("babad"))
         self.assertEqual("bb", solution.longestPalindrome("cbbd"))
