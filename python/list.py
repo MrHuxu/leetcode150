@@ -7,7 +7,7 @@ class ListNode:
         self.next = next
 
 
-def buildList(vals: List[int]) -> ListNode:
+def buildList(vals: List[int]) -> Optional[ListNode]:
     match vals:
         case []:
             return None
@@ -17,7 +17,7 @@ def buildList(vals: List[int]) -> ListNode:
             return head
 
 
-def compareList(l1: ListNode, l2: ListNode) -> bool:
+def compareList(l1: Optional[ListNode], l2: Optional[ListNode]) -> bool:
     while l1 and l2:
         if l1.val != l2.val:
             return False

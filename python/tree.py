@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 
 class TreeNode:
@@ -8,8 +8,8 @@ class TreeNode:
         self.right = right
 
 
-def buildTree(vals: List[int | None]) -> TreeNode:
-    if not vals:
+def buildTree(vals: List[int | None]) -> Optional[TreeNode]:
+    if not vals or vals[0] is None:
         return None
     root = TreeNode(vals[0])
     nodes = [root]
@@ -26,7 +26,7 @@ def buildTree(vals: List[int | None]) -> TreeNode:
     return root
 
 
-def compareTree(t1: TreeNode, t2: TreeNode) -> bool:
+def compareTree(t1: Optional[TreeNode], t2: Optional[TreeNode]) -> bool:
     if not t1 and not t2:
         return True
     if not t1 or not t2:
