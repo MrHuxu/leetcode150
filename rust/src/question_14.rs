@@ -2,24 +2,17 @@ struct Solution;
 
 impl Solution {
     pub fn longest_common_prefix(strs: Vec<String>) -> String {
-        let mut ret = strs[0].as_bytes().to_vec();
-
-        for str in strs[1..].iter() {
-            let bytes = str.as_bytes();
-
-            let mut idx = -1;
-            for i in 0..bytes.len() {
-                if i < ret.len() && i < bytes.len() && ret[i] == bytes[i] {
-                    idx = i as i32;
-                } else {
-                    break;
-                }
-            }
-
-            ret = ret[0..(idx + 1) as usize].to_vec();
+        if strs.is_empty() {
+            return String::new();
         }
 
-        String::from_utf8_lossy(&ret).to_string()
+        let mut ret = strs[0].clone();
+        for i in 1..strs.len() {
+            while !strs[i].starts_with(&ret) {
+                ret = ret[..ret.len() - 1].to_string();
+            }
+        }
+        ret
     }
 }
 
