@@ -12,11 +12,11 @@ import . "github.com/MrHuxu/types"
  */
 func reverseKGroup(head *ListNode, k int) *ListNode {
 	dummyHead := &ListNode{Next: head}
-	reverseKGroupHelper(dummyHead, head, head, nil, k, 0)
+	helper(dummyHead, head, head, nil, k, 0)
 	return dummyHead.Next
 }
 
-func reverseKGroupHelper(head, start, curr, reversed *ListNode, k, reversedLen int) {
+func helper(head, start, curr, reversed *ListNode, k, reversedLen int) {
 	switch {
 	case reversedLen == k:
 		head.Next = reversed
@@ -24,13 +24,13 @@ func reverseKGroupHelper(head, start, curr, reversed *ListNode, k, reversedLen i
 			head = head.Next
 		}
 
-		reverseKGroupHelper(head, curr, curr, nil, k, 0)
+		helper(head, curr, curr, nil, k, 0)
 
 	case curr == nil:
 		head.Next = start
 
 	default:
-		reverseKGroupHelper(
+		helper(
 			head, start, curr.Next, &ListNode{Val: curr.Val, Next: reversed}, k, reversedLen+1,
 		)
 	}
