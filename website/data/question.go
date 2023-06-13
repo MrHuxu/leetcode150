@@ -177,6 +177,9 @@ func extractPythonCode(text string) (string, error) {
 	if strings.Contains(text, "# Definition") {
 		startPos = strings.Index(text, "# Definition")
 	}
+	if !strings.Contains(text, "class TestSolution") {
+		return text[startPos:], nil
+	}
 	return text[startPos:strings.Index(text, "class TestSolution")], nil
 }
 
