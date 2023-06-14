@@ -8,8 +8,7 @@ func searchRange(nums []int, target int) []int {
 		return ret
 	}
 
-	left := 0
-	right := len(nums) - 1
+	left, right := 0, len(nums)-1
 	for left < right {
 		mid := (left + right) / 2
 
@@ -25,8 +24,7 @@ func searchRange(nums []int, target int) []int {
 		ret[0] = (left + right) / 2
 	}
 
-	left = 0
-	right = len(nums) - 1
+	left, right = 0, len(nums)-1
 	for left <= right {
 		mid := (left + right) / 2
 
