@@ -11,8 +11,7 @@ func merge(intervals [][]int) [][]int {
 	var result [][]int
 
 	for i := 0; i < len(intervals); i++ {
-		left := intervals[i][0]
-		right := intervals[i][1]
+		left, right := intervals[i][0], intervals[i][1]
 
 		for j := i + 1; j < len(intervals); j++ {
 			if intervals[j][0] <= right {

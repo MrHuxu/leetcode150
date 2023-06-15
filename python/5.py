@@ -26,5 +26,5 @@ class Solution:
 class TestSolution(unittest.TestCase):
     def test(self):
         solution = Solution()
-        self.assertEqual("aba", solution.longestPalindrome("babad"))
-        self.assertEqual("bb", solution.longestPalindrome("cbbd"))
+        self.assertEqual('aba', solution.longestPalindrome('babad'))
+        self.assertEqual('bb', solution.longestPalindrome('cbbd'))

@@ -9,8 +9,7 @@ func searchInsert(nums []int, target int) int {
 		return len(nums)
 	}
 
-	left := 0
-	right := len(nums) - 1
+	left, right := 0, len(nums)-1
 	for left < right {
 		mid := (left + right) / 2
 		switch {

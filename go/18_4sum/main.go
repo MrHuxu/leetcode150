@@ -21,8 +21,7 @@ func fourSum(nums []int, target int) [][]int {
 
 			sum := nums[i] + nums[j]
 
-			left := j + 1
-			right := len(nums) - 1
+			left, right := j+1, len(nums)-1
 			for left < right {
 				switch {
 				case sum+nums[left]+nums[right] < target:

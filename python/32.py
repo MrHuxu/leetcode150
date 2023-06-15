@@ -21,4 +21,4 @@ class Solution:
 class TestSolution(unittest.TestCase):
     def test(self):
         solution = Solution()
-        self.assertEqual(solution.longestValidParentheses("(()"), 2)
+        self.assertEqual(solution.longestValidParentheses('(()'), 2)

@@ -16,8 +16,7 @@ func threeSum(nums []int) [][]int {
 			continue
 		}
 
-		left := i + 1
-		right := len(nums) - 1
+		left, right := i+1, len(nums)-1
 		for left < right {
 			switch {
 			case nums[left]+nums[right]+nums[i] > 0:

@@ -23,5 +23,5 @@ class Solution:
 class TestSolution(unittest.TestCase):
     def test(self):
         solution = Solution()
-        self.assertEqual(solution.lengthOfLongestSubstring("abcabcbb"), 3)
-        self.assertEqual(solution.lengthOfLongestSubstring("tmmzuxt"), 5)
+        self.assertEqual(solution.lengthOfLongestSubstring('abcabcbb'), 3)
+        self.assertEqual(solution.lengthOfLongestSubstring('tmmzuxt'), 5)

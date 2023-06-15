@@ -3,8 +3,7 @@ package main
 // code
 // dp
 func trap1(height []int) int {
-	maxLeft := make([]int, len(height))
-	maxRight := make([]int, len(height))
+	maxLeft, maxRight := make([]int, len(height)), make([]int, len(height))
 	for i := 1; i < len(height); i++ {
 		maxLeft[i] = max(height[i-1], maxLeft[i-1])
 	}

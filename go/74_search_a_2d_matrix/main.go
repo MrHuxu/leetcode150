@@ -9,8 +9,7 @@ func searchMatrix(matrix [][]int, target int) bool {
 	var targetRow []int
 
 	rowLen := len(matrix[0])
-	left := 0
-	right := len(matrix) - 1
+	left, right := 0, len(matrix)-1
 	for left <= right {
 		mid := (left + right) / 2
 

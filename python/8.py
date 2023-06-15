@@ -37,6 +37,6 @@ class Solution:
 class TestSolution(unittest.TestCase):
     def test(self):
         solution = Solution()
-        self.assertEqual(solution.myAtoi("42"), 42)
-        self.assertEqual(solution.myAtoi("   -42"), -42)
-        self.assertEqual(solution.myAtoi("4193 with words"), 4193)
+        self.assertEqual(solution.myAtoi('42'), 42)
+        self.assertEqual(solution.myAtoi('   -42'), -42)
+        self.assertEqual(solution.myAtoi('4193 with words'), 4193)

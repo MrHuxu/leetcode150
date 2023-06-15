@@ -29,4 +29,4 @@ class TestSolution(unittest.TestCase):
     def test(self):
         solution = Solution()
         self.assertEqual(solution.convert(
-            "PAYPALISHIRING", 3), "PAHNAPLSIIGYIR")
+            'PAYPALISHIRING', 3), 'PAHNAPLSIIGYIR')

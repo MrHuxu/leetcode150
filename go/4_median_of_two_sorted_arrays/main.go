@@ -5,8 +5,7 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	m := len(nums1)
 	n := len(nums2)
 
-	left := (m + n + 1) / 2
-	right := (m + n + 2) / 2
+	left, right := (m+n+1)/2, (m+n+2)/2
 
 	return (float64(getKth(nums1, 0, m-1, nums2, 0, n-1, left)) + float64(getKth(nums1, 0, m-1, nums2, 0, n-1, right))) / 2.0
 }

@@ -6,8 +6,7 @@ func mySqrt(x int) int {
 		return x
 	}
 
-	left := 1
-	right := x / 2
+	left, right := 1, x/2
 	for left <= right {
 		mid := (left + right) / 2
 

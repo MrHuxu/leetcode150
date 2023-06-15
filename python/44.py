@@ -27,10 +27,10 @@ class Solution:
 class TestSolution(unittest.TestCase):
     def test(self):
         s = Solution()
-        self.assertFalse(s.isMatch("aa", "a"))
-        self.assertTrue(s.isMatch("aa", "*"))
-        self.assertFalse(s.isMatch("cb", "?a"))
-        self.assertTrue(s.isMatch("adceb", "*a*b"))
-        self.assertFalse(s.isMatch("acdcb", "a*c?b"))
-        self.assertTrue(s.isMatch("a", "a*"))
-        self.assertFalse(s.isMatch("a", "a*b"))
+        self.assertFalse(s.isMatch('aa', 'a'))
+        self.assertTrue(s.isMatch('aa', '*'))
+        self.assertFalse(s.isMatch('cb', '?a'))
+        self.assertTrue(s.isMatch('adceb', '*a*b'))
+        self.assertFalse(s.isMatch('acdcb', 'a*c?b'))
+        self.assertTrue(s.isMatch('a', 'a*'))
+        self.assertFalse(s.isMatch('a', 'a*b'))

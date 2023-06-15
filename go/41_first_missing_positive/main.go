@@ -6,9 +6,7 @@ func firstMissingPositive(nums []int) int {
 
 	for len(nums) > 0 {
 		for mid := len(nums) / 2; mid >= 1; mid-- {
-			pos := mid - 1
-			left := mid*2 - 1
-			right := mid * 2
+			pos, left, right := mid-1, mid*2-1, mid*2
 
 			if nums[left] < nums[pos] {
 				tmp := nums[pos]
