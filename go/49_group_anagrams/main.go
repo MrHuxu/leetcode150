@@ -1,45 +1,23 @@
 package main
 
 // code
-type node struct {
-	index int
-	next  map[int]*node
+func groupAnagrams(strs []string) [][]string {
+	groups := make(map[[26]int][]string)
+	for _, str := range strs {
+		cnt := count(str)
+		groups[cnt] = append(groups[cnt], str)
+	}
+
+	ret := make([][]string, 0, len(groups))
+	for _, group := range groups {
+		ret = append(ret, group)
+	}
+	return ret
 }
 
-func groupAnagrams(strs []string) [][]string {
-	var result [][]string
-
-	root := &node{
-		index: -1,
-		next:  make(map[int]*node),
+func count(str string) (ret [26]int) {
+	for _, ch := range str {
+		ret[ch-'a']++
 	}
-	for _, str := range strs {
-		times := make([]int, 26)
-		for _, b := range []byte(str) {
-			times[b-97]++
-		}
-
-		tmp := root
-		for i, time := range times {
-			for time != 0 {
-				if _, ok := tmp.next[i]; !ok {
-					tmp.next[i] = &node{
-						index: -1,
-						next:  make(map[int]*node),
-					}
-				}
-				tmp = tmp.next[i]
-
-				time--
-			}
-		}
-
-		if tmp.index == -1 {
-			result = append(result, []string{})
-			tmp.index = len(result) - 1
-		}
-		result[tmp.index] = append(result[tmp.index], str)
-	}
-
-	return result
+	return
 }
