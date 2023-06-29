@@ -8,24 +8,22 @@ func merge(intervals [][]int) [][]int {
 		return intervals[i][0] < intervals[j][0]
 	})
 
-	var result [][]int
+	var ret [][]int
 
-	for i := 0; i < len(intervals); i++ {
-		left, right := intervals[i][0], intervals[i][1]
-
-		for j := i + 1; j < len(intervals); j++ {
-			if intervals[j][0] <= right {
-				if intervals[j][1] > right {
-					right = intervals[j][1]
-				}
-
-				i = j
-			} else {
-				break
-			}
+	for _, interval := range intervals {
+		if len(ret) == 0 || ret[len(ret)-1][1] < interval[0] {
+			ret = append(ret, interval)
+		} else {
+			ret[len(ret)-1][1] = max(ret[len(ret)-1][1], interval[1])
 		}
-		result = append(result, []int{left, right})
 	}
 
-	return result
+	return ret
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
