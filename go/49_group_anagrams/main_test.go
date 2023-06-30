@@ -10,8 +10,8 @@ func Test_groupAnagrams(t *testing.T) {
 	assert := assert.New(t)
 
 	assert.Equal([][]string{
-		[]string{"eat", "tea", "ate"},
-		[]string{"tan", "nat"},
-		[]string{"bat"},
+		{"bat"},
+		{"eat", "tea", "ate"},
+		{"tan", "nat"},
 	}, groupAnagrams([]string{"eat", "tea", "tan", "ate", "nat", "bat"}))
 }
