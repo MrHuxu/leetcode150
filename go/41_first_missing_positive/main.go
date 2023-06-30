@@ -2,40 +2,20 @@ package main
 
 // code
 func firstMissingPositive(nums []int) int {
-	var num int
-
-	for len(nums) > 0 {
-		for mid := len(nums) / 2; mid >= 1; mid-- {
-			pos, left, right := mid-1, mid*2-1, mid*2
-
-			if nums[left] < nums[pos] {
-				tmp := nums[pos]
-				nums[pos] = nums[left]
-				nums[left] = tmp
-			}
-
-			if right < len(nums) && nums[right] < nums[pos] {
-				tmp := nums[pos]
-				nums[pos] = nums[right]
-				nums[right] = tmp
-			}
-		}
-
-		switch {
-		case nums[0] <= 0:
-			nums = nums[1:len(nums)]
-
-		case nums[0] == num:
-			nums = nums[1:len(nums)]
-
-		case nums[0] == num+1:
-			num++
-			nums = nums[1:len(nums)]
-
-		case nums[0] > num+1:
-			return num + 1
+	n := len(nums)
+	for i := 0; i < n; i++ {
+		num := nums[i]
+		if num >= 1 && num <= n && nums[num-1] != num {
+			nums[i], nums[num-1] = nums[num-1], nums[i]
+			i--
 		}
 	}
 
-	return num + 1
+	for i, num := range nums {
+		if i+1 != num {
+			return i + 1
+		}
+	}
+
+	return n + 1
 }
