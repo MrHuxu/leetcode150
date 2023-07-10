@@ -1,4 +1,4 @@
-import { TreeNode } from './tree';
+import { TreeNode, buildTree } from './tree';
 
 /**
  * Definition for a binary tree node.
@@ -23,3 +23,7 @@ function minDepth(root: TreeNode | null): number {
     if (root.right) ret = ret === -1 ? 1 + minDepth(root.right) : Math.min(ret, 1 + minDepth(root.right));
     return ret;
 };
+
+test('111', () => {
+    expect(minDepth(buildTree([3, 9, 20, null, null, 15, 7]))).toBe(2);
+});
