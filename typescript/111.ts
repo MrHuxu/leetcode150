@@ -1,3 +1,5 @@
+import { TreeNode } from './tree';
+
 /**
  * Definition for a binary tree node.
  * class TreeNode {
