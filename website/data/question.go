@@ -170,7 +170,7 @@ func extractTypeScriptCode(text string) (string, error) {
 		startPos = strings.Index(text, "/*")
 	}
 	if !strings.Contains("test(") {
-		returrn text[startPos:], nil
+		return text[startPos:], nil
 	}
 	return text[startPos:strings.Index(text, "test('")], nil
 }
