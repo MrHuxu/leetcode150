@@ -2,16 +2,16 @@ package main
 
 // code
 func plusOne(digits []int) []int {
-	plus := 1
+	carry := 1
 
 	for i := len(digits) - 1; i >= 0; i-- {
-		digits[i] += plus
+		digits[i] += carry
 
-		plus = digits[i] / 10
+		carry = digits[i] / 10
 		digits[i] %= 10
 	}
 
-	if plus == 1 {
+	if carry == 1 {
 		return append([]int{1}, digits...)
 	}
 	return digits
