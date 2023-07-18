@@ -19,7 +19,7 @@ class Solution:
                 elif j >= 1:
                     dp[i][j] += dp[i][j - 1]
 
-        return dp[len(grid) - 1][len(grid[0]) - 1]
+        return dp[-1][- 1]
 
 
 class TestSolution(unittest.TestCase):

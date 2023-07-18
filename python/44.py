@@ -21,7 +21,7 @@ class Solution:
                         dp[i][j] = dp[i - 1][j - 1]
                     else:
                         dp[i][j] = dp[i - 1][j - 1] and s[j - 1] == p[i - 1]
-        return dp[len(p)][len(s)]
+        return dp[-1][-1]
 
 
 class TestSolution(unittest.TestCase):

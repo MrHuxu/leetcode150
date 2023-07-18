@@ -21,7 +21,7 @@ class Solution:
                 if j - 1 >= 0 and obstacleGrid[i][j - 1] != 1:
                     dp[i][j] += dp[i][j - 1]
 
-        return dp[len(obstacleGrid) - 1][len(obstacleGrid[0]) - 1]
+        return dp[- 1][- 1]
 
 
 class TestSolution(unittest.TestCase):
