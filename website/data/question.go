@@ -169,9 +169,6 @@ func extractTypeScriptCode(text string) (string, error) {
 	if strings.Contains(text, "/*") {
 		startPos = strings.Index(text, "/*")
 	}
-	if !strings.Contains(text, "test(") {
-		return text[startPos:], nil
-	}
 	return text[startPos:strings.Index(text, "test('")], nil
 }
 
@@ -179,6 +176,9 @@ func extractPythonCode(text string) (string, error) {
 	startPos := strings.Index(text, "class Solution")
 	if strings.Contains(text, "# Definition") {
 		startPos = strings.Index(text, "# Definition")
+	}
+	if strings.Contains(text, "class LRU") {
+		startPos = strings.Index(text, "class LRU")
 	}
 	if !strings.Contains(text, "class TestSolution") {
 		return text[startPos:], nil
