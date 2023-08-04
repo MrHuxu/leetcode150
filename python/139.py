@@ -13,8 +13,7 @@ class Solution:
             max_len = max(max_len, len(word))
 
         exist: Set[str] = set(wordDict)
-        dp: List[bool] = [False] * (len(s) + 1)
-        dp[0] = True
+        dp: List[bool] = [True] + [False] * len(s)
         for i in range(1, len(s) + 1):
             if i < min_len:
                 dp[i] = False
