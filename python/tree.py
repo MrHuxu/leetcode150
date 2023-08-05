@@ -8,7 +8,7 @@ class TreeNode:
         self.right = right
 
 
-def buildTree(vals: List[int | None]) -> Optional[TreeNode]:
+def buildTree(vals: List[Optional[int]]) -> Optional[TreeNode]:
     if not vals or vals[0] is None:
         return None
     root = TreeNode(vals[0])
