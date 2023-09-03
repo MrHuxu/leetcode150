@@ -9,8 +9,6 @@ function search(nums: number[], target: number): number {
             left = mid + 1;
     }
 
-    console.log(left, right)
-
     const rotate_idx = Math.floor((left + right) / 2)
     if (target >= nums[0]) {
         left = 0;
@@ -19,8 +17,6 @@ function search(nums: number[], target: number): number {
         left = rotate_idx + 1;
         right = nums.length - 1;
     }
-
-    console.log(left, right)
 
     while (left <= right) {
         const mid = Math.floor((left + right) / 2);
