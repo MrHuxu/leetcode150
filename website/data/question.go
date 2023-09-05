@@ -180,6 +180,9 @@ func extractPythonCode(text string) (string, error) {
 	if strings.Contains(text, "class LRU") {
 		startPos = strings.Index(text, "class LRU")
 	}
+	if strings.Contains(text, `"""`) {
+		startPos = strings.Index(text, `"""`)
+	}
 	if !strings.Contains(text, "class TestSolution") {
 		return text[startPos:], nil
 	}
