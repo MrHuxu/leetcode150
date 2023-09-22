@@ -16,12 +16,12 @@ const getKth = (nums1: number[], start1: number, end1: number, nums2: number[], 
     if (!len1) return nums2[start2 + k - 1];
     if (k === 1) return Math.min(nums1[start1], nums2[start2]);
 
-    const i = Math.min(len1, k / 2) - 1;
-    const j = Math.min(len2, k / 2) - 1;
+    const i = start1 + Math.min(len1, Math.floor(k / 2)) - 1;
+    const j = start2 + Math.min(len2, Math.floor(k / 2)) - 1;
 
-    if (nums1[start1 + i] > nums2[start2 + j])
-        return getKth(nums1, start1, end1, nums2, start2 + j + 1, end2, k - j - 1);
-    return getKth(nums1, start1 + i + 1, end1, nums2, start2, end2, k - i - 1);
+    if (nums1[i] > nums2[j])
+        return getKth(nums1, start1, end1, nums2, j + 1, end2, k - (j - start2 + 1));
+    return getKth(nums1, i + 1, end1, nums2, start2, end2, k - (i - start1 + 1));
 }
 
 test('4', () => {
