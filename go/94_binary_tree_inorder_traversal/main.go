@@ -12,19 +12,15 @@ import . "github.com/MrHuxu/types"
  * }
  */
 func inorderTraversal(root *TreeNode) []int {
-	var result []int
+	var ret []int
 
-	var visit func(*TreeNode)
-	visit = func(node *TreeNode) {
-		if node == nil {
-			return
-		}
-
-		visit(node.Left)
-		result = append(result, node.Val)
-		visit(node.Right)
+	if root == nil {
+		return ret
 	}
-	visit(root)
 
-	return result
+	ret = append(ret, inorderTraversal(root.Left)...)
+	ret = append(ret, root.Val)
+	ret = append(ret, inorderTraversal(root.Right)...)
+
+	return ret
 }
