@@ -7,12 +7,10 @@ class Solution:
         if n <= 2:
             return n
 
-        dp: List[int] = [0] * (n + 1)
-        dp[0], dp[1], dp[2] = 0, 1, 2
-        for i in range(3, n + 1):
-            dp[i] = dp[i - 1] + dp[i - 2]
-
-        return dp[n]
+        dp1, dp2 = 1, 2
+        for _ in range(3, n + 1):
+            dp1, dp2 = dp2, dp1 + dp2
+        return dp2
 
 
 class TestSolution(unittest.TestCase):
