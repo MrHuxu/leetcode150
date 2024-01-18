@@ -9,3 +9,8 @@ function climbStairs(n: number): number {
     }
     return dp2
 };
+
+test('70', () => {
+    expect(climbStairs(2)).toBe(2);
+    expect(climbStairs(3)).toBe(3);
+});
